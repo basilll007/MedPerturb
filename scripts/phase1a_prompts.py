@@ -36,3 +36,7 @@ def build_prompt(perturbation_type: str, question: str, options: dict) -> str:
 
 def parse_options_json(options_str: str) -> dict:
     return json.loads(options_str)
+
+
+def get_labels(perturbation_type: str) -> list[str]:
+    return list(_LABEL_SETS[perturbation_type])

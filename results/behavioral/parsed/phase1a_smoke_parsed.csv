@@ -1,0 +1,21 @@
+provider,model_id,source_dataset,source_id,perturbation_type,gold_answer,raw_response_text,parsed_prediction,parsing_status,correct,prompt_version,sampling_config,timestamp
+gemini,gemini-2.5-flash-lite,medmcqa,03c11d83-2266-4c72-89f9-fa2615c10ae2,mcq,C,A,A,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:52.252827+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,03c11d83-2266-4c72-89f9-fa2615c10ae2,roman_numeral,III,I,I,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:52.845918+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,mcq,C,B,B,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:53.472762+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,roman_numeral,III,II,II,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:54.123192+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,mcq,C,C,C,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:54.717749+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,roman_numeral,III,III,III,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:55.292311+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,132fec12-271f-4778-93af-042d6ec32a22,mcq,A,C,C,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:55.918377+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,132fec12-271f-4778-93af-042d6ec32a22,roman_numeral,I,III,III,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:56.534799+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,18c1a5f9-d998-414e-bb9c-991191c10710,mcq,A,A,A,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:57.146378+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,18c1a5f9-d998-414e-bb9c-991191c10710,roman_numeral,I,I,I,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:57.773738+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,mcq,C,C,C,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:58.420652+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,roman_numeral,III,III,III,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:59.043530+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,20929b62-1d50-4e64-9370-8d4966ccb2ae,mcq,D,D,D,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:42:59.648171+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,20929b62-1d50-4e64-9370-8d4966ccb2ae,roman_numeral,IV,IV,IV,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:00.268602+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,26f30f24-dcd8-453d-8553-9ee82ad496e1,mcq,A,A,A,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:00.944303+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,26f30f24-dcd8-453d-8553-9ee82ad496e1,roman_numeral,I,I,I,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:01.562407+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,2719953f-15c7-4003-83ed-0baf2654d35a,mcq,B,C,C,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:02.170903+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,2719953f-15c7-4003-83ed-0baf2654d35a,roman_numeral,II,III,III,ok,False,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:02.760564+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,2880abd7-1ec6-4456-823e-e5d00159dfec,mcq,A,A,A,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:03.389171+00:00
+gemini,gemini-2.5-flash-lite,medmcqa,2880abd7-1ec6-4456-823e-e5d00159dfec,roman_numeral,I,I,I,ok,True,phase1a_v1,"{""temperature"": 0}",2026-09-29T18:43:04.022470+00:00
