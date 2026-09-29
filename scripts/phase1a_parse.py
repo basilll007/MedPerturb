@@ -19,11 +19,16 @@ class ParseResult:
     parsing_status: str  # "ok" | "unparseable" | "ambiguous"
 
 
-def parse_answer(raw_text: str, perturbation_type: str) -> ParseResult:
+def parse_answer(raw_text: str, perturbation_type: str, labels: list[str] | None = None) -> ParseResult:
+    """`labels` overrides the static lookup - required for perturbations
+    (e.g. none_of_the_provided) whose valid label set must be derived from
+    the actual example rather than assumed. When omitted, behavior is
+    byte-identical to the validated Phase 1A parser."""
     if raw_text is None:
         return ParseResult(None, "unparseable")
 
-    labels = _LABEL_SETS[perturbation_type]
+    if labels is None:
+        labels = _LABEL_SETS[perturbation_type]
     text = raw_text.strip()
 
     # Fast path: response is exactly the label (optionally wrapped in

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Phase 1B Validation</title>
+  <meta name="description" content="NAACL 2027 — Phase 1B: validation + perturbation sensitivity check. none_of_the_provided semantic audit, Claude re-check, a thinking-budget instability finding.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+        <a href="phase1a.html">Phase 1A</a>
+        <a href="phase1b.html" class="active">Phase 1B</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Phase 1B</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Phase 1B · Validation + Perturbation Sensitivity · scripts/phase1b_smoke.py</div>
+    <h1>A harder perturbation, the same 10 questions, zero resampling</h1>
+    <p class="lede">
+      Same 10 question IDs recovered directly from Phase 1A's own artifacts — never resampled.
+      Adds <code class="mono">none_of_the_provided</code>, semantically audited before a single API
+      call was made for it, and reuses every valid Phase 1A Gemini response instead of paying twice.
+    </p>
+    <div class="status-row">
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">60 responses — 60 reused, 0 new API calls on final run</span>
+      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb, var(--warn) 30%, transparent);">Claude — still blocked, checked once, not retried</span>
+      <span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">Independent sanity recompute: matches exactly</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">10</div><div class="l">structural anomalies in the none_of_the_provided semantic audit — clean</div></div>
+      <div class="stat"><div class="v num">0/10</div><div class="l">questions where the correct answer's LETTER position moved</div></div>
+      <div class="stat"><div class="v num">10/10</div><div class="l">questions where the correct answer's TEXT was replaced with boilerplate</div></div>
+      <div class="stat"><div class="v num">50%</div><div class="l">Gemini parse-failure rate on none_of_the_provided — a real finding, not noise</div></div>
+      <div class="stat"><div class="v">$0.0072</div><div class="l">cumulative Phase 1A + 1B cost</div></div>
+    </div>
+  </div>
+
+  <section id="audit">
+    <div class="section-head">
+      <div class="kicker">§1 · Semantic audit — before any API call</div>
+      <h2>none_of_the_provided is confirmed NOT meaning-preserving</h2>
+      <p>Checked for all 10 questions before spending a cent on this condition: original/perturbed gold, option counts, ordering, and whether the correct answer's content survives.</p>
+    </div>
+    <div class="callout warn">
+      <div class="icon">FINDING</div>
+      <div class="body">
+        In all 10/10 cases: the correct option's <b>letter position is unchanged</b> (0/10 moved), but its
+        <b>text is destroyed</b> — replaced with the literal string <code class="mono">"None of the provided
+        options"</code> — in all 10/10 cases. The decision problem changes even though the label doesn't move:
+        a model can no longer recognize the right answer by clinical content, only by process of elimination.
+        This is deliberately treated as a <b>separate answer-set / decision-boundary robustness probe</b>,
+        never pooled with <code class="mono">roman_numeral</code>'s presentation-only perturbation.
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:0.85rem; color:var(--ink-muted);">Full per-question audit: <code class="mono">results/behavioral/phase1b/none_semantic_audit.csv</code>.</p>
+  </section>
+
+  <section id="results">
+    <div class="section-head">
+      <div class="kicker">§2 · Metrics, reported separately by design</div>
+      <h2>roman_numeral vs. none_of_the_provided — never pooled</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th class="num">mcq acc.</th><th class="num">roman acc.</th><th class="num">roman flip rate</th><th class="num">roman ReCon</th><th class="num">none acc.</th><th class="num">none Δ</th><th class="num">none valid pairs</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--good-soft);">
+            <td class="mono">gemini-3.7-flash</td>
+            <td class="num">100%</td><td class="num">100%</td><td class="num">0%</td><td class="num">1.00</td>
+            <td class="num">100%</td><td class="num">0</td><td class="num">5 / 10</td>
+          </tr>
+          <tr style="background:var(--good-soft);">
+            <td class="mono">gemini-3.8-flash</td>
+            <td class="num">100%</td><td class="num">100%</td><td class="num">0%</td><td class="num">1.00</td>
+            <td class="num">100%</td><td class="num">0</td><td class="num">5 / 10</td>
+          </tr>
+          <tr style="background:var(--warn-soft);">
+            <td class="mono">claude-haiku-4-5-20251001</td>
+            <td class="num" colspan="6">unavailable — Anthropic account usage cap, single check, not retried</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px; font-size:0.85rem; color:var(--ink-muted);">
+      Every question the model actually answered on none_of_the_provided, it answered correctly (5 stable-correct
+      per model) — but only half the responses parsed at all. The 100% accuracy figure is real but incomplete:
+      it says nothing about the 5 truncated responses per model. See the anomaly below before reading this as
+      "the model handled it perfectly."
+    </p>
+  </section>
+
+  <section id="anomaly">
+    <div class="section-head">
+      <div class="kicker">§3 · The actual finding this phase was built to catch</div>
+      <h2>none_of_the_provided burns the Gemini thinking budget</h2>
+    </div>
+    <div class="callout bad">
+      <div class="icon">ROOT-CAUSED</div>
+      <div class="body">
+        50% of Gemini responses to <code class="mono">none_of_the_provided</code> were truncated mid-preamble
+        (raw text like <code class="mono">"Here is the JSON requested"</code>, <code class="mono">finish_reason:
+        MAX_TOKENS</code>) — vs. 10% on mcq/roman_numeral. Extracted straight from the already-cached raw
+        responses (zero extra spend): mean <code class="mono">thoughts_token_count</code> is
+        <b>157</b> on none_of_the_provided vs <b>100</b> on the other two conditions, out of a 200-token budget.
+        The model reasons substantially harder about a "none of the provided options is correct" framing than
+        about a straightforward label swap. Correctly recorded as <code class="mono">parsing_status=unparseable</code>
+        in every case — never guessed at.
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <p style="font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+        This is exactly what Phase 1B's Objective B asked: can the pipeline detect behavioral instability under a
+        harder perturbation? It did — just not in the answer content (which was 100% correct when parseable).
+        The instability showed up in the model's <i>process</i>: more hidden reasoning, more truncation risk.
+        <b>Fix before scaling this condition</b>: raise <code class="mono">max_output_tokens</code> specifically
+        for none_of_the_provided (or globally) rather than reusing mcq/roman_numeral's budget.
+      </p>
+    </div>
+    <figure style="margin-top:16px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px;">
+      <img src="figures/phase1b_none_of_the_provided_outcomes.png" alt="Grouped bar chart of adaptation/outcome categories per model for none_of_the_provided">
+      <figcaption style="font-size:0.84rem; color:var(--ink-2); padding:10px 4px 2px;">
+        Outcome categories per model: 5 stable_correct and 5 unparseable each, for both Gemini models — no question
+        in this sample required the model to change its literal answer (gold letter never moved), so no
+        successful_adaptation / failure_to_adapt cases exist in this particular n=10 sample.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="validation">
+    <div class="section-head">
+      <div class="kicker">§4 · Measurement correctness</div>
+      <h2>Independent sanity recomputation</h2>
+      <p>Required because Phase 1A exposed a real pandas metric bug. Recomputed flip rate, ReAcc, and ReCon via plain Python loops — deliberately not the vectorized pandas <code class="mono">~</code>/<code class="mono">&amp;</code> operators that caused that bug — and compared against the reported metrics.</p>
+    </div>
+    <div class="callout">
+      <div class="icon">OK</div>
+      <div class="body">Independent recomputation matches reported metrics exactly for both models, all three quantities. No discrepancy flagged.</div>
+    </div>
+  </section>
+
+  <section id="cost">
+    <div class="section-head">
+      <div class="kicker">§5 · Cost control</div>
+      <h2>Reuse-first, incremental accounting</h2>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="kv"><div class="k">Reused from Phase 1A</div><div class="val num" style="font-size:1.4rem;">40 / 60</div></div><p style="font-size:0.82rem; color:var(--ink-muted); margin-top:4px;">mcq + roman_numeral, $0 cost</p></div>
+      <div class="card"><div class="kv"><div class="k">New calls (this phase)</div><div class="val num" style="font-size:1.4rem;">20</div></div><p style="font-size:0.82rem; color:var(--ink-muted); margin-top:4px;">none_of_the_provided only, both Gemini models</p></div>
+      <div class="card"><div class="kv"><div class="k">Incremental / cumulative</div><div class="val num" style="font-size:1.4rem;">$0.0023 / $0.0072</div></div><p style="font-size:0.82rem; color:var(--ink-muted); margin-top:4px;">Phase 1B alone / Phase 1A+1B total</p></div>
+    </div>
+  </section>
+
+  <section id="next">
+    <div class="section-head">
+      <div class="kicker">§6 · Stop condition</div>
+      <h2>What happens next</h2>
+    </div>
+    <div class="callout warn">
+      <div class="icon">STOP</div>
+      <div class="body">
+        No 200-question cohort, no fixed_pos/incorrect/open/no_symbols, no new models, no significance testing,
+        no claims of model superiority. n=10 remains pipeline validation, not scientific evidence. Full report:
+        <code class="mono">results/behavioral/phase1b/phase1b_summary.md</code>.
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="kv"><div class="k">Readiness</div></div>
+      <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+        mcq and roman_numeral are validated end-to-end on Gemini. none_of_the_provided is <b>not yet</b> —
+        fix the token-budget truncation issue first. Claude remains entirely unvalidated pending account access.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="phase1a.html">
+      <span class="label">Previous</span>
+      <span class="title">Phase 1A — smoke test v2</span>
+    </a>
+    <a class="next" href="index.html">
+      <span class="label">Back to top</span>
+      <span class="title">Overview — framing &amp; module cards</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

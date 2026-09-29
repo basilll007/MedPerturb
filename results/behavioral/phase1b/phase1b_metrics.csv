@@ -1,0 +1,3 @@
+model,mcq_accuracy,roman_accuracy,roman_delta_from_mcq,roman_flip_rate,roman_ReAcc,roman_ReCon,roman_n_valid_pairs,none_accuracy,none_delta_from_mcq,none_answer_change_rate,none_transition_CC,none_transition_CW,none_transition_WC,none_transition_WW,none_n_valid_pairs
+gemini-3.7-flash,1.0,1.0,0.0,0.0,1.0,1.0,9,1.0,0.0,0.0,5,0,0,0,5
+gemini-3.8-flash,1.0,1.0,0.0,0.0,1.0,1.0,8,1.0,0.0,0.0,5,0,0,0,5

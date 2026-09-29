@@ -97,8 +97,12 @@ def to_serializable(obj):
         return str(obj)
 
 
-def canonical_index(perturbation_type: str, label: str) -> int | None:
-    labels = get_labels(perturbation_type)
+def canonical_index(perturbation_type: str, label: str, labels: list[str] | None = None) -> int | None:
+    """`labels` overrides the static lookup - required for perturbations
+    (e.g. none_of_the_provided) whose valid label set must come from the
+    actual example, not an assumed fixed set."""
+    if labels is None:
+        labels = get_labels(perturbation_type)
     label = (label or "").strip().upper()
     if label not in labels:
         return None
@@ -215,8 +219,9 @@ def estimate_cost(model_id, input_tokens, output_tokens):
     return (input_tokens / 1_000_000) * p["input"] + (output_tokens / 1_000_000) * p["output"]
 
 
-def call_model(clients, provider, model_id, prompt, perturbation_type):
-    labels = get_labels(perturbation_type)
+def call_model(clients, provider, model_id, prompt, perturbation_type, labels=None):
+    if labels is None:
+        labels = get_labels(perturbation_type)
     if provider == "anthropic":
         return call_anthropic(clients["anthropic"], model_id, prompt, labels)
     return call_gemini(clients["gemini"], model_id, prompt, labels)
@@ -228,10 +233,14 @@ def do_call_and_cache(clients, provider, model_id, source_dataset, source_id, co
         with open(target, "r", encoding="utf-8") as f:
             return json.load(f), True
 
-    prompt = build_prompt(cond["perturbation_type"], cond["question"], cond["options"])
+    # cond["labels"] (optional) lets callers - e.g. Phase 1B's
+    # none_of_the_provided - supply a label set derived from the actual
+    # example instead of relying on the static mcq/roman_numeral lookup.
+    labels = cond.get("labels")
+    prompt = build_prompt(cond["perturbation_type"], cond["question"], cond["options"], labels=labels)
     log_event(event="call_start", provider=provider, model_id=model_id, source_dataset=source_dataset,
                source_id=source_id, perturbation_type=cond["perturbation_type"])
-    result = call_model(clients, provider, model_id, prompt, cond["perturbation_type"])
+    result = call_model(clients, provider, model_id, prompt, cond["perturbation_type"], labels=labels)
 
     record = {
         "provider": provider,
