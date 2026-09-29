@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Phase 0 Overview</title>
+  <meta name="description" content="NAACL 2027 Medical LLM Reliability — Phase 0 dataset forensics dashboard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html" class="active">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <span class="current">Home</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">NAACL 2027 · Medical LLM Reliability · Phase 0</div>
+    <h1>Dataset forensics and perturbation cohort, before a single model call</h1>
+    <p class="lede">
+      This dashboard tracks Phase 0 of the medical-LLM-reliability paper: auditing every raw
+      dataset, verifying how ReMedQA's seven perturbations of the same question actually
+      pair up, and building a seeded pilot cohort — all before any inference, training, or
+      GPU work begins. Every number below was produced by running the scripts listed in
+      <a href="pilot.html#provenance">Provenance</a> against the on-disk data, not estimated.
+    </p>
+    <div class="status-row">
+      <span class="pill dot">Tasks 5–7 · dataset audit — complete</span>
+      <span class="pill dot">Tasks 8–10 · pairing, descriptives, pilot — complete</span>
+      <span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">No API calls · no training · no GPU</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">3</div><div class="l">raw datasets forensically audited: ReMedQA, CareQA, local MedQA</div></div>
+      <div class="stat"><div class="v num">3,154</div><div class="l">original questions with all 7 ReMedQA perturbations verified present</div></div>
+      <div class="stat"><div class="v num">18,924</div><div class="l">original → perturbed pairing rows built (3,154 × 6)</div></div>
+      <div class="stat"><div class="v num">200</div><div class="l">pilot-cohort originals, stratified by source, seed 42</div></div>
+      <div class="stat"><div class="v num">0%</div><div class="l">CareQA text overlap with ReMedQA / MedQA — independent</div></div>
+      <div class="stat"><div class="v num">98.9%</div><div class="l">of local MedQA's test split duplicates ReMedQA's medqa_mcq</div></div>
+    </div>
+  </div>
+
+  <section id="framing">
+    <div class="section-head">
+      <div class="kicker">Framing</div>
+      <h2>Research question, hypothesis, concept</h2>
+      <p>No separately authored thesis document exists in the repo yet. The framing below is derived directly from the grounded implications the audit scripts produced, not invented independently — treat it as a working draft, not a citable paper thesis.</p>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <div class="kv"><div class="k">Research question (derived)</div></div>
+        <p style="margin-top:8px; font-size:1.04rem; color:var(--ink); line-height:1.55;">
+          Are medical-domain LLMs' answers reliable across reformulations of the same
+          multiple-choice question — or does measured accuracy partly reflect sensitivity to
+          answer-label format, option order, and answer-extraction convention rather than
+          medical knowledge itself?
+        </p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Working hypothesis (derived from dataset_audit.md §8)</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.65;">
+          Only <b style="color:var(--ink)">roman_numeral</b> (relabels A/B/C/D → I/II/III/IV) and
+          <b style="color:var(--ink)">fixed_pos</b> (reshuffles option order) leave the question's
+          meaning fully intact — a reliable model's answer should not change under either. The
+          remaining four perturbations (<code class="mono">open</code>, <code class="mono">no_symbols</code>,
+          <code class="mono">incorrect</code>, <code class="mono">none_of_the_provided</code>) each alter
+          the task itself — output format, task definition, or which answer content is even
+          available — and must be scored and reported as a separate "task-format /
+          task-semantics" robustness category, never pooled with the meaning-preserving pair.
+        </p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Concept</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.93rem; line-height:1.6;">
+            ReMedQA supplies the same underlying question in 7 formats across three source
+            question banks (MedQA, MedMCQA, MMLU). CareQA, verified to have zero textual
+            overlap with either, serves as an independent held-out validation set. Pairing
+            perturbed variants back to their unperturbed original by shared <code class="mono">id</code>
+            turns "did the model's answer change" into a directly measurable, per-question
+            comparison.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Phase 0 proof of concept</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.93rem; line-height:1.6;">
+            Before spending any inference budget, this phase proves the data pipeline itself
+            is trustworthy: ids pair correctly across all 7 perturbations (verified, not
+            assumed), no dataset silently double-counts another, and a fixed-seed pilot cohort
+            exists that any teammate can reproduce byte-for-byte from
+            <code class="mono">SEED=42</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modules">
+    <div class="section-head">
+      <div class="kicker">Explore the dashboard</div>
+      <h2>Phase 0 modules</h2>
+      <p>Each section is now its own page. Use the navigation bar above or the cards below.</p>
+    </div>
+    <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+      <a href="datasets.html" style="text-decoration:none;">
+        <div class="card" style="height:100%;">
+          <div class="kv"><div class="k" style="color:var(--accent);">01 · Datasets</div></div>
+          <h3 style="margin-top:8px;">Landscape &amp; overlap</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+            Three raw datasets forensically audited: 22k rows across 21 ReMedQA splits, plus
+            independent cross-dataset overlap checks — including the 98.9% MedQA-test leak.
+          </p>
+        </div>
+      </a>
+      <a href="perturbations.html" style="text-decoration:none;">
+        <div class="card" style="height:100%;">
+          <div class="kv"><div class="k" style="color:var(--accent);">02 · Perturbations</div></div>
+          <h3 style="margin-top:8px;">Semantics &amp; pairing</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+            What each of ReMedQA's six perturbations actually changes — only two are
+            meaning-preserving — and the 18,924-row original→perturbed pairing table.
+          </p>
+        </div>
+      </a>
+      <a href="analysis.html" style="text-decoration:none;">
+        <div class="card" style="height:100%;">
+          <div class="kv"><div class="k" style="color:var(--accent);">03 · Analysis</div></div>
+          <h3 style="margin-top:8px;">Descriptives &amp; charts</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+            Lexical similarity, word-count change, and answer-position distributions.
+            fixed_pos lands the correct answer on D in 100% of pairs — a fixed positional target.
+          </p>
+        </div>
+      </a>
+      <a href="pilot.html" style="text-decoration:none;">
+        <div class="card" style="height:100%;">
+          <div class="kv"><div class="k" style="color:var(--accent);">04 · Pilot &amp; Beyond</div></div>
+          <h3 style="margin-top:8px;">Cohort, implications &amp; provenance</h3>
+          <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+            Deterministic seed-42 pilot (200 originals, stratified by source), experimental
+            design implications carried forward, and full provenance of every script and output.
+          </p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="pilot.html" style="visibility:hidden;">
+      <span class="label">Previous</span>
+      <span class="title">Placeholder</span>
+    </a>
+    <a class="next" href="datasets.html">
+      <span class="label">Next</span>
+      <span class="title">Datasets — landscape &amp; overlap</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

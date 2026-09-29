@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Pilot, Implications &amp; Provenance</title>
+  <meta name="description" content="NAACL 2027 — Deterministic pilot cohort, experimental design implications, and full provenance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html" class="active">Pilot &amp; Provenance</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Pilot &amp; Provenance</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Tasks 10 · scripts/build_pilot.py + carried-forward implications</div>
+    <h1>Pilot cohort, implications &amp; provenance</h1>
+    <p class="lede">
+      A deterministic, stratified pilot cohort sampled with Python's own PRNG at seed 42,
+      followed by the concrete experimental-design decisions this Phase 0 audit forces us
+      to take — then a full provenance list of every script, output, and figure so every
+      number on any page of this dashboard can be regenerated from scratch.
+    </p>
+    <div class="status-row">
+      <span class="pill dot">Pilot 200 · stratified, seed 42</span>
+      <span class="pill dot">5 design implications carried forward</span>
+      <span class="pill dot">Zero inference · zero GPU · reproducible</span>
+    </div>
+  </div>
+
+  <section id="pilot">
+    <div class="section-head">
+      <div class="kicker">§1 · Task 10</div>
+      <h2>Deterministic pilot cohort</h2>
+      <p>
+        Proportional stratified sampling by source, so the pilot's source mix is a documented decision
+        rather than a byproduct of one random draw. Random source: <span class="seed-badge">random.Random(42)</span> —
+        Python's own PRNG, not numpy — sampling each source's sorted id pool independently.
+      </p>
+    </div>
+    <div class="table-wrap tight">
+      <table>
+        <thead>
+          <tr><th>Source</th><th class="num">Pool size</th><th class="num">Proportional target</th><th class="num">Actually sampled</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>medqa</td><td class="num">1,259</td><td class="num">80</td><td class="num"><b>80</b></td></tr>
+          <tr><td>medmcqa</td><td class="num">1,000</td><td class="num">63</td><td class="num"><b>63</b></td></tr>
+          <tr><td>mmlu</td><td class="num">895</td><td class="num">57</td><td class="num"><b>57</b></td></tr>
+          <tr style="font-weight:600;"><td>Total</td><td class="num">3,154</td><td class="num">200</td><td class="num">200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-3" style="margin-top:16px;">
+      <div class="card">
+        <div class="kv"><div class="k">Sampled originals</div><div class="val num" style="font-size:1.5rem;">200</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">Exact proportional targets hit via largest-remainder rounding</p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Pilot pairing rows</div><div class="val num" style="font-size:1.5rem;">1,200</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">200 originals × 6 perturbations, exact match</p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Output</div><div class="val mono" style="font-size:0.98rem;">pilot_200.parquet</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">Same 14-column schema + <code>pilot_cohort</code> flag</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <div class="kv"><div class="k">Reproducibility notes</div></div>
+      <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+        Largest-remainder rounding keeps the three per-source targets summing to exactly 200; this run's
+        true achieved total is 200 (documented as not forced — a different total pool size or target could
+        land off by one or two, and the script reports whatever number it actually produces).
+        Reproducibility and full schema notes: <code class="mono">data/processed/PILOT_COHORT.md</code>.
+      </p>
+    </div>
+  </section>
+
+  <section id="implications">
+    <div class="section-head">
+      <div class="kicker">§2 · Carried forward</div>
+      <h2>What this means for the experimental design</h2>
+      <p>Every item below is forced by the data audit — not a preference. Changing any of them requires arguing against the scripted findings on file.</p>
+    </div>
+    <div class="card">
+      <ul class="findings">
+        <li>
+          <b>Score meaning-preserving and task-altering perturbations separately.</b>
+          Pooling <code>roman_numeral</code>/<code>fixed_pos</code> results with
+          <code>open</code>/<code>no_symbols</code>/<code>incorrect</code>/<code>none_of_the_provided</code>
+          would conflate format sensitivity with task-definition sensitivity. Report two distinct robustness numbers per model.
+        </li>
+        <li>
+          <b>Never treat local MedQA's test split as independent of ReMedQA.</b>
+          It is 98.9% the same 1,259 questions as <code>medqa_mcq</code>. Use MedQA's <code>train</code>
+          split (10,178 rows, 0% overlap) if a larger or fresh MedQA cohort is needed. Validation split is also clean at 0%.
+        </li>
+        <li>
+          <b>CareQA is safe to use as an independent validation set</b> against both ReMedQA and MedQA —
+          verified 0% overlap and 0 near-duplicates — but key it on <code>unique_id</code>,
+          not question text, because of its own internal duplicate-stem groups.
+        </li>
+        <li>
+          <b><code>fixed_pos</code>'s correct answer always lands at position D.</b>
+          Any position-bias study using this perturbation should account for the fact that it is
+          a fixed target, not a uniform reshuffle. Compare directly against <code>roman_numeral</code>
+          (0% position change) to isolate pure positional bias from label-format sensitivity.
+        </li>
+        <li>
+          <b>Pairing must stay id-based everywhere</b> — verified reliable for ReMedQA's 7-way family;
+          MedQA (no id column) needs content-based joins instead, exactly as Task 5's overlap analysis already does.
+          Never key ReMedQA on question text.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="prov" id="provenance">
+    <div class="section-head">
+      <div class="kicker">§3 · Reproduce everything</div>
+      <h2>Provenance</h2>
+      <p>Every number on every page of this dashboard was produced by running one of these scripts against the on-disk data at <code class="mono">data/raw/</code> — nothing here is hand-derived or estimated.</p>
+    </div>
+    <div class="table-wrap">
+      <div class="tree" style="padding:18px 20px;">
+        <div><span class="dir">scripts/</span></div>
+        <div>&nbsp;&nbsp;<span class="file">_audit_remedqa.py, _audit_careqa.py, _audit_medqa.py</span> <span class="desc">— per-dataset forensic audits (teammate, Tasks 5–7)</span></div>
+        <div>&nbsp;&nbsp;<span class="file">audit_datasets.py</span> <span class="desc">— cross-dataset overlap + consolidated manifest (teammate, Tasks 5–6)</span></div>
+        <div>&nbsp;&nbsp;<span class="file">build_pairs.py</span> <span class="desc">— Task 8: builds remedqa_pairs.parquet (18,924 rows)</span></div>
+        <div>&nbsp;&nbsp;<span class="file">descriptive_analysis.py</span> <span class="desc">— Task 9: perturbation_descriptives.csv + 4 figures</span></div>
+        <div>&nbsp;&nbsp;<span class="file">build_pilot.py</span> <span class="desc">— Task 10: builds pilot_200.parquet, seed 42</span></div>
+        <div style="margin-top:10px;"><span class="dir">results/audit/</span></div>
+        <div>&nbsp;&nbsp;<span class="file">_remedqa_findings.md, _careqa_findings.md, _medqa_findings.md</span> <span class="desc">— per-dataset raw findings</span></div>
+        <div>&nbsp;&nbsp;<span class="file">dataset_audit.md, dataset_manifest.csv</span> <span class="desc">— consolidated audit report</span></div>
+        <div>&nbsp;&nbsp;<span class="file">perturbation_descriptives.csv</span> <span class="desc">— Task 9 results table (6 rows × 13 columns)</span></div>
+        <div style="margin-top:10px;"><span class="dir">data/processed/</span></div>
+        <div>&nbsp;&nbsp;<span class="file">remedqa_pairs.parquet, PAIRING_METHOD.md</span> <span class="desc">— Task 8 output + column-by-column method doc</span></div>
+        <div>&nbsp;&nbsp;<span class="file">pilot_200.parquet, PILOT_COHORT.md</span> <span class="desc">— Task 10 output + sampling doc</span></div>
+        <div style="margin-top:10px;"><span class="dir">figures/audit/</span></div>
+        <div>&nbsp;&nbsp;<span class="file">perturbation_counts.png, length_change_by_perturbation.png</span></div>
+        <div>&nbsp;&nbsp;<span class="file">lexical_similarity_by_perturbation.png, answer_position_distribution.png</span></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <div class="kv"><div class="k">Run commands</div></div>
+      <p style="margin-top:8px; font-size:0.88rem; color:var(--ink-2); line-height:1.8;">
+        Project root <code class="mono">F:\NAACL 2027</code>. Run any of the following from a terminal in the project root:
+      </p>
+      <div style="margin-top:10px; padding:12px 14px; background: var(--surface-2); border-radius: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.9; color: var(--ink);">
+        <div>uv run python scripts\audit_datasets.py &nbsp;&nbsp;<span style="color:var(--ink-muted);"># Tasks 5–6 · overlap + manifest</span></div>
+        <div>uv run python scripts\build_pairs.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--ink-muted);"># Task 8 · pairing table</span></div>
+        <div>uv run python scripts\descriptive_analysis.py &nbsp;<span style="color:var(--ink-muted);"># Task 9 · descriptives + 4 figures</span></div>
+        <div>uv run python scripts\build_pilot.py &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:var(--ink-muted);"># Task 10 · pilot 200, seed 42</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="page-nav">
+    <a class="prev" href="analysis.html">
+      <span class="label">Previous</span>
+      <span class="title">Analysis — descriptives &amp; charts</span>
+    </a>
+    <a class="next" href="index.html">
+      <span class="label">Back to top</span>
+      <span class="title">Overview — framing &amp; module cards</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

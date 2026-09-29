@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Descriptive Analysis</title>
+  <meta name="description" content="NAACL 2027 — Descriptive analysis of ReMedQA perturbations with lexical similarity, length change, and answer-position distributions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html" class="active">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Analysis</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Task 9 · scripts/descriptive_analysis.py</div>
+    <h1>Descriptive analysis of the perturbations</h1>
+    <p class="lede">
+      Purely descriptive. Lexical similarity is <b>difflib SequenceMatcher ratio</b> on normalized
+      question text (0–1), applied identically to every perturbation type — a surface-level string
+      signal only, <b>not</b> evidence of semantic equivalence. Full table:
+      <code class="mono">results/audit/perturbation_descriptives.csv</code>.
+    </p>
+    <div class="status-row">
+      <span class="pill dot">18,924 pairing rows analysed</span>
+      <span class="pill dot">4 figures generated</span>
+      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, transparent);">fixed_pos: 100% target D</span>
+    </div>
+  </div>
+
+  <section id="table">
+    <div class="section-head">
+      <div class="kicker">§1 · Summary table</div>
+      <h2>Perturbation descriptives at a glance</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Perturbation</th>
+            <th class="num">Question changed</th>
+            <th class="num">Lexical similarity (median)</th>
+            <th class="num">Answer-position change rate</th>
+            <th>Answer format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">open</td>
+            <td class="num">95.1%</td>
+            <td class="num">0.845</td>
+            <td class="num">n/a</td>
+            <td>free text (99.9%)</td>
+          </tr>
+          <tr>
+            <td class="mono">incorrect</td>
+            <td class="num">0.0%</td>
+            <td class="num">1.000</td>
+            <td class="num">n/a</td>
+            <td><span class="tag inverted">list of 3 letters (100%)</span></td>
+          </tr>
+          <tr>
+            <td class="mono">roman_numeral</td>
+            <td class="num">0.0%</td>
+            <td class="num">1.000</td>
+            <td class="num" style="color:var(--good);">0.0%</td>
+            <td>roman numeral (100%)</td>
+          </tr>
+          <tr>
+            <td class="mono">none_of_the_provided</td>
+            <td class="num">0.0%</td>
+            <td class="num">1.000</td>
+            <td class="num" style="color:var(--good);">0.0%</td>
+            <td>letter (100%)</td>
+          </tr>
+          <tr style="background:var(--warn-soft);">
+            <td class="mono">fixed_pos</td>
+            <td class="num">0.0%</td>
+            <td class="num">1.000</td>
+            <td class="num" style="color:var(--warn); font-weight:600;">76.9%</td>
+            <td>letter (100%)</td>
+          </tr>
+          <tr>
+            <td class="mono">no_symbols</td>
+            <td class="num">0.0%</td>
+            <td class="num">1.000</td>
+            <td class="num">n/a</td>
+            <td>free text (99.9%)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn" style="margin-top:16px;">
+      <div class="icon">FINDING</div>
+      <div class="body">
+        <b><code>fixed_pos</code> always relocates the correct answer to position D.</b> Position-index analysis
+        (mapping each perturbation's own option-key order back to a canonical A–D slot) shows the perturbed
+        correct answer lands at <b>D in 100% of 3,154 pairs</b> — a deliberate fixed positional target, not a
+        random reshuffle. <code>roman_numeral</code> and <code>none_of_the_provided</code>
+        show a 0% position-change rate, confirming both leave option order untouched as designed.
+      </div>
+    </div>
+  </section>
+
+  <section id="charts">
+    <div class="section-head">
+      <div class="kicker">§2 · Figures</div>
+      <h2>Charts</h2>
+      <p>Four figures generated by <code class="mono">scripts/descriptive_analysis.py</code>. Click any figure caption for its interpretation.</p>
+    </div>
+
+    <div class="chart-grid">
+      <figure>
+        <img src="figures/perturbation_counts.png" alt="Bar chart of ReMedQA pairing row counts by perturbation type and source">
+        <figcaption><b>Pairing rows per perturbation type, split by source.</b> Confirms complete, even coverage — no source is under-represented in any perturbation. The three sources (medqa, medmcqa, mmlu) sum cleanly to 3,154 per perturbation.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/length_change_by_perturbation.png" alt="Boxplot of question word-count change by perturbation type">
+        <figcaption><b>Question word-count change (perturbed − original).</b> Only <code>open</code> meaningfully moves — median 0, but a wide spread, since some rewordings shorten and others lengthen the question. The other five overlap exactly with the baseline.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/lexical_similarity_by_perturbation.png" alt="Boxplot of lexical similarity by perturbation type">
+        <figcaption><b>Question-text lexical similarity to the original.</b> Every perturbation but <code>open</code> leaves the question string untouched (similarity = 1.0); <code>open</code> spans a wide range, median 0.845 — substantial wording drift even on the higher-similarity end.</figcaption>
+      </figure>
+      <figure>
+        <img src="figures/answer_position_distribution.png" alt="Grouped bar chart of original vs perturbed correct-answer position for three perturbation types">
+        <figcaption><b>Correct-answer position: original vs perturbed, for the three perturbations with a resolvable option index.</b> <code>fixed_pos</code>'s perturbed bars sit entirely on D (100%); <code>roman_numeral</code> and <code>none_of_the_provided</code> mirror the original distribution exactly.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="takeaways">
+    <div class="section-head">
+      <div class="kicker">§3 · Takeaways for the experiment</div>
+      <h2>Three concrete consequences</h2>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <div class="kv"><div class="k">Consequence 1 · Position bias can be isolated</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.65;">
+          Because <code>roman_numeral</code> leaves option order untouched (0% position change) while
+          <code>fixed_pos</code> always shuffles the correct answer to D, the two can be compared
+          <i>directly</i> to estimate a model's pure positional bias. A drop in
+          <code>fixed_pos</code> accuracy that isn't also present in <code>roman_numeral</code>
+          cannot be explained by label-letter sensitivity — it must be position sensitivity.
+        </p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Consequence 2 · Lexical similarity ≠ semantic equivalence</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.65;">
+          Five of six perturbations have lexical similarity = 1.0 (identical question strings),
+          but two of those five (<code>incorrect</code>, <code>none_of_the_provided</code>) change the
+          task semantics fundamentally. Any future embedding-based similarity check must be
+          supplemented with a structural check on <i>what</i> the question is asking for,
+          not just how the question text reads.
+        </p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Consequence 3 · open is its own sub-experiment</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.65;">
+          <code>open</code> is the only perturbation that changes both the <i>task format</i>
+          (MCQ → free text) and the <i>question text itself</i>, with 95.1% of rows showing a
+          lexical change and a broad similarity spread. Scoring it requires a free-text judge
+          (e.g. string-containment of the canonical answer, or an LLM-as-judge) that should be
+          calibrated and reported separately from the five MCQ-format perturbations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="perturbations.html">
+      <span class="label">Previous</span>
+      <span class="title">Perturbations — semantics &amp; pairing</span>
+    </a>
+    <a class="next" href="pilot.html">
+      <span class="label">Next</span>
+      <span class="title">Pilot — cohort &amp; provenance</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

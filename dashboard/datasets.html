@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Datasets &amp; Overlap</title>
+  <meta name="description" content="NAACL 2027 — Dataset landscape and cross-dataset overlap audit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html" class="active">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Datasets</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Tasks 5–6 · teammate audit</div>
+    <h1>Dataset landscape &amp; cross-dataset overlap</h1>
+    <p class="lede">
+      Three independently-loaded raw datasets, forensically audited by
+      <code class="mono">scripts/audit_datasets.py</code> against the on-disk data at
+      <code class="mono">data/raw/</code>. Cross-dataset overlap uses exact match on
+      normalized question text, corroborated by a blocked near-duplicate scan
+      (token-set Jaccard ≥ 0.85).
+    </p>
+    <div class="status-row">
+      <span class="pill dot">3 raw datasets · 40,422 total rows</span>
+      <span class="pill dot">Audit: complete, script-reproducible</span>
+      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color: color-mix(in srgb, var(--warn) 30%, transparent);">1 known leak flagged</span>
+    </div>
+  </div>
+
+  <section id="landscape">
+    <div class="section-head">
+      <div class="kicker">§1 · Raw datasets</div>
+      <h2>Dataset landscape</h2>
+      <p>Per-dataset paths, row counts, id columns, and parsing caveats surfaced by the audit scripts.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Dataset</th><th>On-disk path</th><th>Splits</th><th class="num">Rows</th><th>Row id</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>ReMedQA</b></td>
+            <td class="mono">data/raw/remedqa</td>
+            <td>21 (3 sources × 7 perturbations)</td>
+            <td class="num">22,078</td>
+            <td class="mono">id</td>
+            <td>Derived/perturbed dataset built from MedQA + MedMCQA + MMLU. 3,154 unique (source, id) questions. <code>options</code>/<code>answer</code> are Python-repr strings — parse with <code>ast.literal_eval</code>, not <code>json.loads</code>.</td>
+          </tr>
+          <tr>
+            <td><b>CareQA (en)</b></td>
+            <td class="mono">data/raw/careqa_en</td>
+            <td>1 (test)</td>
+            <td class="num">5,621</td>
+            <td class="mono">unique_id</td>
+            <td>No column literally named <code>id</code>; <code>exam_id</code> is not unique (210 values over 5,621 rows). 38 duplicate-stem groups (90 rows) confirmed to be different exam content, not true duplicates.</td>
+          </tr>
+          <tr>
+            <td><b>MedQA (local)</b></td>
+            <td class="mono">data/raw/medqa</td>
+            <td>3 (train / validation / test)</td>
+            <td class="num">12,723</td>
+            <td class="mono">none</td>
+            <td>No id column at all — position only. <code>answer</code> verified to equal <code>options[answer_idx]</code> on a 200-row sample per split, 200/200 in all three.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="overlap">
+    <div class="section-head">
+      <div class="kicker">§2 · Task 5 · cross-dataset overlap</div>
+      <h2>Is anything double-counted?</h2>
+      <p>Method and full numbers: <code class="mono">results/audit/dataset_audit.md</code> §7.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Pair</th><th class="num">n(A)</th><th class="num">n(B)</th><th class="num">Shared (normalized)</th><th>A matched</th><th>B matched</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ReMedQA medqa_mcq ↔ MedQA train</td><td class="num">1,259</td><td class="num">10,178</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+          <tr><td>ReMedQA medqa_mcq ↔ MedQA validation</td><td class="num">1,259</td><td class="num">1,272</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+          <tr style="background:var(--warn-soft);"><td>ReMedQA medqa_mcq ↔ MedQA test</td><td class="num">1,259</td><td class="num">1,273</td><td class="num">1,259</td><td><b>100.00%</b></td><td>98.90%</td></tr>
+          <tr><td>ReMedQA medmcqa_mcq ↔ CareQA test</td><td class="num">1,000</td><td class="num">5,621</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+          <tr><td>ReMedQA mmlu_mcq ↔ CareQA test</td><td class="num">895</td><td class="num">5,621</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+          <tr><td>ReMedQA medqa_mcq ↔ CareQA test</td><td class="num">1,259</td><td class="num">5,621</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+          <tr><td>MedQA (all) ↔ CareQA test</td><td class="num">12,723</td><td class="num">5,621</td><td class="num">0</td><td>0.00%</td><td>0.00%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid-2" style="margin-top:16px;">
+      <div class="callout warn">
+        <div class="icon">LEAK</div>
+        <div class="body"><b>MedQA test is not independent of ReMedQA.</b> ReMedQA's <code>medqa_mcq</code> (1,259 questions) is a 100% subset of local MedQA's <code>test</code> split. Evaluating on both as if independent double-counts almost the same 1,259 questions. <code>train</code> (10,178 rows) and <code>validation</code> are unaffected — 0% overlap — and are the correct source for a larger MedQA-based cohort.</div>
+      </div>
+      <div class="callout">
+        <div class="icon">OK</div>
+        <div class="body"><b>CareQA is a legitimate independent validation set.</b> 0% exact-match overlap and 0 near-duplicate candidates against every ReMedQA source pool and all of local MedQA. Its own 38 internal duplicate-stem groups are different exam content per stem — key on <code>unique_id</code>, don't deduplicate by question text.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="keys">
+    <div class="section-head">
+      <div class="kicker">§3 · Per-dataset audit highlights</div>
+      <h2>Three key decisions surfaced by the audit</h2>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <div class="kv"><div class="k">Key 1 · ReMedQA parsing</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.6;">
+          <code>options</code> and <code>answer</code> columns are <i>Python repr strings</i>, not JSON.
+          <code class="mono">ast.literal_eval(row["options"])</code> returns the actual list/dict;
+          <code class="mono">json.loads</code> will fail silently on single-quoted keys or embedded
+          apostrophes. The audit script verifies this on every row — not a sample.
+        </p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Key 2 · CareQA id column</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.6;">
+          Despite having a column literally named <code>exam_id</code>, that field has only
+          210 unique values over 5,621 rows — it groups questions by exam, not by row.
+          The correct row key is <code class="mono">unique_id</code>. The 38 duplicate-stem
+          groups (90 rows sharing a stem but having different options) are legitimate
+          different questions, deduplicating them by text would silently drop real content.
+        </p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Key 3 · MedQA position-only indexing</div></div>
+        <p style="margin-top:8px; color:var(--ink-2); line-height:1.6;">
+          Local MedQA has no id column whatsoever. Any join to ReMedQA must be
+          content-based (normalized question text) rather than id-based — which is
+          exactly how the overlap analysis produced the 1,259/1,259 match between
+          <code>medqa_mcq</code> and MedQA test. Good news: <code>answer == options[answer_idx]</code>
+          was verified on 200/200 sampled rows per split, so the two columns are consistent.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="index.html">
+      <span class="label">Previous</span>
+      <span class="title">Overview — framing &amp; module cards</span>
+    </a>
+    <a class="next" href="perturbations.html">
+      <span class="label">Next</span>
+      <span class="title">Perturbations — semantics &amp; pairing</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+perturbation_type,n_pairs,question_text_changed_rate,question_length_diff_mean_words,question_length_diff_median_words,question_length_diff_std_words,options_length_diff_mean_words,options_length_diff_median_words,lexical_similarity_mean,lexical_similarity_median,lexical_similarity_std,answer_position_comparable,answer_position_change_rate,raw_answer_token_change_rate,is_task_inverted,answer_format_distribution
+open,3154,0.9511731135066582,-4.494610019023463,0.0,26.53339522117952,0.0,0.0,0.749163367041746,0.8446601941747572,0.24699095923289463,False,,,False,"{""free_text"": 0.9987317691819911, ""letter"": 0.0009511731135066582, ""roman_numeral"": 0.0003170577045022194}"
+incorrect,3154,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,False,,,True,"{""list_of_letters"": 1.0}"
+roman_numeral,3154,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,True,0.0,1.0,False,"{""roman_numeral"": 1.0}"
+none_of_the_provided,3154,0.0,0.0,0.0,0.0,0.2959733671528218,0.5,1.0,1.0,0.0,True,0.0,0.0,False,"{""letter"": 1.0}"
+fixed_pos,3154,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,True,0.7688649334178821,0.7688649334178821,False,"{""letter"": 1.0}"
+no_symbols,3154,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,False,,,False,"{""free_text"": 0.9987317691819911, ""letter"": 0.0009511731135066582, ""roman_numeral"": 0.0003170577045022194}"

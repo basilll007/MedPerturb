@@ -1,0 +1,52 @@
+# Python environment
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Local tools
+.serena/
+.claude/
+.vscode/
+.idea/
+
+# ============================================================
+# DATA
+# Keep the directory structure/documentation,
+# but never commit downloaded or generated datasets.
+# ============================================================
+data/raw/
+data/processed/
+
+# Model weights / caches
+models/
+checkpoints/
+.cache/
+huggingface/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# Raw API responses / logs
+results/behavioral/raw/
+logs/
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.tempdir

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Perturbations &amp; Pairing</title>
+  <meta name="description" content="NAACL 2027 — ReMedQA perturbation semantics and original→perturbed pairing table.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html" class="active">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Perturbations</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Verified by direct before/after diff</div>
+    <h1>What each ReMedQA perturbation actually changes</h1>
+    <p class="lede">
+      For a shared <code class="mono">id</code>, every perturbation's
+      <code class="mono">question</code>/<code class="mono">options</code>/<code class="mono">answer</code>
+      was diffed against the <code class="mono">mcq</code> baseline. Only <b>two</b> of the six
+      are meaning-preserving — the other four each alter the task itself in a distinct way.
+    </p>
+    <div class="status-row">
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good);">2 meaning-preserving</span>
+      <span class="pill dot" style="background:var(--bad-soft); color:var(--bad);">4 task-altering</span>
+      <span class="pill dot" style="background:var(--inverted-soft); color:var(--inverted);">1 task inversion</span>
+    </div>
+  </div>
+
+  <section id="semantics">
+    <div class="section-head">
+      <div class="kicker">§1 · Perturbation semantics</div>
+      <h2>Per-perturbation change log</h2>
+      <p>Every cell below was verified by a scripted before/after diff, not by reading the paper's prose.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Perturbation</th><th>What changes</th><th>Meaning-preserving?</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">mcq</td>
+            <td>Baseline: 4 lettered options, single-letter answer.</td>
+            <td><span class="tag neutral">baseline</span></td>
+          </tr>
+          <tr style="background:var(--good-soft);">
+            <td class="mono">roman_numeral</td>
+            <td>Only option labels change, A/B/C/D → I/II/III/IV. Question, option text, and correct content are byte-identical.</td>
+            <td><span class="tag good">yes — relabel only</span></td>
+          </tr>
+          <tr style="background:var(--good-soft);">
+            <td class="mono">fixed_pos</td>
+            <td>Option order is reshuffled; the answer letter tracks the move. Text and content unchanged.</td>
+            <td><span class="tag good">yes — reorder only</span></td>
+          </tr>
+          <tr>
+            <td class="mono">open</td>
+            <td>Question is reworded into an open-ended, non-MCQ phrasing; options dropped from the prompt; answer becomes free text.</td>
+            <td><span class="tag bad">no — rewords question</span></td>
+          </tr>
+          <tr>
+            <td class="mono">no_symbols</td>
+            <td>Question text unchanged (verified — it does <i>not</i> reword like <code>open</code>). Options shown without A/B/C/D labels; answer becomes full option text.</td>
+            <td><span class="tag bad">no — answer format only</span></td>
+          </tr>
+          <tr style="background:var(--inverted-soft);">
+            <td class="mono">incorrect</td>
+            <td>Question/options unchanged, but the task is <b>inverted</b>: model must name the three <i>incorrect</i> options.</td>
+            <td><span class="tag inverted">no — task inverted</span></td>
+          </tr>
+          <tr>
+            <td class="mono">none_of_the_provided</td>
+            <td>The correct option's text is overwritten with the literal string "None of the provided options"; that option stays labeled correct.</td>
+            <td><span class="tag bad">no — removes correct content</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout inverted" style="margin-top:16px;">
+      <div class="icon">CAUTION</div>
+      <div class="body">
+        <b><code>incorrect</code> is not a correctness target.</b> Its raw <code>answer</code> field is a
+        list of the three <i>wrong</i> letters (e.g. <code>['A','C','D']</code>) — it inverts what's
+        being asked rather than rephrasing the same question/answer pair. The pairing table sets
+        <code>perturbed_answer_interpretation = null</code> and flags every such row with
+        <code>is_task_inverted = True</code> so it can never be silently scored as a wrong answer.
+      </div>
+    </div>
+  </section>
+
+  <section id="pairing">
+    <div class="section-head">
+      <div class="kicker">§2 · Task 8 · scripts/build_pairs.py</div>
+      <h2>Original → perturbed pairing table</h2>
+      <p>Every <code class="mono">mcq</code> row joined, by shared <code class="mono">id</code>, to each of its 6 non-baseline perturbations. Id-based join re-verified programmatically at run time — the script hard-fails rather than silently dropping rows if a source's id sets ever stop matching.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="kv"><div class="k">Originals joined</div><div class="val num" style="font-size:1.5rem;">3,154</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">medqa 1,259 · medmcqa 1,000 · mmlu 895</p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Expected rows</div><div class="val num" style="font-size:1.5rem;">18,924</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">3,154 originals × 6 perturbations</p>
+      </div>
+      <div class="card">
+        <div class="kv"><div class="k">Actual rows produced</div><div class="val num" style="font-size:1.5rem; color:var(--good);">18,924</div></div>
+        <p style="font-size:0.82rem; color:var(--ink-muted); margin-top:6px;">exact match — no rows lost</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px;">
+      <h3>Output &amp; schema</h3>
+      <p style="margin-top:8px; font-size:0.92rem; color:var(--ink-2); line-height:1.65;">
+        <code class="mono">data/processed/remedqa_pairs.parquet</code> — 14 columns per row, including
+        <code>perturbed_answer_interpretation</code> (a normalized, cross-comparable
+        resolved-to-text answer) and <code>question_text_changed</code> (a lexical flag,
+        computed after lowercasing / punctuation-stripping / whitespace-collapsing).
+      </p>
+      <div class="grid-2" style="margin-top:16px;">
+        <div>
+          <div class="kv"><div class="k">Key columns</div></div>
+          <ul style="margin:8px 0 0; padding-left:20px; color:var(--ink-2); font-size:0.88rem; line-height:1.7;">
+            <li><code class="mono">source</code> · medqa / medmcqa / mmlu</li>
+            <li><code class="mono">id</code> · shared question id</li>
+            <li><code class="mono">perturbation</code> · 6 non-baseline types</li>
+            <li><code class="mono">original_answer / perturbed_answer</code> · raw values</li>
+            <li><code class="mono">perturbed_answer_interpretation</code> · normalized to text</li>
+          </ul>
+        </div>
+        <div>
+          <div class="kv"><div class="k">Flag columns</div></div>
+          <ul style="margin:8px 0 0; padding-left:20px; color:var(--ink-2); font-size:0.88rem; line-height:1.7;">
+            <li><code class="mono">question_text_changed</code> · lexical diff boolean</li>
+            <li><code class="mono">options_order_changed</code> · boolean</li>
+            <li><code class="mono">is_task_inverted</code> · True for <code>incorrect</code></li>
+            <li><code class="mono">answer_format_changed</code> · boolean</li>
+            <li><code class="mono">pairing_checksum</code> · per-source integrity hash</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:14px; font-size:0.84rem; color:var(--ink-muted);">
+        Full column-by-column definition + the incorrect-task-inversion + question_text_changed
+        caveats: <code class="mono">data/processed/PAIRING_METHOD.md</code>.
+      </p>
+    </div>
+  </section>
+
+  <section id="takeaway">
+    <div class="section-head">
+      <div class="kicker">§3 · Why this matters</div>
+      <h2>Two buckets, never pooled</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card" style="border-color: color-mix(in srgb, var(--good) 35%, var(--border));">
+        <div class="kv"><div class="k" style="color:var(--good);">Meaning-preserving (robustness)</div></div>
+        <h3 style="margin-top:8px;"><code class="mono">roman_numeral</code> · <code class="mono">fixed_pos</code></h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+          These test format- and position-robustness of the <i>same</i> medical knowledge.
+          A reliable model should select equivalent content regardless of whether the label
+          is A or I, or whether the correct option is listed first or fourth. Pooling their
+          accuracy with the next bucket would mask format-sensitivity as genuine knowledge gaps.
+        </p>
+      </div>
+      <div class="card" style="border-color: color-mix(in srgb, var(--bad) 35%, var(--border));">
+        <div class="kv"><div class="k" style="color:var(--bad);">Task-altering (separate analysis)</div></div>
+        <h3 style="margin-top:8px;"><code class="mono">open</code> · <code class="mono">no_symbols</code> · <code class="mono">incorrect</code> · <code class="mono">none_of_the_provided</code></h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+          Each of these changes what the model is being asked to produce, or what content
+          is even available. They must be scored and reported as a distinct
+          <i>task-format / task-semantics</i> robustness category. <code>incorrect</code>
+          inverts the task — "name the wrong answers" — and needs its own metric entirely.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="datasets.html">
+      <span class="label">Previous</span>
+      <span class="title">Datasets — landscape &amp; overlap</span>
+    </a>
+    <a class="next" href="analysis.html">
+      <span class="label">Next</span>
+      <span class="title">Analysis — descriptives &amp; charts</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
