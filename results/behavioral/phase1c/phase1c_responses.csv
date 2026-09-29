@@ -1,0 +1,161 @@
+question_id,source_dataset,source_id,model,model_version,condition,prompt,raw_response,raw_answer,canonical_answer,gold_answer,gold_canonical,correct,parse_success,parsing_status,finish_reason,latency_s,input_tokens,output_tokens,thinking_tokens,configured_thinking_budget,configured_output_budget,estimated_cost_usd,retries,timestamp
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,03c11d83-2266-4c72-89f9-fa2615c10ae2,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) None of the provided options
+(D) Deep temporal
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,1.1782428000005893,80,11,78,1024,1536,0.00010125000000000001,0,2026-09-29T23:25:27.485470+00:00
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,03c11d83-2266-4c72-89f9-fa2615c10ae2,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) None of the provided options
+(D) Deep temporal
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,1.4596920000039972,80,11,76,1024,1536,0.00010125000000000001,0,2026-09-29T23:25:29.247950+00:00
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) None of the provided options
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,1.2964120999968145,139,11,167,1024,1536,0.00014549999999999999,0,2026-09-29T23:25:30.847090+00:00
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) None of the provided options
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,3.1273503999982495,139,6,206,1024,1536,0.00012675,0,2026-09-29T23:25:34.277079+00:00
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) None of the provided options
+(D) Loss of lusture of impression material
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,3.0548279999929946,103,11,584,1024,1536,0.0001185,0,2026-09-29T23:25:37.633862+00:00
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) None of the provided options
+(D) Loss of lusture of impression material
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",D,D,3,C,2,False,True,ok,FinishReason.STOP,2.8243783000070835,103,11,258,1024,1536,0.0001185,0,2026-09-29T23:25:40.762864+00:00
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,132fec12-271f-4778-93af-042d6ec32a22,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) None of the provided options
+(B) Clothes
+(C) Bullet fragments
+(D) Blood
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,3.083936700000777,160,6,213,1024,1536,0.00014250000000000002,0,2026-09-29T23:25:44.150723+00:00
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,132fec12-271f-4778-93af-042d6ec32a22,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) None of the provided options
+(B) Clothes
+(C) Bullet fragments
+(D) Blood
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,2.8050164000014775,160,6,273,1024,1536,0.00014250000000000002,0,2026-09-29T23:25:47.257903+00:00
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) None of the provided options
+(B) After 5 years
+(C) After 10 years
+(D) Only after visual symptoms level
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",B,B,1,A,0,False,True,ok,FinishReason.STOP,2.743606100004399,97,11,456,1024,1536,0.000114,0,2026-09-29T23:25:50.303682+00:00
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) None of the provided options
+(B) After 5 years
+(C) After 10 years
+(D) Only after visual symptoms level
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",B,B,1,A,0,False,True,ok,FinishReason.STOP,2.3237688000081107,97,11,287,1024,1536,0.000114,0,2026-09-29T23:25:52.928780+00:00
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) None of the provided options
+(D) Intravenous bisphosphonates
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,1.3694894000072964,111,6,160,1024,1536,0.00010575000000000001,0,2026-09-29T23:25:54.600775+00:00
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) None of the provided options
+(D) Intravenous bisphosphonates
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",C,C,2,C,2,True,True,ok,FinishReason.STOP,10.56251639999391,111,11,272,1024,1536,0.0001245,0,2026-09-29T23:26:05.465358+00:00
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,medmcqa,20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A young adult presents 2 days after trauma to the eye with proptosis and pain in the right eye. On examination, hi is found to have a bruise on the right eye and forehead. The most likely diagnosis is:
+
+(A) Fracture sphenoid bone
+(B) Cavernous sinus thrombosis
+(C) Internal carotid aery aneurysm
+(D) None of the provided options
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",D,D,3,D,3,True,True,ok,FinishReason.STOP,3.269266000002972,122,11,612,1024,1536,0.00013275,0,2026-09-29T23:26:09.035847+00:00
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,medmcqa,20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A young adult presents 2 days after trauma to the eye with proptosis and pain in the right eye. On examination, hi is found to have a bruise on the right eye and forehead. The most likely diagnosis is:
+
+(A) Fracture sphenoid bone
+(B) Cavernous sinus thrombosis
+(C) Internal carotid aery aneurysm
+(D) None of the provided options
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",D,D,3,D,3,True,True,ok,FinishReason.STOP,4.636642199999187,122,11,639,1024,1536,0.00013275,0,2026-09-29T23:26:13.975124+00:00
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,medmcqa,26f30f24-dcd8-453d-8553-9ee82ad496e1,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A 62 years old woman presented with acute onset confusion and bumping into th ings. On examination, she was ale, oriented with fluent speech and normal comprehension. Fuher examination revealed impaired writing (acalculia), right-left confusion, impaired arithmetic abilities, difficulty in finger identification. MRI demonstrated foci of coical and sub coical increase T2 signals and areas of leptomeningeal enhancement. Most likely diagnosis:
+
+(A) None of the provided options
+(B) Millard-Gubler syndrome
+(C) Anton syndrome
+(D) Korsakoff's psychosis
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,1.1503258000011556,163,6,142,1024,1536,0.00014475000000000002,0,2026-09-29T23:26:15.426996+00:00
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,medmcqa,26f30f24-dcd8-453d-8553-9ee82ad496e1,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A 62 years old woman presented with acute onset confusion and bumping into th ings. On examination, she was ale, oriented with fluent speech and normal comprehension. Fuher examination revealed impaired writing (acalculia), right-left confusion, impaired arithmetic abilities, difficulty in finger identification. MRI demonstrated foci of coical and sub coical increase T2 signals and areas of leptomeningeal enhancement. Most likely diagnosis:
+
+(A) None of the provided options
+(B) Millard-Gubler syndrome
+(C) Anton syndrome
+(D) Korsakoff's psychosis
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,2.0153422000003047,163,11,145,1024,1536,0.00016350000000000002,0,2026-09-29T23:26:17.744864+00:00
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,medmcqa,2719953f-15c7-4003-83ed-0baf2654d35a,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: A pregnant lady had no complaints but mild cervical lymphadenopathy in first trimester. She was prescribed spiramycin but she was noncompliant. Baby was born with hydrocephalus and intracerebral calcification. Which of these is likely cause ?
+
+(A) Rubella
+(B) None of the provided options
+(C) CMV
+(D) Herpes
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",B,B,1,B,1,True,True,ok,FinishReason.STOP,1.4126268000109121,113,11,115,1024,1536,0.000126,0,2026-09-29T23:26:19.459751+00:00
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,medmcqa,2719953f-15c7-4003-83ed-0baf2654d35a,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: A pregnant lady had no complaints but mild cervical lymphadenopathy in first trimester. She was prescribed spiramycin but she was noncompliant. Baby was born with hydrocephalus and intracerebral calcification. Which of these is likely cause ?
+
+(A) Rubella
+(B) None of the provided options
+(C) CMV
+(D) Herpes
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",B,B,1,B,1,True,True,ok,FinishReason.STOP,2.7024984000017866,113,11,112,1024,1536,0.000126,0,2026-09-29T23:26:22.464380+00:00
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,medmcqa,2880abd7-1ec6-4456-823e-e5d00159dfec,gemini-3.8-flash,gemini-3.8-flash,none_of_the_provided,"Question: What drug is used for prophylaxis against Pneumocystis jirovecii in patients on chemotherapy?
+
+(A) None of the provided options
+(B) Amoxicillin
+(C) Dexamethasone
+(D) Cephalosporin
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,1.0932005000067875,92,6,102,1024,1536,9.15e-05,0,2026-09-29T23:26:23.859223+00:00
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,medmcqa,2880abd7-1ec6-4456-823e-e5d00159dfec,gemini-3.7-flash,gemini-3.7-flash,none_of_the_provided,"Question: What drug is used for prophylaxis against Pneumocystis jirovecii in patients on chemotherapy?
+
+(A) None of the provided options
+(B) Amoxicillin
+(C) Dexamethasone
+(D) Cephalosporin
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.",A,A,0,A,0,True,True,ok,FinishReason.STOP,2.3568215999985114,92,5,119,1024,1536,8.774999999999999e-05,0,2026-09-29T23:26:26.518386+00:00

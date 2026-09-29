@@ -1,0 +1,17 @@
+question_id,model,condition,source_phase,raw_response,output_tokens,thinking_tokens_if_available,finish_reason,failure_reason
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,gemini-3.8-flash,none_of_the_provided,phase1b,Here is the JSON requested,6,190,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.8-flash,none_of_the_provided,phase1b,Here,2,194,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.7-flash,none_of_the_provided,phase1b,Here is the,4,192,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.8-flash,mcq,phase1a,Here is the JSON,5,191,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.8-flash,none_of_the_provided,phase1b,"Here is the JSON requested:
+```",8,188,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.7-flash,none_of_the_provided,phase1b,"Here is the JSON requested:
+```",9,187,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.8-flash,roman_numeral,phase1a,Here is the JSON requested,6,190,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.8-flash,none_of_the_provided,phase1b,Her,1,195,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.7-flash,none_of_the_provided,phase1b,Her,1,195,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,gemini-3.7-flash,none_of_the_provided,phase1b,Here is the,4,192,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.7-flash,mcq,phase1a,"{
+  """,4,181,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.8-flash,none_of_the_provided,phase1b,Here is the JSON requested,5,191,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.7-flash,none_of_the_provided,phase1b,Here is the JSON requested,5,191,MAX_TOKENS,MAX_TOKENS truncation - cut off mid-preamble before JSON answer completed

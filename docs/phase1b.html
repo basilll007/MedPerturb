@@ -24,6 +24,7 @@
         <a href="pilot.html">Pilot &amp; Provenance</a>
         <a href="phase1a.html">Phase 1A</a>
         <a href="phase1b.html" class="active">Phase 1B</a>
+        <a href="phase1c.html">Phase 1C</a>
       </nav>
     </div>
     <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
@@ -58,6 +59,18 @@
       <div class="stat"><div class="v num">10/10</div><div class="l">questions where the correct answer's TEXT was replaced with boilerplate</div></div>
       <div class="stat"><div class="v num">50%</div><div class="l">Gemini parse-failure rate on none_of_the_provided — a real finding, not noise</div></div>
       <div class="stat"><div class="v">$0.0072</div><div class="l">cumulative Phase 1A + 1B cost</div></div>
+    </div>
+  </div>
+
+  <div class="callout bad" style="margin-bottom:32px;">
+    <div class="icon">UPDATED</div>
+    <div class="body">
+      <b>The 100% accuracy figure below is now known to be survivorship-biased.</b> It was computed on only the
+      5/10 responses per model that completed before hitting the 200-token budget — not the full sample. Phase 1C
+      reran this condition with a generous budget (0 truncation) and found the true rate is <b>85% (17/20)</b>,
+      with one question missed by <b>both</b> models with the <b>same</b> wrong answer. This page is kept as the
+      historical record of what Phase 1B actually observed; see <a href="phase1c.html">Phase 1C</a> for the
+      corrected numbers and the finding itself.
     </div>
   </div>
 
@@ -205,9 +218,9 @@
       <span class="label">Previous</span>
       <span class="title">Phase 1A — smoke test v2</span>
     </a>
-    <a class="next" href="index.html">
-      <span class="label">Back to top</span>
-      <span class="title">Overview — framing &amp; module cards</span>
+    <a class="next" href="phase1c.html">
+      <span class="label">Next</span>
+      <span class="title">Phase 1C — generation-budget control</span>
     </a>
   </div>
 

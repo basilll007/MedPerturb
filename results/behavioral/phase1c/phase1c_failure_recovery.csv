@@ -1,0 +1,21 @@
+question_id,model,phase1b_parse_success,phase1c_parse_success,phase1b_finish_reason,phase1c_finish_reason,phase1b_tokens,phase1c_tokens,phase1b_answer,phase1c_answer,recovered
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,gemini-3.8-flash,True,True,STOP (succeeded),FinishReason.STOP,11,11,C,C,False
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,gemini-3.7-flash,True,True,STOP (succeeded),FinishReason.STOP,11,11,C,C,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,gemini-3.8-flash,False,True,MAX_TOKENS,FinishReason.STOP,6,11,,C,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,gemini-3.7-flash,True,True,STOP (succeeded),FinishReason.STOP,11,6,C,C,False
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.8-flash,False,True,MAX_TOKENS,FinishReason.STOP,2,11,,C,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,gemini-3.7-flash,False,True,MAX_TOKENS,FinishReason.STOP,4,11,,D,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.8-flash,False,True,MAX_TOKENS,FinishReason.STOP,8,6,,A,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.7-flash,False,True,MAX_TOKENS,FinishReason.STOP,9,6,,A,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.8-flash,False,True,MAX_TOKENS,FinishReason.STOP,1,11,,B,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.7-flash,False,True,MAX_TOKENS,FinishReason.STOP,1,11,,B,True
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,gemini-3.8-flash,True,True,STOP (succeeded),FinishReason.STOP,11,6,C,C,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,gemini-3.7-flash,False,True,MAX_TOKENS,FinishReason.STOP,4,11,,C,True
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.8-flash,False,True,MAX_TOKENS,FinishReason.STOP,5,11,,D,True
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.7-flash,False,True,MAX_TOKENS,FinishReason.STOP,5,11,,D,True
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,gemini-3.8-flash,True,True,STOP (succeeded),FinishReason.STOP,6,6,A,A,False
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,gemini-3.7-flash,True,True,STOP (succeeded),FinishReason.STOP,11,11,A,A,False
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,gemini-3.8-flash,True,True,STOP (succeeded),FinishReason.STOP,11,11,B,B,False
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,gemini-3.7-flash,True,True,STOP (succeeded),FinishReason.STOP,11,11,B,B,False
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,gemini-3.8-flash,True,True,STOP (succeeded),FinishReason.STOP,11,6,A,A,False
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,gemini-3.7-flash,True,True,STOP (succeeded),FinishReason.STOP,11,5,A,A,False

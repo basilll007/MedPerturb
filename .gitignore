@@ -38,6 +38,7 @@ huggingface/
 
 # Raw API responses / logs
 results/behavioral/raw/
+results/behavioral/raw_phase1c/
 logs/
 
 # Jupyter temporary files

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Phase 1C Budget Control</title>
+  <meta name="description" content="NAACL 2027 — Phase 1C: generation-budget control experiment. Resolves whether Phase 1B's parse failures were a truncation artifact, and corrects a survivorship-biased accuracy claim.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+        <a href="phase1a.html">Phase 1A</a>
+        <a href="phase1b.html">Phase 1B</a>
+        <a href="phase1c.html" class="active">Phase 1C</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Phase 1C</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Phase 1C · Generation-Budget Control · scripts/phase1c_smoke.py</div>
+    <h1>Was it censorship, or was it the model?</h1>
+    <p class="lede">
+      An engineering/measurement validation, not a model comparison: same 10 questions, same models, same
+      prompt — only the token budget changes. Designed to answer one question before trusting Phase 1B's
+      truncation-driven parse failures as a real signal.
+    </p>
+    <div class="status-row">
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">20/20 new calls succeeded, 0 retries needed</span>
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">Parse success: 50% → 100%, both models</span>
+      <span class="pill dot" style="background:var(--bad-soft); color:var(--bad); border-color:color-mix(in srgb, var(--bad) 30%, transparent);">But: true accuracy is 85%, not the apparent 100%</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">13/13</div><div class="l">prior parse failures reconciled exactly before any new call</div></div>
+      <div class="stat"><div class="v num">10/10</div><div class="l">previously-unparseable responses recovered under the new budget</div></div>
+      <div class="stat"><div class="v num">0</div><div class="l">remaining parse failures — truncation eliminated as a confound</div></div>
+      <div class="stat"><div class="v num">85%</div><div class="l">corrected true accuracy (17/20) — was reported as 100% on a biased subsample</div></div>
+      <div class="stat"><div class="v">$0.0025</div><div class="l">incremental cost — $0.0097 cumulative Phase 1A+1B+1C</div></div>
+    </div>
+  </div>
+
+  <section id="audit">
+    <div class="section-head">
+      <div class="kicker">§1 · Before any new API call</div>
+      <h2>Reconciling all 13 prior parse failures exactly</h2>
+      <p>2 mcq + 1 roman_numeral (Phase 1A) + 10 none_of_the_provided (Phase 1B) = 13/13, no unexplained gap. All 13 are Gemini-only (Claude never passed pre-flight in either phase). Full table: <code class="mono">results/behavioral/phase1c/parse_failure_audit.csv</code>.</p>
+    </div>
+    <div class="callout">
+      <div class="icon">ROOT CAUSE</div>
+      <div class="body">
+        Every single one of the 13 failures shares the identical mechanism: <code class="mono">finish_reason:
+        MAX_TOKENS</code>, cut off mid-preamble before the JSON answer completed. Not 13 different problems —
+        one problem, thirteen occurrences.
+      </div>
+    </div>
+  </section>
+
+  <section id="config">
+    <div class="section-head">
+      <div class="kicker">§2 · Budget configuration — inspected, not assumed</div>
+      <h2>thinking_budget and max_output_tokens are one shared pool</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>What the docs actually say</h3>
+        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+          Confirmed via Gemini's own documentation (not assumed): <code class="mono">max_output_tokens</code>
+          "sets the maximum number of tokens a response can generate, <b>including thought tokens</b>." Thinking
+          and the visible answer share one ceiling, not two independent budgets.
+        </p>
+      </div>
+      <div class="card">
+        <h3>What the SDK says vs. what happened</h3>
+        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+          The installed SDK's own docstring: <code class="mono">thinking_budget: 0 is DISABLED</code>. Phase 1A/1B
+          requested exactly that. Empirically, gemini-3.7/3.8-flash still spent 17–190 tokens thinking anyway —
+          the spec'd behavior was not fully honored by these models.
+        </p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="kv"><div class="k">Phase 1C configuration adopted</div></div>
+      <p style="margin-top:8px; font-size:0.95rem; color:var(--ink);">
+        <code class="mono">thinking_budget = 1024</code> &nbsp;·&nbsp; <code class="mono">max_output_tokens = 1536</code>
+        (512-token headroom above the thinking cap for a ~10-token JSON answer)
+      </p>
+      <p style="margin-top:8px; font-size:0.85rem; color:var(--ink-muted);">Prompt template, models, and question set held exactly identical to Phase 1B — only these two numbers changed, so any difference can be attributed to the budget.</p>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="section-head">
+      <div class="kicker">§3 · Primary endpoint</div>
+      <h2>Parse success rate, Phase 1B vs. Phase 1C</h2>
+    </div>
+    <figure style="margin:0; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px;">
+      <img src="figures/phase1c_budget_recovery.png" alt="Bar chart comparing parse success rate between Phase 1B and Phase 1C for both Gemini models">
+      <figcaption style="font-size:0.84rem; color:var(--ink-2); padding:10px 4px 2px;">Both models: 50% → 100% parse success. 10/10 previously-truncated responses recovered; 0 remain unparseable.</figcaption>
+    </figure>
+    <div class="table-wrap" style="margin-top:16px;">
+      <table>
+        <thead><tr><th>Model</th><th class="num">Phase 1B parse success</th><th class="num">Phase 1C parse success</th><th class="num">Recovered</th><th class="num">Avg thinking tokens</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">gemini-3.7-flash</td><td class="num">50%</td><td class="num" style="color:var(--good);">100%</td><td class="num">5/5</td><td class="num">~157 → 251 (of 1024)</td></tr>
+          <tr><td class="mono">gemini-3.8-flash</td><td class="num">50%</td><td class="num" style="color:var(--good);">100%</td><td class="num">5/5</td><td class="num">~157 → 251 (of 1024)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="accuracy-correction">
+    <div class="section-head">
+      <div class="kicker">§4 · What the fuller sample actually revealed</div>
+      <h2>The 100% accuracy figure was survivorship bias</h2>
+    </div>
+    <div class="callout bad">
+      <div class="icon">CORRECTION</div>
+      <div class="body">
+        Phase 1B reported 100% accuracy on <code class="mono">none_of_the_provided</code> — but that number came
+        from only the 5/10 responses per model that happened to finish before the budget ran out. With all 10/10
+        now visible, true accuracy is <b>17/20 (85%)</b>. This is exactly the kind of bias a smoke test is meant
+        to catch before it reaches a scaled result.
+      </div>
+    </div>
+    <div class="callout inverted" style="margin-top:14px;">
+      <div class="icon">SIGNAL</div>
+      <div class="body">
+        One question — <code class="mono">medmcqa::18c1a5f9</code> — was answered incorrectly by
+        <b>both</b> Gemini models, with the <b>same</b> wrong option (B instead of the correct A). This persists
+        under a generous budget, so per the Phase 1C interpretation rule it is <b>not</b> dismissed as a budget
+        artifact — it's flagged for subsequent behavioral analysis. Both models appear to prefer a
+        clinically-plausible-sounding distractor over the correct-but-generically-labeled
+        "None of the provided options" choice: a genuine decision-boundary failure, the exact phenomenon this
+        perturbation was designed to probe.
+      </div>
+    </div>
+  </section>
+
+  <section id="interpretation">
+    <div class="section-head">
+      <div class="kicker">§5 · Classification</div>
+      <h2>Budget artifact vs. behavioral signal — both, for different things</h2>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Parsing: budget artifact — confirmed</h3>
+        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.6;">
+          10/10 previously-unparseable responses became parseable purely by raising the shared budget, prompt and
+          model held fixed. Reclassified from "behavioral-instability signal" to <b>budget-associated parse
+          failure / inference-configuration artifact.</b>
+        </p>
+      </div>
+      <div class="card">
+        <h3>Accuracy: not a budget artifact — flagged</h3>
+        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.6;">
+          The 85% accuracy and the shared wrong-answer case persist under an adequate budget. Option-position
+          stability (letter never moved) is being tracked as distinct from answer-content stability (whether the
+          model actually recognized the right choice) — conflating the two would have hidden this finding.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="next">
+    <div class="section-head">
+      <div class="kicker">§6 · Stop condition</div>
+      <h2>What happens next</h2>
+    </div>
+    <div class="callout warn">
+      <div class="icon">STOP</div>
+      <div class="body">
+        No 200-question run, no other perturbations, no new models, no rerunning successful mcq calls, no
+        significance testing, no NAACL-level conclusions from n=10. Full report:
+        <code class="mono">results/behavioral/phase1c/phase1c_summary.md</code>.
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="kv"><div class="k">Readiness</div></div>
+      <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+        Gemini's pipeline now <i>measures</i> none_of_the_provided correctly (truncation resolved) — that is not
+        the same claim as "the model performs well," and the 85%-accuracy / shared-error finding should carry
+        forward rather than be treated as noise. Claude remains entirely untested and unavailable.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="phase1b.html">
+      <span class="label">Previous</span>
+      <span class="title">Phase 1B — validation &amp; perturbation sensitivity check</span>
+    </a>
+    <a class="next" href="index.html">
+      <span class="label">Back to top</span>
+      <span class="title">Overview — framing &amp; module cards</span>
+    </a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
