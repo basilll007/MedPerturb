@@ -4,7 +4,7 @@
   <meta charset="utf8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>ReMedQA Forensics · Phase 1A Smoke Test</title>
-  <meta name="description" content="NAACL 2027 — Phase 1A controlled behavioral pilot: smoke test status, model IDs, API discoveries, and blockers.">
+  <meta name="description" content="NAACL 2027 — Phase 1A controlled behavioral pilot: smoke test v2 results, canonical answer-space scoring, model IDs, real bugs found, and blockers.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -38,154 +38,140 @@
   </div>
 
   <div class="hero">
-    <div class="eyebrow">Phase 1A · Controlled Behavioral Pilot · scripts/phase1a_run_smoke.py</div>
+    <div class="eyebrow">Phase 1A · Controlled Behavioral Pilot v2 · scripts/phase1a_smoke.py</div>
     <h1>Smoke test: does mcq → roman_numeral flip predictions?</h1>
     <p class="lede">
-      Before spending the full 200-question × 2-model budget, a 10-question-per-model smoke test
-      validates prompt formatting, answer parsing, caching, and restart safety. This page reports
-      that smoke test exactly as it ran — including a real blocker, not a simulated result.
+      10 fixed pilot-cohort questions × 2 conditions × 3 models, scored in a canonical
+      answer-index space (never comparing letters to roman numerals as strings). One sample
+      call per model was verified before the batch ran. Total cost: under a cent.
     </p>
     <div class="status-row">
-      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">Gemini smoke test — complete, 20/20</span>
-      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb, var(--warn) 30%, transparent);">Claude smoke test — blocked, 0/20</span>
-      <span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">STOPPED — remaining 190 not run, per protocol</span>
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">Gemini 3.8 Flash — complete, 20/20</span>
+      <span class="pill dot" style="background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 30%, transparent);">Gemini 3.7 Flash — complete, 20/20</span>
+      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb, var(--warn) 30%, transparent);">Claude Haiku 4.5 — blocked, 0/20</span>
+      <span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">STOPPED — 200-question cohort not run</span>
     </div>
 
     <div class="stat-grid">
-      <div class="stat"><div class="v num">40</div><div class="l">planned smoke-test API calls (10 questions × 2 conditions × 2 models)</div></div>
-      <div class="stat"><div class="v num">20</div><div class="l">Gemini calls succeeded — 100% parse rate on both conditions</div></div>
-      <div class="stat"><div class="v num">0</div><div class="l">Claude calls succeeded — account usage cap, not a code error</div></div>
+      <div class="stat"><div class="v num">40</div><div class="l">successful API calls out of 60 planned (Claude blocked pre-batch)</div></div>
+      <div class="stat"><div class="v num">3</div><div class="l">parsing failures out of 40 — all correctly flagged, never guessed</div></div>
+      <div class="stat"><div class="v num">$0.0049</div><div class="l">total estimated cost, token-based, real 2026-09-29 pricing</div></div>
+      <div class="stat"><div class="v num">0</div><div class="l">answer flips observed in either Gemini model on this n=10 sample</div></div>
       <div class="stat"><div class="v">2026-10-01</div><div class="l">00:00 UTC — when Anthropic says access resumes</div></div>
-      <div class="stat"><div class="v num">780</div><div class="l">requests remaining to complete the full 200-question, 2-model cohort</div></div>
     </div>
   </div>
 
   <section id="models">
     <div class="section-head">
-      <div class="kicker">§1 · Discovered, not guessed</div>
-      <h2>Exact model identifiers &amp; live API behavior</h2>
-      <p>Every model ID below came from each provider's own models-list endpoint (a free metadata call), not from memory or documentation.</p>
-    </div>
-    <div class="grid-2">
-      <div class="card">
-        <div class="kv"><div class="k">Claude</div></div>
-        <p class="mono" style="margin-top:6px; font-size:1.05rem; color:var(--ink);">claude-haiku-4-5-20251001</p>
-        <p style="margin-top:8px; font-size:0.86rem; color:var(--ink-2); line-height:1.6;">Cheapest, dated/pinned Claude tier — chosen for cost control and reproducibility (a rolling alias would silently point at a different model on rerun).</p>
-      </div>
-      <div class="card">
-        <div class="kv"><div class="k">Gemini</div></div>
-        <p class="mono" style="margin-top:6px; font-size:1.05rem; color:var(--ink);">gemini-2.5-flash-lite</p>
-        <p style="margin-top:8px; font-size:0.86rem; color:var(--ink-2); line-height:1.6;">Cheapest stable, non-preview Gemini tier — same reproducibility logic as Claude's pick.</p>
-      </div>
-    </div>
-    <div class="callout warn" style="margin-top:14px;">
-      <div class="icon">API CHANGE</div>
-      <div class="body">
-        <b>The Claude Messages API no longer accepts <code>temperature</code> at all</b> (confirmed via
-        <code class="mono">inspect.signature</code> on <code class="mono">anthropic==1.9.0</code>, not a docs mismatch).
-        Sampling control has moved to an <code class="mono">effort</code> parameter
-        (<code class="mono">low</code>/<code class="mono">medium</code>/<code class="mono">high</code>/<code class="mono">xhigh</code>/<code class="mono">max</code>)
-        plus native JSON-schema structured output. Used <code class="mono">effort="low"</code> as the closest
-        available lowest-variance setting, and a strict JSON-schema enum to constrain Claude's answer to a
-        valid label. Gemini still accepts <code class="mono">temperature=0</code> as specified. This asymmetry
-        is recorded per-row in <code class="mono">sampling_config</code>, not silently normalized away.
-      </div>
+      <div class="kicker">§1 · Canonical scoring</div>
+      <h2>Why "A" and "III" were never compared directly</h2>
+      <p>mcq's A/B/C/D and roman_numeral's I/II/III/IV are both mapped to an option index 0–3 before any comparison. Option ordering and content-per-position were assertion-checked against all 10 pilot items before a single API call was made.</p>
     </div>
     <div class="callout" style="margin-top:14px;">
-      <div class="icon">NOTE</div>
+      <div class="icon">VERIFIED</div>
       <div class="body">
-        Neither model reuses ReMedQA's own <code class="mono">prompt</code>/<code class="mono">prompt_think</code>
-        fields — those explicitly request step-by-step reasoning and a boxed final answer, which would violate
-        the no-chain-of-thought requirement. A separate minimal prompt template
-        (<code class="mono">scripts/phase1a_prompts.py</code>, version <code class="mono">phase1a_v1</code>) is used instead.
+        Pre-batch sanity checks (all passed): exactly 10 unique underlying questions · exactly one
+        mcq + one roman_numeral row per id · option content matches position-for-position between
+        the two label systems · gold answer resolves to the same canonical index under both
+        conditions · API keys present but never logged · <code class="mono">results/behavioral/raw/</code>
+        and <code class="mono">.env</code> confirmed gitignored.
+      </div>
+    </div>
+  </section>
+
+  <section id="bugs">
+    <div class="section-head">
+      <div class="kicker">§2 · Real bugs found this run — not simulated</div>
+      <h2>Three separate issues, each root-caused before proceeding</h2>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>1 · Mandatory thinking floor on Gemini 3.7/3.8 Flash</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.9rem; line-height:1.65;">
+          A 20-token budget produced empty responses (<code class="mono">finish_reason: MAX_TOKENS</code>,
+          <code class="mono">parts: null</code>) — both models spent <code class="mono">thoughts_token_count</code>
+          (17–52 observed) on hidden reasoning <i>even with <code class="mono">thinking_budget=0</code> explicitly
+          requested</i>. This floor cannot be fully disabled for these models. Fixed by raising
+          <code class="mono">max_output_tokens</code> to 200 (still trivial cost) rather than assuming
+          thinking could be suppressed to zero.
+        </p>
+      </div>
+      <div class="card">
+        <h3>2 · A pandas <code class="mono">~</code> (invert) bug silently corrupted ReCon</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.9rem; line-height:1.65;">
+          <code class="mono">~</code> on an object-dtype pandas Series holding <code class="mono">numpy.bool_</code>
+          values mixed with <code class="mono">None</code> does not reliably behave as logical NOT —
+          confirmed directly: an all-<code class="mono">False</code> column inverted to a mean of
+          <code class="mono">0.11</code> instead of the correct <code class="mono">1.0</code>. Every metric
+          computed with <code class="mono">~</code> on these columns was wrong until replaced with explicit
+          <code class="mono">== True</code> / <code class="mono">== False</code> comparisons. Caught by manual
+          sanity-checking the metrics against the raw pairs table before trusting the output.
+        </p>
+      </div>
+      <div class="card">
+        <h3>3 · A model ignored its own structured-output schema</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.9rem; line-height:1.65;">
+          One parsing failure's raw response was the literal text
+          <code class="mono">"Here is the JSON requested"</code> — Gemini 3.8 Flash started a conversational
+          preamble instead of emitting the constrained JSON object, then hit the token cap before finishing.
+          Correctly recorded as <code class="mono">parsing_status=unparseable</code>, never guessed at — this is
+          real model behavior worth knowing about before scaling, not a pipeline defect.
+        </p>
       </div>
     </div>
   </section>
 
   <section id="results">
     <div class="section-head">
-      <div class="kicker">§2 · What actually happened</div>
-      <h2>Smoke test results, per model</h2>
+      <div class="kicker">§3 · Metrics per model</div>
+      <h2>Baseline vs. roman_numeral, canonical scoring</h2>
+      <p>n=10 per model (9 and 8 with both conditions parsed, respectively) — pipeline validation only, not statistically powered. Full table: <code class="mono">results/behavioral/phase1a/phase1a_metrics.csv</code>.</p>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Provider</th><th>Model</th><th class="num">Calls succeeded</th><th class="num">Parse OK rate</th><th class="num">Accuracy (mcq)</th><th class="num">Accuracy (roman_numeral)</th><th>Status</th></tr>
+          <tr><th>Model</th><th class="num">Calls</th><th class="num">Parse fail rate</th><th class="num">Baseline acc.</th><th class="num">Perturbed acc.</th><th class="num">Δ accuracy</th><th class="num">Flip rate</th><th class="num">ReAcc</th><th class="num">ReCon</th></tr>
         </thead>
         <tbody>
           <tr style="background:var(--good-soft);">
-            <td>Gemini</td>
-            <td class="mono">gemini-2.5-flash-lite</td>
-            <td class="num">20 / 20</td>
+            <td class="mono">gemini-3.7-flash</td>
+            <td class="num">20</td>
+            <td class="num">5%</td>
             <td class="num">100%</td>
-            <td class="num">60% (6/10)</td>
-            <td class="num">60% (6/10)</td>
-            <td><span class="tag good">complete</span></td>
+            <td class="num">100%</td>
+            <td class="num">0</td>
+            <td class="num">0%</td>
+            <td class="num">1.00</td>
+            <td class="num">1.00</td>
+          </tr>
+          <tr style="background:var(--good-soft);">
+            <td class="mono">gemini-3.8-flash</td>
+            <td class="num">20</td>
+            <td class="num">10%</td>
+            <td class="num">100%</td>
+            <td class="num">100%</td>
+            <td class="num">0</td>
+            <td class="num">0%</td>
+            <td class="num">1.00</td>
+            <td class="num">1.00</td>
           </tr>
           <tr style="background:var(--warn-soft);">
-            <td>Claude</td>
             <td class="mono">claude-haiku-4-5-20251001</td>
-            <td class="num">0 / 20</td>
-            <td class="num">n/a</td>
-            <td class="num">n/a</td>
-            <td class="num">n/a</td>
-            <td><span class="tag bad">blocked — usage cap</span></td>
+            <td class="num">0</td>
+            <td class="num" colspan="7">blocked — Anthropic account usage cap, resets 2026-10-01 00:00 UTC</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class="grid-2" style="margin-top:14px;">
-      <div class="card">
-        <h3>Gemini paired transitions (mcq → roman_numeral)</h3>
-        <p style="margin-top:8px; font-size:0.86rem; color:var(--ink-muted);">n = 10 valid pairs, 0 excluded as unparseable. Smoke-test sample size only — not statistically powered.</p>
-        <div class="grid-3" style="margin-top:12px; grid-template-columns: repeat(4, 1fr);">
-          <div class="stat" style="border:1px solid var(--border); border-radius:10px;"><div class="v num" style="color:var(--good);">6</div><div class="l">C → C</div></div>
-          <div class="stat" style="border:1px solid var(--border); border-radius:10px;"><div class="v num" style="color:var(--bad);">0</div><div class="l">C → W</div></div>
-          <div class="stat" style="border:1px solid var(--border); border-radius:10px;"><div class="v num" style="color:var(--good);">0</div><div class="l">W → C</div></div>
-          <div class="stat" style="border:1px solid var(--border); border-radius:10px;"><div class="v num" style="color:var(--ink-2);">4</div><div class="l">W → W</div></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Claude — blocking error (identical on 2nd rerun)</h3>
-        <pre style="margin-top:8px; font-size:0.78rem; color:var(--bad); background:var(--bad-soft); padding:10px 12px; border-radius:8px; white-space:pre-wrap; line-height:1.5;">400 invalid_request_error:
-"You have reached your specified API
-usage limits. You will regain access
-on 2026-10-01 at 00:00 UTC."</pre>
-        <p style="margin-top:8px; font-size:0.84rem; color:var(--ink-2);">Account-level cap, not a per-request or per-model issue. No tokens billed (pre-generation validation error). No retries beyond a single confirming rerun — not hammering a rate-limited account.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="checklist">
-    <div class="section-head">
-      <div class="kicker">§3 · Pipeline validation</div>
-      <h2>What the smoke test was actually for</h2>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Check</th><th>Result</th></tr></thead>
-        <tbody>
-          <tr><td>Prompt formatting (no CoT, custom template)</td><td><span class="tag good">pass</span></td></tr>
-          <tr><td>Answer parsing (separate from inference, unit-tested offline first)</td><td><span class="tag good">pass</span></td></tr>
-          <tr><td>Label mapping (mcq A–D vs roman_numeral I–IV)</td><td><span class="tag good">pass</span></td></tr>
-          <tr><td>API stability</td><td>Gemini <span class="tag good">stable</span> · Claude <span class="tag neutral">blocked, not unstable</span></td></tr>
-          <tr><td>Caching (no duplicate spend on rerun)</td><td><span class="tag good">pass</span> — verified 20/20 cache hits on 2nd run</td></tr>
-          <tr><td>Restart behavior</td><td><span class="tag good">pass</span> — a schema-migration bug was caught and fixed without losing a cached result</td></tr>
-          <tr><td>Raw response preservation</td><td><span class="tag good">pass</span> — full JSON per call under <code class="mono">results/behavioral/raw/</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout" style="margin-top:14px;">
-      <div class="icon">BUG FOUND</div>
-      <div class="body">
-        The raw-record schema changed mid-development (a <code class="mono">temperature</code> field became
-        <code class="mono">sampling_config</code>) after some Gemini responses were already cached under the old
-        schema, which crashed the parse step on reload. Fixed with a backward-compatible fallback rather than
-        deleting and re-paying for the already-cached responses — exactly the kind of failure this smoke test
-        exists to surface before it happens at 200-question scale.
-      </div>
-    </div>
+    <figure style="margin-top:16px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px;">
+      <img src="figures/phase1a_outcome_distribution.png" alt="Grouped bar chart of outcome distribution (stable correct, stable incorrect, correct-to-incorrect, incorrect-to-correct, incorrect-to-different-incorrect) per model">
+      <figcaption style="font-size:0.84rem; color:var(--ink-2); padding:10px 4px 2px;">
+        Outcome distribution per model. On this n=10 sample, every fully-parsed pair for both Gemini
+        models landed in <code class="mono">stable_correct</code> — zero flips of any kind observed.
+        A real finding at this sample size, not yet a claim about the full 200-question cohort.
+      </figcaption>
+    </figure>
   </section>
 
   <section id="next">
@@ -196,29 +182,20 @@ on 2026-10-01 at 00:00 UTC."</pre>
     <div class="callout warn">
       <div class="icon">STOP</div>
       <div class="body">
-        Per protocol, the remaining 190 questions are <b>not</b> run regardless of smoke-test outcome — that
-        requires explicit approval. Separately, the Claude half of even this smoke test cannot complete until
-        the account usage cap resets (<b>2026-10-01 00:00 UTC</b> per Anthropic's own error message). Full
-        report: <code class="mono">results/audit/PHASE1A_SMOKE_TEST_REPORT.md</code>.
+        Per protocol: the 200-question cohort is <b>not</b> run regardless of smoke-test outcome —
+        that requires explicit approval, and would additionally require re-running the extra
+        perturbations, models, or significance testing this smoke test deliberately excluded.
+        Full outputs: <code class="mono">results/behavioral/phase1a/</code> (5 files) and
+        <code class="mono">figures/behavioral/phase1a_outcome_distribution.png</code>.
       </div>
     </div>
-    <div class="grid-2" style="margin-top:14px;">
-      <div class="card">
-        <div class="kv"><div class="k">Remaining requests, full 200-question cohort</div></div>
-        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
-          200 originals × 2 conditions × 2 models = <b style="color:var(--ink);">800 total</b>. 40 attempted in
-          this smoke test (20 succeeded / Gemini, 20 blocked / Claude). <b style="color:var(--ink);">780 remain</b>
-          — 760 for the untouched 190 originals, plus the 20 still owed from this smoke test on Claude.
-        </p>
-      </div>
-      <div class="card">
-        <div class="kv"><div class="k">Open decision needing confirmation</div></div>
-        <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
-          Cheapest-tier models (Haiku, Flash-Lite) were used for cost control on this smoke test. Whether the
-          actual Phase 1A science should use these same tiers or a flagship tier (Opus/Sonnet, Gemini Pro) is
-          a separate methodological call that changes how results should be framed.
-        </p>
-      </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="kv"><div class="k">Recommendation</div></div>
+      <p style="margin-top:8px; font-size:0.9rem; color:var(--ink-2); line-height:1.65;">
+        NOT fully ready to scale as-is: 2 of 3 requested models passed. Gemini 3.7/3.8 Flash's pipeline
+        is validated end-to-end (prompting, canonical parsing, caching, restart-safety, structured
+        output). Claude needs the account cap to clear before its half can even be smoke-tested.
+      </p>
     </div>
   </section>
 

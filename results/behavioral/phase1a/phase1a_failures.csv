@@ -1,0 +1,4 @@
+question_id,model,gold_canonical,mcq_raw_answer,roman_raw_answer,mcq_canonical,roman_canonical,mcq_correct,roman_correct,both_parsed,flipped,outcome_category
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,gemini-3.7-flash,3,,IV,,3.0,,True,False,,unparseable
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,gemini-3.8-flash,0,,I,,0.0,,True,False,,unparseable
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,gemini-3.8-flash,0,A,,0.0,,True,,False,,unparseable
