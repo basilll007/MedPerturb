@@ -1,0 +1,4 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medqa::0014,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Influenza A virus""
+}",,Rotavirus,no_match,free-text answer matches no reference option; needs semantic judgment

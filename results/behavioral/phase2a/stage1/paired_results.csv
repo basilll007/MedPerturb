@@ -1,0 +1,7 @@
+question_id,source_dataset,condition,transition_type,mcq_evaluable,perturbed_evaluable,both_evaluable,mcq_correct,perturbed_correct,mcq_selected_index,perturbed_selected_index,mcq_selected_text,perturbed_selected_text,mcq_gold_index,perturbed_gold_index,mcq_gold_text,perturbed_gold_text,position_changed,semantic_answer_changed,transition,adaptation
+medqa::0014,medqa,roman_numeral,correctness,True,True,True,True,True,2.0,2.0,Rotavirus,Rotavirus,2.0,2.0,Rotavirus,Rotavirus,False,False,C->C,
+medqa::0014,medqa,none_of_the_provided,adaptation,True,True,True,True,True,2.0,2.0,Rotavirus,None of the provided options,2.0,2.0,Rotavirus,None of the provided options,False,True,C->C,successful_adaptation
+medqa::0014,medqa,fixed_pos,correctness,True,True,True,True,True,2.0,3.0,Rotavirus,Rotavirus,2.0,3.0,Rotavirus,Rotavirus,True,False,C->C,
+medqa::0014,medqa,incorrect,inversion,True,True,True,True,True,2.0,2.0,Rotavirus,Rotavirus,2.0,,Rotavirus,,False,False,C->C,successful_adaptation
+medqa::0014,medqa,open,open_generation,True,False,False,True,,2.0,,Rotavirus,,2.0,2.0,Rotavirus,Rotavirus,,,,
+medqa::0014,medqa,no_symbols,correctness,True,True,True,True,True,2.0,2.0,Rotavirus,Rotavirus,2.0,2.0,Rotavirus,Rotavirus,False,False,C->C,

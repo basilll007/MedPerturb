@@ -39,6 +39,8 @@ huggingface/
 # Raw API responses / logs
 results/behavioral/raw/
 results/behavioral/raw_phase1c/
+# any future raw-cache namespace (raw_phase2a/, raw_<anything>/)
+results/behavioral/raw_*/
 logs/
 
 # Jupyter temporary files

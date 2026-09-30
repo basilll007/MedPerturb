@@ -1,0 +1,8 @@
+condition,category,N,n_api_failures,n_truncated,n_parsed,parse_success_rate,n_evaluable,n_evaluation_ambiguous,n_correct,accuracy,accuracy_lower_bound,accuracy_upper_bound,mean_input_tokens,mean_output_tokens,mean_thinking_tokens,max_thinking_tokens,mean_latency_s,cost_usd,n_pairs,n_C_to_C,n_C_to_W,n_W_to_C,n_W_to_W,position_change_rate,semantic_answer_change_rate,ReAcc,ReCon,recon_defined
+mcq,baseline,5,0,0,5,1.0,5,0,4,0.8,,,181.8,9.0,93.0,116.0,1.581412359996466,0.0022455,,,,,,,,,,
+roman_numeral,presentation / answer-label transformation,5,0,0,5,1.0,5,0,4,0.8,,,182.8,10.0,105.6,157.0,1.766615579999052,0.0028529999999999996,5.0,4.0,0.0,0.0,1.0,0.0,0.0,0.8,1.0,True
+none_of_the_provided,answer-set / decision-boundary transformation,5,0,0,5,1.0,5,0,4,0.8,,,180.4,9.8,159.2,219.0,2.6728654200007442,0.00384525,5.0,4.0,0.0,0.0,1.0,0.0,0.8,,,False
+fixed_pos,answer-position diagnostic,5,0,0,5,1.0,5,0,4,0.8,,,181.8,10.0,84.33333333333333,100.0,1.651788899998064,0.0018180000000000002,5.0,4.0,0.0,0.0,1.0,0.8,0.0,0.8,1.0,True
+incorrect,task/instruction inversion,5,0,0,5,1.0,5,0,4,0.8,,,180.8,19.0,108.0,228.0,2.2167107799992665,0.00305925,5.0,4.0,0.0,0.0,1.0,0.0,0.0,,,False
+open,response-space / MCQ-to-generation transformation,5,0,0,5,1.0,0,5,0,,0.0,1.0,134.0,16.0,72.0,79.0,1.4629474399989704,0.0016125,0.0,0.0,0.0,0.0,0.0,,,,,False
+no_symbols,output-interface / answer-format transformation,5,0,0,5,1.0,5,0,4,0.8,,,170.8,15.8,106.0,169.0,1.7231621800019639,0.00252675,5.0,4.0,0.0,0.0,1.0,0.0,0.0,0.8,1.0,True

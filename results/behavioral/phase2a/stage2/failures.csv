@@ -1,0 +1,30 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medqa::0014,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Influenza A virus""
+}",,Rotavirus,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Cerebral venous sinus thrombosis""
+}",,Sagittal sinus thrombosis,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-023,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,roman_numeral,knowledge_error,STOP,,"{
+  ""answer"": ""III""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"":""C""}",mesoderm formation and occurs before neurulation.,None of the provided options,label,
+mmlu::anatomy-023,fixed_pos,knowledge_error,STOP,,"{
+  ""answer"": ""C""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,incorrect,knowledge_error,STOP,,"{
+  ""answer"": [""A"", ""B"", ""D""]
+}",mesoderm formation and occurs before neurulation.,,label_set,
+mmlu::anatomy-023,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Formation of the three germ layers; occurs before neurulation""
+}",,ectomesenchyme formation and occurs before neurulation.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-023,no_symbols,knowledge_error,STOP,,"{
+  ""answer"": ""mesoderm formation and occurs before neurulation.""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,exact,
+medqa::0063,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Urinary catheterization""
+}",,Insert a ‘straight cath’ into the patient’s bladder,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Intravenous normal saline hydration""
+}",,Intravenous fluids,no_match,free-text answer matches no reference option; needs semantic judgment

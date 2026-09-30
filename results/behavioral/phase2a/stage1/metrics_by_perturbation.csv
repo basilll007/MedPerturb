@@ -1,0 +1,8 @@
+condition,category,N,n_api_failures,n_truncated,n_parsed,parse_success_rate,n_evaluable,n_evaluation_ambiguous,n_correct,accuracy,accuracy_lower_bound,accuracy_upper_bound,mean_input_tokens,mean_output_tokens,mean_thinking_tokens,max_thinking_tokens,mean_latency_s,cost_usd,n_pairs,n_C_to_C,n_C_to_W,n_W_to_C,n_W_to_W,position_change_rate,semantic_answer_change_rate,ReAcc,ReCon,recon_defined
+mcq,baseline,1,0,0,1,1.0,1,0,1,1.0,,,197.0,11.0,116.0,116,3.435640499999863,0.000624,,,,,,,,,,
+roman_numeral,presentation / answer-label transformation,1,0,0,1,1.0,1,0,1,1.0,,,198.0,11.0,71.0,71,3.6975065000005998,0.00045599999999999997,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,True
+none_of_the_provided,answer-set / decision-boundary transformation,1,0,0,1,1.0,1,0,1,1.0,,,200.0,11.0,178.0,178,4.359794700008933,0.0008587500000000001,1.0,1.0,0.0,0.0,0.0,0.0,1.0,,,False
+fixed_pos,answer-position diagnostic,1,0,0,1,1.0,1,0,1,1.0,,,197.0,11.0,68.0,68,3.8863748000003397,0.00044399999999999995,1.0,1.0,0.0,0.0,0.0,1.0,0.0,1.0,1.0,True
+incorrect,task/instruction inversion,1,0,0,1,1.0,1,0,1,1.0,,,196.0,27.0,228.0,228,3.6704891999979736,0.00110325,1.0,1.0,0.0,0.0,0.0,0.0,0.0,,,False
+open,response-space / MCQ-to-generation transformation,1,0,0,1,1.0,0,1,0,,0.0,1.0,154.0,14.0,71.0,71,3.5579891000088537,0.00043425,0.0,0.0,0.0,0.0,0.0,,,,,False
+no_symbols,output-interface / answer-format transformation,1,0,0,1,1.0,1,0,1,1.0,,,186.0,12.0,169.0,169,3.8628182000102242,0.00081825,1.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,True

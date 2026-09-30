@@ -1,0 +1,68 @@
+{
+  "experiment_id": "phase2a_stage2_fadf6ef4fd",
+  "timestamp": "2026-09-30T02:54:11.088726+00:00",
+  "git_commit": "36503c947c699f298450e524459f0d7402d4e4cc",
+  "git_dirty": true,
+  "dataset": {
+    "path": "data\\processed\\pilot_200.parquet",
+    "sha256": "72a2445ff1712531b54453ecc93d0f82f8c3e59c5a7d542250b6e7b1d674c03e"
+  },
+  "cohort": {
+    "path": "data\\processed\\phase2a_50_manifest.csv",
+    "sha256_ids": "3365fbdc9f3b2abd4e6af1d61f8f7ea11fccf958b3e6ffd6bcd3191407af588d",
+    "stage_question_ids": [
+      "medqa::0014",
+      "medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c",
+      "mmlu::anatomy-023",
+      "medqa::0063",
+      "medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1"
+    ]
+  },
+  "provider": "gemini",
+  "model": "gemini-3.8-flash",
+  "model_versions_observed": [
+    "gemini-3.8-flash"
+  ],
+  "perturbations": {
+    "mcq": "baseline",
+    "roman_numeral": "presentation / answer-label transformation",
+    "none_of_the_provided": "answer-set / decision-boundary transformation",
+    "fixed_pos": "answer-position diagnostic",
+    "incorrect": "task/instruction inversion",
+    "open": "response-space / MCQ-to-generation transformation",
+    "no_symbols": "output-interface / answer-format transformation"
+  },
+  "prompt_version": "phase2a_v1",
+  "prompt_sha256_distinct": 35,
+  "inference_config": {
+    "temperature": 0.0,
+    "thinking_budget": 1024,
+    "max_output_tokens": 1536,
+    "max_output_tokens_semantics": "shared ceiling for thinking + visible tokens (per Gemini docs)",
+    "structured_output": "response_mime_type=application/json + response_json_schema"
+  },
+  "config_hash": "fadf6ef4fda8865db807d8993c973c2c3f75994c1ffbe8af9981423bb605ecc3",
+  "parser_version": "phase2a_parsers_v1",
+  "evaluator_version": "phase2a_evaluators_v1",
+  "cache_schema": "phase2a_cache_v1",
+  "n_expected": 35,
+  "n_new_calls": 28,
+  "n_cached": 7,
+  "n_failed": 0,
+  "n_retries": 0,
+  "n_truncated": 0,
+  "new_cost_usd": 0.013222,
+  "total_cost_usd_all_records": 0.01796,
+  "group_consistency": {
+    "conditions": [
+      "mcq",
+      "roman_numeral",
+      "fixed_pos",
+      "no_symbols"
+    ],
+    "n_questions_all_evaluable": 5,
+    "ReAcc_all": 0.8,
+    "ReCon_all": 1.0
+  },
+  "qc_errors": []
+}

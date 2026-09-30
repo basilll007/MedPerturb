@@ -1,0 +1,14 @@
+condition,kind,label,count
+roman_numeral,correctness_transition,C->C,1
+roman_numeral,excluded_not_both_evaluable,excluded,0
+none_of_the_provided,correctness_transition,C->C,1
+none_of_the_provided,adaptation,successful_adaptation,1
+none_of_the_provided,excluded_not_both_evaluable,excluded,0
+fixed_pos,correctness_transition,C->C,1
+fixed_pos,excluded_not_both_evaluable,excluded,0
+incorrect,correctness_transition,C->C,1
+incorrect,adaptation,successful_adaptation,1
+incorrect,excluded_not_both_evaluable,excluded,0
+open,excluded_not_both_evaluable,excluded,1
+no_symbols,correctness_transition,C->C,1
+no_symbols,excluded_not_both_evaluable,excluded,0

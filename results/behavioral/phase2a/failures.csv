@@ -1,0 +1,128 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medqa::0014,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Influenza A virus""
+}",,Rotavirus,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Cerebral venous sinus thrombosis""
+}",,Sagittal sinus thrombosis,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-023,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,roman_numeral,knowledge_error,STOP,,"{
+  ""answer"": ""III""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"":""C""}",mesoderm formation and occurs before neurulation.,None of the provided options,label,
+mmlu::anatomy-023,fixed_pos,knowledge_error,STOP,,"{
+  ""answer"": ""C""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,incorrect,knowledge_error,STOP,,"{
+  ""answer"": [""A"", ""B"", ""D""]
+}",mesoderm formation and occurs before neurulation.,,label_set,
+mmlu::anatomy-023,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Formation of the three germ layers; occurs before neurulation""
+}",,ectomesenchyme formation and occurs before neurulation.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-023,no_symbols,knowledge_error,STOP,,"{
+  ""answer"": ""mesoderm formation and occurs before neurulation.""
+}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,exact,
+medqa::0063,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Urinary catheterization""
+}",,Insert a ‘straight cath’ into the patient’s bladder,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Intravenous normal saline hydration""
+}",,Intravenous fluids,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-087,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Muscles of facial expression, taste to the anterior two-thirds of the tongue, and submandibular, sublingual, and lacrimal glands""
+}",,muscles of the lower lip.,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0067,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Transplacental passage of maternal TSH-receptor antibodies""
+}",,Transplacental passage of TSH receptor antibodies,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Retrobulbar hematoma""
+}",,Carotico-cavernous fistula,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""cerebral amyloid angiopathy-related inflammation""
+}",,Gerstmann's syndrome,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-062,none_of_the_provided,required_adaptation_failure,STOP,,"{
+  ""answer"": ""B""
+}",Changing the pouch every day.,None of the provided options,label,
+mmlu::clinical_knowledge-062,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Faecal leakage""
+}",,Leakage of effluent onto peristomal skin.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-174,open,evaluation_ambiguity,STOP,,"{""answer"": ""mRNA, ribosomes, tRNA, and amino acids""}",,"mRNA, tRNA and ribosomes.",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0214,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Exogenous insulin administration""
+}",,Factitious disorder,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Contraindicated,None of the provided options,label,
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,fixed_pos,representation_instability,STOP,,"{
+  ""answer"": ""C""
+}",Can be used safely,Low safety,label,
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Generally restricted to specific indications like refractory seizures or anesthesia due to significant risks of respiratory depression and dependence.""
+}",,Low safety,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-261,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""anaerobic glycolysis""
+}",,anaerobic energy production.,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0290,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""There is a 5.2% probability of observing a difference this large or larger purely by chance if there is no true difference between the two statins""
+}",,There is a 5.2% chance that A is more effective than B is due to chance,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,none_of_the_provided,required_adaptation_failure,STOP,,"{
+  ""answer"": ""C""
+}",Barium esophagogram,None of the provided options,label,
+medqa::0324,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Endoscopic retrograde cholangiopancreatography""
+}",,ERCP,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::46669fd0-e19c-4e9c-bdc4-836d0d9771f4,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Inhibition of osteoclast-mediated bone resorption""
+}",,Inhibit osteoclast mediated resorption,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0357,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Opioid overdose""
+}",,Heroin,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Calcium chloride""
+}",,5% CaCl,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-091,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""peptide bond""
+}",,Peptide bonds,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0415,open,evaluation_ambiguity,STOP,,"{""answer"": ""90%""}",,"If the sensitivity of this screening test were decreased, the statistical power would decrease.",no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""RDX and a polymeric binder""
+}",,"Iodoform, camphor, parachlorophenol and menthol",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0438,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Sodium-chloride cotransporter""
+}",,Na+/Cl- cotransporter in the membranes of epithelial cells in the distal convoluted tubule,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::medical_genetics-063,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""integrated F plasmid""
+}",,a bacterial chromosome with the F factor inserted,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""the logarithm of stimulus intensity""
+}",,Intensity of stimulus,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-148,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Stool examination for ova and parasites""
+}",,Microscopic examination of the stool,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0478,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Hepatitis A virus infection""
+}",,Shellfish,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-153,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Aortic stenosis""
+}",,Systemic sclerosis (scleroderma),no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,open,evaluation_ambiguity,STOP,,"{""answer"": ""1 to 6 °C""}",,2-6 degC,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-206,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Reduction of immunosuppression""
+}",,Begin ganciclovir therapy,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Ulnar nerve""
+}",,Deep branch of ulnar nerve,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0789,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Hypomagnesemia,None of the provided options,label,
+medqa::0789,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Drug-induced QT prolongation""
+}",,Prolonged QT interval,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""ciliary dyskinesia""
+}",,Asthenozoospermia,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0940,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Congestive heart failure""
+}",,Increase in capillary pressure,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1144,none_of_the_provided,required_adaptation_failure,STOP,,"{
+  ""answer"": ""B""
+}",Low T4 and T3,None of the provided options,label,
+medqa::1144,open,evaluation_ambiguity,STOP,,"{
+  ""answer"": ""Elevated serum thyroid-stimulating hormone""
+}",,High TSH,no_match,free-text answer matches no reference option; needs semantic judgment

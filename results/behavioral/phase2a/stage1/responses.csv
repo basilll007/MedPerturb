@@ -1,0 +1,70 @@
+question_id,source_dataset,condition,category,provider,model,model_version,prompt,raw_response,raw_answer,normalized_answer,parse_success,parse_failure_reason,evaluable,correct,match_method,eval_note,selected_option_index,selected_option_text,selected_option_indices,implied_option_index,gold_label,gold_option_index,gold_option_text,gold_option_indices,api_failure,api_error,finish_reason,truncated,input_tokens,output_tokens,thinking_tokens,latency_s,cost_usd,timestamp,from_cache
+medqa::0014,medqa,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Rotavirus
+(D) Vaccinia virus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,Rotavirus,,,"""C""",2.0,Rotavirus,null,False,,STOP,False,197,11,116,3.435640499999863,0.000624,2026-09-30T02:52:33.523397+00:00,True
+medqa::0014,medqa,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(I) Epstein-Barr virus
+(II) Human immunodeficiency virus
+(III) Rotavirus
+(IV) Vaccinia virus
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""III""
+}","""III""","""III""",True,,True,True,label,,2.0,Rotavirus,,,"""III""",2.0,Rotavirus,null,False,,STOP,False,198,11,71,3.6975065000005998,0.00045599999999999997,2026-09-30T02:52:37.423931+00:00,True
+medqa::0014,medqa,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) None of the provided options
+(D) Vaccinia virus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,None of the provided options,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,200,11,178,4.359794700008933,0.0008587500000000001,2026-09-30T02:52:41.985913+00:00,True
+medqa::0014,medqa,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Vaccinia virus
+(D) Rotavirus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""D""
+}","""D""","""D""",True,,True,True,label,,3.0,Rotavirus,,,"""D""",3.0,Rotavirus,null,False,,STOP,False,197,11,68,3.8863748000003397,0.00044399999999999995,2026-09-30T02:52:46.073369+00:00,True
+medqa::0014,medqa,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Rotavirus
+(D) Vaccinia virus
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [
+    ""A"",
+    ""B"",
+    ""D""
+  ]
+}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,True,label_set,,,Rotavirus,"[0, 1, 3]",2.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,196,27,228,3.6704891999979736,0.00110325,2026-09-30T02:52:49.946173+00:00,True
+medqa::0014,medqa,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which virus is capable of undergoing the above-mentioned process?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Influenza A virus""
+}","""Influenza A virus""","""Influenza A virus""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Rotavirus,null,False,,STOP,False,154,14,71,3.5579891000088537,0.00043425,2026-09-30T02:52:53.705347+00:00,True
+medqa::0014,medqa,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+- Epstein-Barr virus
+- Human immunodeficiency virus
+- Rotavirus
+- Vaccinia virus
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Rotavirus""
+}","""Rotavirus""","""Rotavirus""",True,,True,True,exact,,2.0,Rotavirus,,,null,2.0,Rotavirus,null,False,,STOP,False,186,12,169,3.8628182000102242,0.00081825,2026-09-30T02:52:57.769798+00:00,True

@@ -1,0 +1,320 @@
+question_id,source_dataset,condition,category,provider,model,model_version,prompt,raw_response,raw_answer,normalized_answer,parse_success,parse_failure_reason,evaluable,correct,match_method,eval_note,selected_option_index,selected_option_text,selected_option_indices,implied_option_index,gold_label,gold_option_index,gold_option_text,gold_option_indices,api_failure,api_error,finish_reason,truncated,input_tokens,output_tokens,thinking_tokens,latency_s,cost_usd,timestamp,from_cache
+medqa::0014,medqa,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Rotavirus
+(D) Vaccinia virus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,Rotavirus,,,"""C""",2.0,Rotavirus,null,False,,STOP,False,197,11,116.0,3.435640499999863,0.000624,2026-09-30T02:52:33.523397+00:00,True
+medqa::0014,medqa,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(I) Epstein-Barr virus
+(II) Human immunodeficiency virus
+(III) Rotavirus
+(IV) Vaccinia virus
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""III""
+}","""III""","""III""",True,,True,True,label,,2.0,Rotavirus,,,"""III""",2.0,Rotavirus,null,False,,STOP,False,198,11,71.0,3.6975065000005998,0.00045599999999999997,2026-09-30T02:52:37.423931+00:00,True
+medqa::0014,medqa,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) None of the provided options
+(D) Vaccinia virus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,None of the provided options,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,200,11,178.0,4.359794700008933,0.0008587500000000001,2026-09-30T02:52:41.985913+00:00,True
+medqa::0014,medqa,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Vaccinia virus
+(D) Rotavirus
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""D""
+}","""D""","""D""",True,,True,True,label,,3.0,Rotavirus,,,"""D""",3.0,Rotavirus,null,False,,STOP,False,197,11,68.0,3.8863748000003397,0.00044399999999999995,2026-09-30T02:52:46.073369+00:00,True
+medqa::0014,medqa,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+(A) Epstein-Barr virus
+(B) Human immunodeficiency virus
+(C) Rotavirus
+(D) Vaccinia virus
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [
+    ""A"",
+    ""B"",
+    ""D""
+  ]
+}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,True,label_set,,,Rotavirus,"[0, 1, 3]",2.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,196,27,228.0,3.6704891999979736,0.00110325,2026-09-30T02:52:49.946173+00:00,True
+medqa::0014,medqa,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which virus is capable of undergoing the above-mentioned process?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Influenza A virus""
+}","""Influenza A virus""","""Influenza A virus""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Rotavirus,null,False,,STOP,False,154,14,71.0,3.5579891000088537,0.00043425,2026-09-30T02:52:53.705347+00:00,True
+medqa::0014,medqa,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A microbiologist is studying the emergence of a virulent strain of the virus. After a detailed study of the virus and its life cycle, he proposes a theory: Initially, a host cell is co-infected with 2 viruses from the same virus family. Within the host cell, concomitant production of various genome segments from both viruses occurs. Ultimately, the different genome segments from the viruses are packaged into a unique and novel virus particle. The newly formed virus particle is both stable and viable and is a new strain from the virus family that caused the outbreak of infection. Which of the following viruses is capable of undergoing the above-mentioned process?
+
+- Epstein-Barr virus
+- Human immunodeficiency virus
+- Rotavirus
+- Vaccinia virus
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Rotavirus""
+}","""Rotavirus""","""Rotavirus""",True,,True,True,exact,,2.0,Rotavirus,,,null,2.0,Rotavirus,null,False,,STOP,False,186,12,169.0,3.8628182000102242,0.00081825,2026-09-30T02:52:57.769798+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Sagittal sinus thrombosis
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,Sagittal sinus thrombosis,,,"""C""",2.0,Sagittal sinus thrombosis,null,False,,STOP,False,138,11,85.0,1.3278090999956476,0.00046350000000000004,2026-09-30T02:53:27.780791+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(I) Eclampsia
+(II) Hypeensive intracranial hemorrhage
+(III) Sagittal sinus thrombosis
+(IV) Pituitary apoplexy
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""III""
+}","""III""","""III""",True,,True,True,label,,2.0,Sagittal sinus thrombosis,,,"""III""",2.0,Sagittal sinus thrombosis,null,False,,STOP,False,139,11,103.0,1.519331699993927,0.00053175,2026-09-30T02:53:29.503342+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) None of the provided options
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,None of the provided options,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,139,11,219.0,5.299537600003532,0.0009667499999999999,2026-09-30T02:53:35.004503+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Pituitary apoplexy
+(D) Sagittal sinus thrombosis
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""D""}","""D""","""D""",True,,True,True,label,,3.0,Sagittal sinus thrombosis,,,"""D""",3.0,Sagittal sinus thrombosis,null,False,,STOP,False,138,6,100.0,1.262267799989786,0.000501,2026-09-30T02:53:36.468449+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Sagittal sinus thrombosis
+(D) Pituitary apoplexy
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [""A"", ""B"", ""D""]
+}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,True,label_set,,,Sagittal sinus thrombosis,"[0, 1, 3]",2.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,137,17,78.0,1.1641286999947624,0.000459,2026-09-30T02:53:37.834157+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26-year-old healthy female had her first pregnancy and underwent LSCS for fetal distress. She had mild hypertension during pregnancy. Two days after delivery, she developed headache and seizures but did not have proteinuria. CT scan shows a 2 x 3 cm parasagittal hematoma. What is the most likely diagnosis?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Cerebral venous sinus thrombosis""
+}","""Cerebral venous sinus thrombosis""","""Cerebral venous sinus thrombosis""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Sagittal sinus thrombosis,null,False,,STOP,False,98,16,79.0,1.1615343999874312,0.00042975,2026-09-30T02:53:39.197824+00:00,False
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+- Eclampsia
+- Hypeensive intracranial hemorrhage
+- Sagittal sinus thrombosis
+- Pituitary apoplexy
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Sagittal sinus thrombosis""
+}","""Sagittal sinus thrombosis""","""Sagittal sinus thrombosis""",True,,True,True,exact,,2.0,Sagittal sinus thrombosis,,,null,2.0,Sagittal sinus thrombosis,null,False,,STOP,False,127,14,75.0,1.270206999994116,0.00042899999999999997,2026-09-30T02:53:40.668932+00:00,False
+mmlu::anatomy-023,mmlu,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+(A) mesoderm formation and occurs after neurulation.
+(B) ectomesenchyme formation and occurs before neurulation.
+(C) mesoderm formation and occurs before neurulation.
+(D) ectomesenchyme formation and occurs after neurulation.
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,False,label,,2.0,mesoderm formation and occurs before neurulation.,,,"""B""",1.0,ectomesenchyme formation and occurs before neurulation.,null,False,,STOP,False,104,6,88.0,1.1394603999942774,0.0004305,2026-09-30T02:53:42.010592+00:00,False
+mmlu::anatomy-023,mmlu,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+(I) mesoderm formation and occurs after neurulation.
+(II) ectomesenchyme formation and occurs before neurulation.
+(III) mesoderm formation and occurs before neurulation.
+(IV) ectomesenchyme formation and occurs after neurulation.
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""III""
+}","""III""","""III""",True,,True,False,label,,2.0,mesoderm formation and occurs before neurulation.,,,"""II""",1.0,ectomesenchyme formation and occurs before neurulation.,null,False,,STOP,False,105,11,157.0,1.1922388999955729,0.00070875,2026-09-30T02:53:43.404178+00:00,False
+mmlu::anatomy-023,mmlu,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+(A) mesoderm formation and occurs after neurulation.
+(B) None of the provided options
+(C) mesoderm formation and occurs before neurulation.
+(D) ectomesenchyme formation and occurs after neurulation.
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"":""C""}","""C""","""C""",True,,True,False,label,,2.0,mesoderm formation and occurs before neurulation.,,,"""B""",1.0,None of the provided options,null,False,,STOP,False,98,5,68.0,0.9424039000004996,0.00034725,2026-09-30T02:53:44.549269+00:00,False
+mmlu::anatomy-023,mmlu,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+(A) mesoderm formation and occurs after neurulation.
+(B) ectomesenchyme formation and occurs after neurulation.
+(C) mesoderm formation and occurs before neurulation.
+(D) ectomesenchyme formation and occurs before neurulation.
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,False,label,,2.0,mesoderm formation and occurs before neurulation.,,,"""D""",3.0,ectomesenchyme formation and occurs before neurulation.,null,False,,STOP,False,104,11,,0.9117144999909215,0.00011925,2026-09-30T02:53:45.661574+00:00,False
+mmlu::anatomy-023,mmlu,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+(A) mesoderm formation and occurs after neurulation.
+(B) ectomesenchyme formation and occurs before neurulation.
+(C) mesoderm formation and occurs before neurulation.
+(D) ectomesenchyme formation and occurs after neurulation.
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [""A"", ""B"", ""D""]
+}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,False,label_set,,,mesoderm formation and occurs before neurulation.,"[0, 1, 3]",2.0,"[""A"", ""C"", ""D""]",,,"[0, 2, 3]",False,,STOP,False,103,17,70.0,1.0295231000054628,0.0004035,2026-09-30T02:53:46.894144+00:00,False
+mmlu::anatomy-023,mmlu,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: What is gastrulation, and when does it occur in relation to neurulation?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Formation of the three germ layers; occurs before neurulation""
+}","""Formation of the three germ layers; occurs before neurulation""","""Formation of the three germ layers; occurs before neurulation""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,1.0,ectomesenchyme formation and occurs before neurulation.,null,False,,STOP,False,47,21,,0.9614961999905063,0.00011399999999999998,2026-09-30T02:53:48.056512+00:00,False
+mmlu::anatomy-023,mmlu,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: Gastrulation is the process of
+
+- mesoderm formation and occurs after neurulation.
+- ectomesenchyme formation and occurs before neurulation.
+- mesoderm formation and occurs before neurulation.
+- ectomesenchyme formation and occurs after neurulation.
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""mesoderm formation and occurs before neurulation.""
+}","""mesoderm formation and occurs before neurulation.""","""mesoderm formation and occurs before neurulation.""",True,,True,False,exact,,2.0,mesoderm formation and occurs before neurulation.,,,null,1.0,ectomesenchyme formation and occurs before neurulation.,null,False,,STOP,False,93,18,,1.3125053999974625,0.00013725,2026-09-30T02:53:49.570977+00:00,False
+medqa::0063,medqa,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+(A) Insert a ‘straight cath’ into the patient’s bladder
+(B) Aggressive IV fluids
+(C) Digital rectal exam
+(D) Renal ultrasound
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""A""
+}","""A""","""A""",True,,True,True,label,,0.0,Insert a ‘straight cath’ into the patient’s bladder,,,"""A""",0.0,Insert a ‘straight cath’ into the patient’s bladder,null,False,,STOP,False,361,11,83.0,1.042853599996306,0.00062325,2026-09-30T02:53:50.815715+00:00,False
+medqa::0063,medqa,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+(I) Insert a ‘straight cath’ into the patient’s bladder
+(II) Aggressive IV fluids
+(III) Digital rectal exam
+(IV) Renal ultrasound
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""I""
+}","""I""","""I""",True,,True,True,label,,0.0,Insert a ‘straight cath’ into the patient’s bladder,,,"""I""",0.0,Insert a ‘straight cath’ into the patient’s bladder,null,False,,STOP,False,362,11,116.0,1.0993030999961775,0.00074775,2026-09-30T02:53:52.116370+00:00,False
+medqa::0063,medqa,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+(A) None of the provided options
+(B) Aggressive IV fluids
+(C) Digital rectal exam
+(D) Renal ultrasound
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""A""
+}","""A""","""A""",True,,True,True,label,,0.0,None of the provided options,,,"""A""",0.0,None of the provided options,null,False,,STOP,False,354,11,115.0,1.1828160000004573,0.0007379999999999999,2026-09-30T02:53:53.500799+00:00,False
+medqa::0063,medqa,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+(A) Renal ultrasound
+(B) Aggressive IV fluids
+(C) Digital rectal exam
+(D) Insert a ‘straight cath’ into the patient’s bladder
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""D""
+}","""D""","""D""",True,,True,True,label,,3.0,Insert a ‘straight cath’ into the patient’s bladder,,,"""D""",3.0,Insert a ‘straight cath’ into the patient’s bladder,null,False,,STOP,False,361,11,85.0,1.1139288999984274,0.00063075,2026-09-30T02:53:54.816666+00:00,False
+medqa::0063,medqa,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+(A) Insert a ‘straight cath’ into the patient’s bladder
+(B) Aggressive IV fluids
+(C) Digital rectal exam
+(D) Renal ultrasound
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [""B"", ""C"", ""D""]
+}","[""B"", ""C"", ""D""]","[""B"", ""C"", ""D""]",True,,True,True,label_set,,,Insert a ‘straight cath’ into the patient’s bladder,"[1, 2, 3]",0.0,"[""B"", ""C"", ""D""]",,,"[1, 2, 3]",False,,STOP,False,360,17,96.0,1.0738687999983085,0.0006937499999999999,2026-09-30T02:53:56.092115+00:00,False
+medqa::0063,medqa,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Urinary catheterization""
+}","""Urinary catheterization""","""Urinary catheterization""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,0.0,Insert a ‘straight cath’ into the patient’s bladder,null,False,,STOP,False,313,14,66.0,0.9270955999963917,0.0005347500000000001,2026-09-30T02:53:57.220222+00:00,False
+medqa::0063,medqa,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: An 80-year-old man is transferred from a step-down unit to a med-surg floor in the hospital. He had undergone a successful hernia surgery 14 hours ago. Before the surgery, he was pre-treated with atropine, scopolamine, and morphine and recovered well in the PACU after the surgery. There were no complications in the step-down unit and the patient continued to recover. On the med-surg floor, his temperature is 36.8°C (98.2°F), the heart rate is 98/min, the respiratory rate is 15/min, the blood pressure is 100/75 mm Hg, the oxygen saturation is 90%. On physical exam, he is a well-developed, obese man. His heart has a regular rate and rhythm and his lungs are clear to auscultation bilaterally. His incision site is clean, dry, and intact with an appropriate level of swelling and erythema. During the physical, the patient mentions some discomfort in his abdomen and pelvis and during a records review it is noted that he has not passed urine in the PACU, step-down unit, or since arriving on the med-surg floor. A bladder scan is inconclusive due to body habitus. What is the next best step in the treatment of this patient?
+
+- Insert a ‘straight cath’ into the patient’s bladder
+- Aggressive IV fluids
+- Digital rectal exam
+- Renal ultrasound
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Insert a ‘straight cath’ into the patient’s bladder""
+}","""Insert a \u2018straight cath\u2019 into the patient\u2019s bladder""","""Insert a \u2018straight cath\u2019 into the patient\u2019s bladder""",True,,True,True,exact,,0.0,Insert a ‘straight cath’ into the patient’s bladder,,,null,0.0,Insert a ‘straight cath’ into the patient’s bladder,null,False,,STOP,False,350,22,78.0,1.1833092000015313,0.0006375,2026-09-30T02:53:58.605320+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,mcq,baseline,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) Intravenous fluids
+(D) Intravenous bisphosphonates
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,True,label,,2.0,Intravenous fluids,,,"""C""",2.0,Intravenous fluids,null,False,,STOP,False,109,6,,0.9612981999962358,0.00010425000000000001,2026-09-30T02:53:59.768340+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,roman_numeral,presentation / answer-label transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(I) Intravenous steroids
+(II) Thiazides
+(III) Intravenous fluids
+(IV) Intravenous bisphosphonates
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""III""}","""III""","""III""",True,,True,True,label,,2.0,Intravenous fluids,,,"""III""",2.0,Intravenous fluids,null,False,,STOP,False,110,6,81.0,1.3246977000089828,0.00040875,2026-09-30T02:54:01.296290+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) None of the provided options
+(D) Intravenous bisphosphonates
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""C""
+}","""C""","""C""",True,,True,True,label,,2.0,None of the provided options,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,111,11,216.0,1.5797748999902979,0.0009345,2026-09-30T02:54:03.079964+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,fixed_pos,answer-position diagnostic,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) Intravenous bisphosphonates
+(D) Intravenous fluids
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{
+  ""answer"": ""D""
+}","""D""","""D""",True,,True,True,label,,3.0,Intravenous fluids,,,"""D""",3.0,Intravenous fluids,null,False,,STOP,False,109,11,,1.0846585000108462,0.000123,2026-09-30T02:54:04.366660+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,incorrect,task/instruction inversion,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+(A) Intravenous steroids
+(B) Thiazides
+(C) Intravenous fluids
+(D) Intravenous bisphosphonates
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{
+  ""answer"": [""A"", ""B"", ""D""]
+}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,True,label_set,,,Intravenous fluids,"[0, 1, 3]",2.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,108,17,68.0,4.1455440999998245,0.00039975000000000004,2026-09-30T02:54:08.716547+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,open,response-space / MCQ-to-generation transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: What is the first line of management for hypercalcemia in a patient with disseminated malignancy presenting with nausea, vomiting, and altered sensorium?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Intravenous normal saline hydration""
+}","""Intravenous normal saline hydration""","""Intravenous normal saline hydration""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Intravenous fluids,null,False,,STOP,False,58,15,,0.7066219000116689,9.975e-05,2026-09-30T02:54:09.625935+00:00,False
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,medmcqa,no_symbols,output-interface / answer-format transformation,gemini,gemini-3.8-flash,gemini-3.8-flash,"Question: A patient of disseminated malignancy comes to the palliative care clinic with nausea, vomiting and altered sensorium. Hypercalcemia is detected on investigations. What will be the first line of management?
+
+- Intravenous steroids
+- Thiazides
+- Intravenous fluids
+- Intravenous bisphosphonates
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{
+  ""answer"": ""Intravenous fluids""
+}","""Intravenous fluids""","""Intravenous fluids""",True,,True,True,exact,,2.0,Intravenous fluids,,,null,2.0,Intravenous fluids,null,False,,STOP,False,98,13,102.0,0.9869711000064854,0.00050475,2026-09-30T02:54:10.815830+00:00,False

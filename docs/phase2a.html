@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Phase 2A Framework</title>
+  <meta name="description" content="NAACL 2027 — Phase 2A: single-model end-to-end framework validation, N=50 x 7 representations, gemini-3.8-flash.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+        <a href="phase1a.html">Phase 1A</a>
+        <a href="phase1b.html">Phase 1B</a>
+        <a href="phase1c.html">Phase 1C</a>
+        <a href="phase2a.html" class="active">Phase 2A</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Phase 2A</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Phase 2A · Single-model framework validation · N = 50 · gemini-3.8-flash</div>
+    <h1>One engine, seven representations, no global robustness score</h1>
+    <p class="lede">
+      The ad-hoc Phase 1 scripts are now a reusable engine: registry, pre-run semantic audit, a provider-neutral
+      adapter, a parser per answer shape, position <i>and</i> semantic answer identity, config-hashed resumable
+      cache, and independent QC. This page validates that engine. <b>It is not the benchmark result.</b>
+    </p>
+    <div class="status-row">
+      <span class="pill dot">350 / 350 evaluations complete</span>
+      <span class="pill dot">0 parse failures · 0 truncations · 0 QC discrepancies</span>
+      <span class="pill dot" style="background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb, var(--warn) 30%, transparent);">open: evaluator abstains — accuracy undefined</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">0</div><div class="l">taxonomy contradictions in the pre-run audit of all 350 rows</div></div>
+      <div class="stat"><div class="v num">350</div><div class="l">new API calls, each (question, condition) exactly once across 3 stages</div></div>
+      <div class="stat"><div class="v num">82% vs 2%</div><div class="l">fixed_pos position change vs semantic change — why index alone misleads</div></div>
+      <div class="stat"><div class="v num">88%</div><div class="l">none_of_the_provided accuracy — 6 real adaptation failures, none budget-related</div></div>
+      <div class="stat"><div class="v">$0.22</div><div class="l">Phase 2A spend, thinking tokens billed</div></div>
+    </div>
+  </div>
+
+  <section id="architecture">
+    <div class="section-head">
+      <div class="kicker">§1 · Architecture</div>
+      <h2>Change the adapter, not the experiment</h2>
+      <p>All provider-specific code lives in <code class="mono">src/medperturb/adapters/gemini.py</code>. Evaluation code never sees an SDK object. The label parser reproduces the validated Phase 1 parser exactly (0 mismatches over 80 cached Phase 1 responses).</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Component</th><th>Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">perturbations/registry.py</td><td>per-condition category, display, output kind, evaluator, and which paired metrics are justified</td></tr>
+          <tr><td class="mono">perturbations/audit.py</td><td>pre-run gate against example contents <i>and</i> ReMedQA's own prompts; any contradiction stops execution</td></tr>
+          <tr><td class="mono">adapters/base.py · gemini.py</td><td><code class="mono">generate(example, prompt, spec) → ModelResponse</code>; tokens, finish reason, cost normalized</td></tr>
+          <tr><td class="mono">parsing/canonical.py</td><td>label / label-set / free-text parsers; ambiguity is always a failure, never a guess</td></tr>
+          <tr><td class="mono">evaluation/semantic.py</td><td>maps answers to option position and option text separately</td></tr>
+          <tr><td class="mono">evaluation/cache.py · runner.py</td><td>config + prompt hashed cache, atomic writes, resume, duplicate guard, retry, cost ceiling</td></tr>
+          <tr><td class="mono">evaluation/metrics.py · qc.py</td><td>per-perturbation metrics and an independent plain-Python recompute</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="metrics">
+    <div class="section-head">
+      <div class="kicker">§2 · Metrics per perturbation (never pooled)</div>
+      <h2>Accuracy where it is defined</h2>
+    </div>
+    <div class="chart-grid">
+      <figure><img src="figures/phase2a/accuracy_by_perturbation.png" alt="Accuracy by perturbation, with open shown only as a 30 to 100 percent bound"><figcaption>open is a bound, not a point: only 15/50 free-text answers matched an option string.</figcaption></figure>
+      <figure><img src="figures/phase2a/correctness_transitions.png" alt="Stacked correctness transitions from mcq to each perturbation"><figcaption>The single C→W outside none_of_the_provided is fixed_pos on medmcqa::3c6acd9a.</figcaption></figure>
+      <figure><img src="figures/phase2a/token_usage_by_perturbation.png" alt="Mean thinking and visible tokens per perturbation"><figcaption>none_of_the_provided uses ~2.7× the thinking of mcq; one response hit the 1024 cap and was answered correctly.</figcaption></figure>
+      <figure><img src="figures/phase2a/parse_success_by_perturbation.png" alt="Parse success 100 percent for every perturbation"><figcaption>100% parse success and 0 truncations under the carried-forward Phase 1C budget.</figcaption></figure>
+    </div>
+    <div class="table-wrap" style="margin-top:16px;">
+      <table>
+        <thead><tr><th>Condition</th><th>Category</th><th class="num">Accuracy</th><th class="num">Position Δ</th><th class="num">Semantic Δ</th><th class="num">ReCon</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">mcq</td><td>baseline</td><td class="num">98%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+          <tr><td class="mono">roman_numeral</td><td>presentation / label</td><td class="num">98%</td><td class="num">0%</td><td class="num">0%</td><td class="num">1.00</td></tr>
+          <tr><td class="mono">fixed_pos</td><td>answer-position diagnostic</td><td class="num">96%</td><td class="num">82%</td><td class="num">2%</td><td class="num">0.98</td></tr>
+          <tr><td class="mono">no_symbols</td><td>output interface</td><td class="num">98%</td><td class="num">0%</td><td class="num">0%</td><td class="num">1.00</td></tr>
+          <tr><td class="mono">none_of_the_provided</td><td>answer set / decision boundary</td><td class="num">88%</td><td class="num">10%</td><td class="num">98% (required)</td><td class="num">not defined</td></tr>
+          <tr><td class="mono">incorrect</td><td>task inversion</td><td class="num">98%</td><td class="num">0% (implied)</td><td class="num">0% (implied)</td><td class="num">not defined</td></tr>
+          <tr><td class="mono">open</td><td>response space</td><td class="num">undefined (30–100%)</td><td class="num">n/a</td><td class="num">—</td><td class="num">not defined</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="findings">
+    <div class="section-head">
+      <div class="kicker">§3 · What the framework surfaced</div>
+      <h2>Findings to carry forward</h2>
+    </div>
+    <div class="callout warn">
+      <div class="icon">OPEN</div>
+      <div class="body">
+        <b>The string evaluator cannot measure free-text medical answers.</b> "Urinary catheterization" (gold:
+        "Insert a straight cath into the bladder") and "Intravenous normal saline hydration" (gold: "Intravenous
+        fluids") look correct but match no option. With options hidden, "Influenza A virus" is a defensible answer to a
+        reassortment question whose MCQ gold was "Rotavirus". The framework abstains instead of mis-scoring; choosing a
+        semantic judge is a design decision for the next phase.
+      </div>
+    </div>
+    <div class="callout" style="margin-top:14px;">
+      <div class="icon">IDENTITY</div>
+      <div class="body">
+        fixed_pos changes the answer <i>position</i> in 82% of pairs but the <i>semantic answer</i> in 2%;
+        none_of_the_provided is the reverse (10% vs 98%, required). Metrics built on the option index alone would
+        invert both conclusions.
+      </div>
+    </div>
+    <div class="callout bad" style="margin-top:14px;">
+      <div class="icon">CORRECTION</div>
+      <div class="body">
+        Phase 1 cost estimates omitted billed thinking tokens: recomputed from cached responses, Phase 1's Gemini spend
+        was <b>$0.0545</b>, not $0.0097 (5.6×). Phase 2A bills thinking tokens.
+      </div>
+    </div>
+  </section>
+
+  <section id="next">
+    <div class="section-head">
+      <div class="kicker">§4 · Readiness</div>
+      <h2>Freeze the core, not the open evaluator</h2>
+    </div>
+    <div class="card">
+      <p style="font-size:0.92rem; color:var(--ink-2); line-height:1.65;">
+        Core framework is ready to freeze. Scaling to N=200 on Gemini is mechanically safe (~1,400 calls, ~$0.9). Before
+        adding models: build and smoke-test the Claude adapter (no <code class="mono">temperature</code> in its API;
+        record <code class="mono">effort</code> instead), and decide how open will be judged. Full report:
+        <code class="mono">results/behavioral/phase2a/phase2a_summary.md</code>.
+      </p>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="prev" href="phase1c.html"><span class="label">Previous</span><span class="title">Phase 1C — generation-budget control</span></a>
+    <a class="next" href="index.html"><span class="label">Back to top</span><span class="title">Overview — framing &amp; module cards</span></a>
+  </div>
+
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
