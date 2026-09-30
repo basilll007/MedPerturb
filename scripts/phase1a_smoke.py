@@ -34,12 +34,17 @@ FIG_DIR = ROOT / "figures" / "behavioral"
 LOG_DIR = ROOT / "logs"
 
 SMOKE_N = 10
-# 20 was too small: gemini-3.7/3.8-flash have a mandatory minimum internal
-# "thinking" budget (observed thoughts_token_count 17-52 even with
-# thinking_budget=0 requested) that must be paid for before any visible
-# answer token is produced. 200 covers that with headroom; still negligible
-# cost (~150 output tokens max at $3.75-5/MTok is a fraction of a cent/call).
+# 20 was too small for the visible answer plus any preamble; 200 covers it
+# with headroom at a fraction of a cent per call.
 MAX_TOKENS = 200
+
+# Gemini 3.x cannot be asked to stop thinking (Gemini 3 Flash has no
+# thinking-off, and "minimal" errors on 3.7/3.8-flash), and max_output_tokens
+# is a single ceiling covering thought + visible tokens. So the Gemini calls
+# ask for the lowest supported thinking level and a ceiling wide enough to pay
+# for it - the same values Phase 1C settled on.
+GEMINI_THINKING_LEVEL = "low"
+GEMINI_MAX_TOKENS = 1536
 
 MODELS = [
     {"provider": "anthropic", "model_id": "claude-haiku-4-5-20251001"},
@@ -174,15 +179,14 @@ def call_gemini(client, model_id, prompt, labels):
         model=model_id,
         contents=prompt,
         config=types.GenerateContentConfig(
-            temperature=0,
-            max_output_tokens=MAX_TOKENS,
-            # Some Gemini models (e.g. gemini-3.7-flash) enable hidden
-            # reasoning by default, which both burns the token budget before
-            # any visible answer (observed: finish_reason=MAX_TOKENS, empty
-            # text, thoughts_token_count>0) and violates the no-CoT
-            # requirement. Disabling explicitly rather than just raising
-            # max_output_tokens and hoping.
-            thinking_config=types.ThinkingConfig(thinking_budget=0),
+            max_output_tokens=GEMINI_MAX_TOKENS,
+            # Hidden reasoning cannot be switched off on these models, so ask
+            # for the lowest supported level and give the shared ceiling room
+            # for the thought tokens it still spends - rather than requesting
+            # thinking_budget=0, which was accepted but never honored
+            # (observed: finish_reason=MAX_TOKENS, empty text,
+            # thoughts_token_count>0). temperature is deprecated on Gemini 3.x.
+            thinking_config=types.ThinkingConfig(thinking_level=GEMINI_THINKING_LEVEL),
             response_mime_type="application/json",
             response_json_schema=schema,
         ),
@@ -208,7 +212,7 @@ def call_gemini(client, model_id, prompt, labels):
         "input_tokens": input_tokens,
         "output_tokens": output_tokens,
         "model_version": model_version,
-        "sampling_config": {"temperature": 0},
+        "sampling_config": {"thinking_level": GEMINI_THINKING_LEVEL, "max_output_tokens": GEMINI_MAX_TOKENS},
     }
 
 

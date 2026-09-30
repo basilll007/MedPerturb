@@ -51,15 +51,15 @@ MODELS = [m for m in p1a.MODELS if m["provider"] == "gemini"]  # Claude explicit
 
 # Chosen AFTER inspecting real behavior (see docstring / summary §2), not
 # guessed: Gemini's own docs confirm max_output_tokens is a single budget
-# shared by thinking + visible tokens ("including thought tokens"); the
-# installed SDK's ThinkingConfig docstring says thinking_budget=0 should
-# mean DISABLED, but Phase 1A/1B empirically showed gemini-3.7/3.8-flash
-# retain thoughts_token_count>0 (up to 190/200) even with thinking_budget=0
-# requested - that request is not fully honored by these models. Rather
-# than fight that, Phase 1C sets an explicit generous thinking allowance
-# and a larger shared ceiling with headroom above it for the visible answer.
-CONFIGURED_THINKING_BUDGET = 1024
-CONFIGURED_MAX_OUTPUT_TOKENS = 1536  # >= thinking budget + comfortable headroom for a ~10-token JSON answer
+# shared by thinking + visible tokens ("including thought tokens"); Phase
+# 1A/1B empirically showed gemini-3.7/3.8-flash retain thoughts_token_count>0
+# (up to 190/200) even with thinking_budget=0 requested - Gemini 3 Flash has
+# no thinking-off at all. Rather than fight that, Phase 1C asks for the lowest
+# thinking level these models support ("minimal" errors on 3.7/3.8-flash) and
+# a shared ceiling with headroom above it for the visible answer. The level is
+# the string enum that replaces the deprecated numeric thinking_budget.
+CONFIGURED_THINKING_LEVEL = "low"
+CONFIGURED_MAX_OUTPUT_TOKENS = 1536  # >= a low thinking pass + comfortable headroom for a ~10-token JSON answer
 
 _SECRETS = [v for v in (os.environ.get("ANTHROPIC_API_KEY"), os.environ.get("GEMINI_API_KEY")) if v]
 
@@ -201,9 +201,8 @@ def call_gemini_1c(client, model_id, prompt, labels):
         model=model_id,
         contents=prompt,
         config=types.GenerateContentConfig(
-            temperature=0,
             max_output_tokens=CONFIGURED_MAX_OUTPUT_TOKENS,
-            thinking_config=types.ThinkingConfig(thinking_budget=CONFIGURED_THINKING_BUDGET),
+            thinking_config=types.ThinkingConfig(thinking_level=CONFIGURED_THINKING_LEVEL),
             response_mime_type="application/json",
             response_json_schema=schema,
         ),
@@ -232,7 +231,7 @@ def call_gemini_1c(client, model_id, prompt, labels):
         "text": text, "raw": p1a.to_serializable(resp), "latency_s": latency,
         "input_tokens": input_tokens, "output_tokens": output_tokens, "thinking_tokens": thinking_tokens,
         "model_version": model_version, "finish_reason": finish_reason,
-        "sampling_config": {"temperature": 0, "configured_thinking_budget": CONFIGURED_THINKING_BUDGET,
+        "sampling_config": {"configured_thinking_level": CONFIGURED_THINKING_LEVEL,
                               "configured_max_output_tokens": CONFIGURED_MAX_OUTPUT_TOKENS},
     }
 
@@ -256,7 +255,7 @@ def do_call_1c(client, model_id, source_dataset, source_id, cond, max_retries=1)
                 "provider": "gemini", "model_id": model_id, "model_version": result["model_version"],
                 "source_dataset": source_dataset, "source_id": source_id, "perturbation_type": CONDITION,
                 "gold_answer": cond["gold"], "prompt_text": prompt, "sampling_config": result["sampling_config"],
-                "configured_thinking_budget": CONFIGURED_THINKING_BUDGET,
+                "configured_thinking_level": CONFIGURED_THINKING_LEVEL,
                 "configured_output_budget": CONFIGURED_MAX_OUTPUT_TOKENS,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "response_text": result["text"], "raw_response": result["raw"], "latency_s": result["latency_s"],
@@ -312,7 +311,7 @@ def main():
     reverify_none_semantic_audit(pairs)
 
     print("=== §BUDGET CONTROL: chosen Phase 1C configuration ===")
-    print(f"  configured_thinking_budget = {CONFIGURED_THINKING_BUDGET} tokens (Phase 1B effectively used "
+    print(f"  configured_thinking_level = {CONFIGURED_THINKING_LEVEL} (Phase 1B effectively used "
           f"thinking_budget=0 - requested but NOT fully honored: observed 17-190 thoughts_token_count anyway)")
     print(f"  configured_max_output_tokens = {CONFIGURED_MAX_OUTPUT_TOKENS} tokens (SHARED ceiling covering "
           f"thinking + visible answer together - confirmed via Gemini's own docs: 'max_output_tokens ... "
@@ -368,7 +367,7 @@ def main():
             "finish_reason": r.get("finish_reason"), "latency_s": r.get("latency_s"),
             "input_tokens": r.get("input_tokens"), "output_tokens": r.get("output_tokens"),
             "thinking_tokens": r.get("thinking_tokens"),
-            "configured_thinking_budget": r.get("configured_thinking_budget"),
+            "configured_thinking_level": r.get("configured_thinking_level"),
             "configured_output_budget": r.get("configured_output_budget"),
             "estimated_cost_usd": r.get("estimated_cost_usd"), "retries": r.get("retries", 0),
             "timestamp": r["timestamp"],
@@ -445,7 +444,7 @@ def main():
     x = range(len(models_sorted))
     width = 0.35
     ax.bar([xi - width / 2 for xi in x], [b_parse_rate.get(m, 0) * 100 for m in models_sorted], width=width, label="Phase 1B (budget=200, thinking_budget=0 requested)", color="#a83c3c")
-    ax.bar([xi + width / 2 for xi in x], [c_parse_rate.get(m, 0) * 100 for m in models_sorted], width=width, label=f"Phase 1C (thinking={CONFIGURED_THINKING_BUDGET}, output={CONFIGURED_MAX_OUTPUT_TOKENS})", color="#17794b")
+    ax.bar([xi + width / 2 for xi in x], [c_parse_rate.get(m, 0) * 100 for m in models_sorted], width=width, label=f"Phase 1C (thinking_level={CONFIGURED_THINKING_LEVEL}, output={CONFIGURED_MAX_OUTPUT_TOKENS})", color="#17794b")
     ax.set_xticks(list(x))
     ax.set_xticklabels(models_sorted)
     ax.set_ylabel("Parse success rate (%)")
@@ -467,7 +466,7 @@ def main():
              f"= 13/13 reconciled exactly. All 13 are Gemini-only (Claude never passed pre-flight in either phase, "
              f"so it contributes zero rows either way). Full table: `parse_failure_audit.csv`.\n",
              f"## 2. Phase 1C inference configuration\n",
-             f"`thinking_budget={CONFIGURED_THINKING_BUDGET}`, `max_output_tokens={CONFIGURED_MAX_OUTPUT_TOKENS}` "
+             f"`thinking_level={CONFIGURED_THINKING_LEVEL}`, `max_output_tokens={CONFIGURED_MAX_OUTPUT_TOKENS}` "
              f"(a single SHARED budget covering thinking + visible tokens together, confirmed via Gemini's own "
              f"docs, not assumed). Phase 1B had effectively requested `thinking_budget=0` (not fully honored by "
              f"these models - thoughts_token_count was observed >0 regardless) with `max_output_tokens=200`. "
@@ -484,7 +483,7 @@ def main():
     lines.append(f"## 8. Token usage before vs after\n\n"
                   f"Phase 1B none_of_the_provided avg thinking tokens: ~157 (of 200 budget). "
                   f"Phase 1C avg thinking tokens: {metrics_df['avg_thinking_tokens'].mean():.1f} "
-                  f"(of {CONFIGURED_THINKING_BUDGET} budget); avg output tokens: {metrics_df['avg_output_tokens'].mean():.1f} "
+                  f"(at thinking_level={CONFIGURED_THINKING_LEVEL}); avg output tokens: {metrics_df['avg_output_tokens'].mean():.1f} "
                   f"(of {CONFIGURED_MAX_OUTPUT_TOKENS} shared ceiling).\n")
     n_answer_diff = 0
     if not recovery_df.empty:

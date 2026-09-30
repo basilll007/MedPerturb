@@ -40,7 +40,7 @@ RAW_ROOT = ROOT / "results" / "behavioral" / "raw_phase2a"
 OUT_ROOT = ROOT / "results" / "behavioral" / "phase2a"
 
 MODEL = "gemini-3.8-flash"
-THINKING_BUDGET, MAX_OUTPUT_TOKENS = 1024, 1536
+THINKING_LEVEL, MAX_OUTPUT_TOKENS = "low", 1536
 STAGES = {1: (1, 0.05), 2: (5, 0.25), 3: (50, 1.50)}  # n_questions, max NEW spend USD
 MAX_TRUNCATION_RATE_STAGE3 = 0.02
 
@@ -159,7 +159,7 @@ def main():
     stage_ids = man["question_id"].tolist()[:n_q]
     examples = [all_examples[q][c] for q in stage_ids for c in CONDITIONS]
 
-    adapter = GeminiAdapter(MODEL, os.environ["GEMINI_API_KEY"], THINKING_BUDGET, MAX_OUTPUT_TOKENS)
+    adapter = GeminiAdapter(MODEL, os.environ["GEMINI_API_KEY"], THINKING_LEVEL, MAX_OUTPUT_TOKENS)
     config_hash = adapter.config_hash(PROMPT_VERSION, CACHE_SCHEMA)
     cache = ResponseCache(RAW_ROOT, config_hash, [os.environ.get("GEMINI_API_KEY"), os.environ.get("ANTHROPIC_API_KEY")])
     print(f"Stage {args.stage}: {n_q} question(s) x {len(CONDITIONS)} = {len(examples)} evaluations; "

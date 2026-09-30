@@ -28,19 +28,16 @@ def _to_dict(obj):
 class GeminiAdapter(ModelAdapter):
     provider = "gemini"
 
-    def __init__(self, model_id: str, api_key: str, thinking_budget: int = 1024, max_output_tokens: int = 1536,
-                 temperature: float = 0.0):
+    def __init__(self, model_id: str, api_key: str, thinking_level: str = "low", max_output_tokens: int = 1536):
         from google import genai
         self.model_id = model_id
         self._client = genai.Client(api_key=api_key)
-        self.thinking_budget = thinking_budget
+        self.thinking_level = thinking_level
         self.max_output_tokens = max_output_tokens
-        self.temperature = temperature
 
     def inference_config(self) -> dict:
         return {
-            "temperature": self.temperature,
-            "thinking_budget": self.thinking_budget,
+            "thinking_level": self.thinking_level,
             "max_output_tokens": self.max_output_tokens,
             "max_output_tokens_semantics": "shared ceiling for thinking + visible tokens (per Gemini docs)",
             "structured_output": "response_mime_type=application/json + response_json_schema",
@@ -60,10 +57,12 @@ class GeminiAdapter(ModelAdapter):
         resp = self._client.models.generate_content(
             model=self.model_id,
             contents=prompt,
+            # Gemini 3.x: temperature/top_p/top_k are deprecated and ignored, and the
+            # string thinking_level replaces the numeric thinking_budget - sending both
+            # in one request is a 400. "minimal" is not supported on 3.7/3.8-flash.
             config=types.GenerateContentConfig(
-                temperature=self.temperature,
                 max_output_tokens=self.max_output_tokens,
-                thinking_config=types.ThinkingConfig(thinking_budget=self.thinking_budget),
+                thinking_config=types.ThinkingConfig(thinking_level=self.thinking_level),
                 response_mime_type="application/json",
                 response_json_schema=json_schema_for(output_spec),
             ),
