@@ -129,7 +129,6 @@ def call_anthropic(client, model_id, prompt, labels):
         max_tokens=MAX_TOKENS,
         messages=[{"role": "user", "content": prompt}],
         output_config={
-            "effort": "low",
             "format": {"type": "json_schema", "schema": schema},
         },
     )
@@ -157,7 +156,7 @@ def call_anthropic(client, model_id, prompt, labels):
         "input_tokens": input_tokens,
         "output_tokens": output_tokens,
         "model_version": model_version,
-        "sampling_config": {"temperature": "unsupported_by_api", "effort": "low"},
+        "sampling_config": {"temperature": "unsupported_by_api"},
     }
 
 

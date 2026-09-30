@@ -82,9 +82,11 @@ def call_anthropic(client, model_id, prompt, labels):
     # NOTE: as of anthropic SDK 1.9.0 (live API, checked 2026-09-29), the
     # Messages API no longer accepts `temperature` at all (confirmed via
     # inspect.signature - the parameter does not exist in this SDK version).
-    # The closest available "lowest-variance" control is `effort=low`.
-    # This is recorded explicitly here and in results, per the Phase 1A
-    # requirement to never silently substitute/omit a specified setting.
+    # `effort` is not a substitute either: this model does not support it
+    # (the API rejects it with 400 invalid_request_error), so no sampling
+    # control is sent. This is recorded explicitly here and in results, per
+    # the Phase 1A requirement to never silently substitute/omit a specified
+    # setting.
     schema = {
         "type": "object",
         "properties": {"answer": {"type": "string", "enum": labels}},
@@ -96,7 +98,6 @@ def call_anthropic(client, model_id, prompt, labels):
         max_tokens=MAX_TOKENS,
         messages=[{"role": "user", "content": prompt}],
         output_config={
-            "effort": "low",
             "format": {"type": "json_schema", "schema": schema},
         },
     )
@@ -189,7 +190,7 @@ def main():
                         if provider == "anthropic":
                             text, raw = call_anthropic(anthropic_client, model_id, prompt,
                                                         get_labels(cond["perturbation_type"]))
-                            sampling_config = {"temperature": "unsupported_by_api", "effort": "low"}
+                            sampling_config = {"temperature": "unsupported_by_api"}
                         else:
                             text, raw = call_gemini(gemini_client, model_id, prompt)
                             sampling_config = {"temperature": TEMPERATURE}
