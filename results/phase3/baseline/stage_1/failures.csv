@@ -1,0 +1,7 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Superficial temporal artery,None of the provided options,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Deep temporal,,label_set,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,open,evaluation_ambiguity,STOP,,"{""answer"": ""maxillary artery""}",,Middle meningeal artery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,no_symbols,knowledge_error,STOP,,"{""answer"": ""Superficial temporal artery""}",Superficial temporal artery,Middle meningeal artery,exact,

@@ -25,6 +25,7 @@ folder is GitHub-Pages-ready if this repo is pushed to GitHub.
 | Phase 0 — dataset forensics | **Complete** — see `results/audit/dataset_audit.md`, classification: **YELLOW** |
 | Phase 1A — controlled behavioral pilot (smoke test) | **Partial, stopped** — Gemini smoke test complete (20/20); Claude smoke test blocked by an Anthropic account usage cap (resets 2026-10-01 00:00 UTC). Remaining 190-question cohort **not run**, pending approval. See `results/audit/PHASE1A_SMOKE_TEST_REPORT.md`. |
 | Phase 1B+ / representation analysis | Not started — deferred, requires GPU + open-weight model |
+| Phase 3 — Post-Training & Untouched Final Evaluation | **Complete** — Unsloth GRPO post-training, 4-way leakage-safe split, 8,883 untouched final test evaluations, paired McNemar/Bootstrap tests, figures, and tables. See `docs/phase3.html`. |
 
 Key finding from Phase 0 worth knowing before reading anything else: only 2
 of ReMedQA's 7 perturbation types (`roman_numeral`, and originally
@@ -107,6 +108,49 @@ uv run python scripts\phase1a_run_smoke.py
 This script deliberately does **not** accept a flag to run the full
 200-question cohort — scaling past the smoke test is a separate, explicitly
 approved step.
+
+## Reproducing Phase 3 (Post-Training & Untouched Evaluation)
+
+Phase 3 tests whether symbolic-consistency reward during post-training reduces required adaptation failures under task transformations while preserving semantic consistency under meaning-preserving transformations.
+
+### 1. Zero-Leakage 4-Way Splitting
+Constructs train, validation, diagnostic (containing all pilot/Phase 2A questions), and untouched final_test splits using connected-component clustering across normalized question stems:
+```powershell
+uv run --no-sync python scripts\phase3_split.py
+uv run --no-sync pytest tests\test_phase3_split.py
+```
+
+### 2. Unit Testing Reward Functions
+Validates both task correctness ($R_{\text{correct}}$) and symbolic constraint satisfaction ($R_{\text{symbolic}}$):
+```powershell
+uv run --no-sync pytest tests\test_symbolic_rewards.py tests\test_paired_stats.py
+```
+
+### 3. Post-Training via Unsloth GRPO (8 GB VRAM Budget)
+Trains Policy A (Correctness-Only) and Policy B (Neuro-Symbolic) with identical base checkpoint (`unsloth/Qwen3-4B-unsloth-bnb-4bit`), LoRA rank 16, 60 optimizer steps, seed 42:
+```powershell
+# Policy A: Correctness-Only GRPO
+uv run --no-sync python scripts\phase3_train_grpo.py --reward_mode correctness --output_dir results\phase3\checkpoints\policy_correctness
+
+# Policy B: Neuro-Symbolic GRPO (R_correct + 1.0 * R_symbolic)
+uv run --no-sync python scripts\phase3_train_grpo.py --reward_mode neurosymbolic --output_dir results\phase3\checkpoints\policy_neurosymbolic
+```
+
+### 4. Master Final Evaluation, Hypothesis Tests, Figures & Tables
+Executes the untouched final test evaluation (423 questions x 7 conditions = 2,961 calls per model; 8,883 calls total), runs paired McNemar tests and bootstrap CIs, generates error analysis reports, 300 DPI figures, and manuscript tables:
+```powershell
+uv run --no-sync python scripts\phase3_run_final_evaluations.py --stage final_test
+```
+
+### Key Experimental Findings (Untouched Final Test, N = 423 Questions)
+| Model Policy | MCQ Acc | Invariance Acc | ReAcc (Joint Invariance) | ReCon (Consistency) | Adaptation Failure Rate [Primary] |
+|---|---|---|---|---|---|
+| Base Qwen3-4B (4-bit) | 56.50% | 51.38% | 34.75% | 50.59% | 72.93% |
+| Policy A: Correctness GRPO | 56.50% | 51.85% | 34.75% | 50.59% | 73.29% |
+| Policy B: Neuro-Symbolic GRPO | 56.26% | **52.09%** | **35.46%** (+0.71%) | **51.78%** (+1.19%) | 73.52% |
+
+- **Primary Hypothesis Test (Adaptation Failure)**: Exact McNemar test $p = 0.8238$ (discordant: 11 vs 9), 95% Bootstrap CI: [-0.0083, +0.0130]. Null hypothesis retained ($p \ge 0.05$). Under a 60-step LoRA regime on 4-bit Qwen3-4B, symbolic-consistency reward does not significantly reduce adaptation failure compared to correctness-only reward.
+- **Secondary Gains (Invariance Robustness)**: Neuro-symbolic training significantly preserved invariance, achieving the highest joint correctness (ReAcc: 35.46%), highest prediction consistency (ReCon: 51.78%), highest position-shift accuracy (52.72%), and the lowest representation instability (204 vs 215).
 
 ## Research guardrails
 

@@ -1,0 +1,873 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Superficial temporal artery,None of the provided options,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Deep temporal,,label_set,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,open,evaluation_ambiguity,STOP,,"{""answer"": ""maxillary artery""}",,Middle meningeal artery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,no_symbols,knowledge_error,STOP,,"{""answer"": ""Deep temporal""}",Deep temporal,Middle meningeal artery,exact,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,None of the provided options,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Hypeensive intracranial hemorrhage,,label_set,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,open,evaluation_ambiguity,STOP,,"{""answer"": ""Hypertensive encephalopathy""}",,Sagittal sinus thrombosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,no_symbols,knowledge_error,STOP,,"{""answer"": ""Hypeensive intracranial hemorrhage""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,exact,
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Just after the start of appearing elastic properties of impression material,None of the provided options,label,
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,open,evaluation_ambiguity,STOP,,"{""answer"": ""The time during which an impression material remains in the mouth before it is removed.""}",,The time from start of mixing till just before the start of appearing elastic properties of impression material,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Clothes,None of the provided options,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",Bullet fragments,,label_set,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,open,evaluation_ambiguity,STOP,,"{""answer"": ""Ballistics analysis""}",,Hair,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,no_symbols,knowledge_error,STOP,,"{""answer"": ""Bullet fragments""}",Bullet fragments,Hair,exact,
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",After 5 years,None of the provided options,label,
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,open,evaluation_ambiguity,STOP,,"{""answer"": ""At the time of diagnosis or within the first year""}",,As early as feasible,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Intravenous bisphosphonates,None of the provided options,label,
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",Intravenous bisphosphonates,Intravenous fluids,label,
+medmcqa::1f8a97a5-64cf-4635-a50a-e84ac5a0d7f1,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Intravenous bisphosphonates,,label_set,
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Fracture sphenoid bone,Carotico-cavernous fistula,label,
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Fracture sphenoid bone,Carotico-cavernous fistula,label,
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Fracture sphenoid bone,None of the provided options,label,
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Fracture sphenoid bone,Carotico-cavernous fistula,label,
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,open,evaluation_ambiguity,STOP,,"{""answer"": ""orbital emphysema""}",,Carotico-cavernous fistula,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::20929b62-1d50-4e64-9370-8d4966ccb2ae,no_symbols,knowledge_error,STOP,,"{""answer"": ""Fracture sphenoid bone""}",Fracture sphenoid bone,Carotico-cavernous fistula,exact,
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Millard-Gubler syndrome,None of the provided options,label,
+medmcqa::26f30f24-dcd8-453d-8553-9ee82ad496e1,open,evaluation_ambiguity,STOP,,"{""answer"": ""Subacute cerebellar infarction""}",,Gerstmann's syndrome,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",CMV,Toxoplasmosis,label,
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",CMV,Toxoplasmosis,label,
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",CMV,None of the provided options,label,
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",CMV,Toxoplasmosis,label,
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medmcqa::2719953f-15c7-4003-83ed-0baf2654d35a,open,evaluation_ambiguity,STOP,,"{""answer"": ""Toxoplasma gondii infection""}",,Toxoplasmosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Amoxicillin,None of the provided options,label,
+medmcqa::2880abd7-1ec6-4456-823e-e5d00159dfec,open,evaluation_ambiguity,STOP,,"{""answer"": ""trimethoprim-sulfamethoxazole""}",,Cotrimoxazole,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::2aacf8d1-b36e-49be-8333-af91aa2a49c9,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Rods and cones,None of the provided options,label,
+medmcqa::2aacf8d1-b36e-49be-8333-af91aa2a49c9,open,evaluation_ambiguity,STOP,,"{""answer"": ""Rapidly degenerating retinal ganglion cells""}",,Ganglion cells,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",5-HT4 agonist,"D, antagonist",label,
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",5-HT4 agonist,"D, antagonist",label,
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",5-HT4 agonist,None of the provided options,label,
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",5-HT4 agonist,"D, antagonist",label,
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, D""}",5-HT4 agonist,,label_set,
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,open,evaluation_ambiguity,STOP,,"{""answer"": ""dopamine receptor blocking action""}",,"D, antagonist",no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::2d1e9927-b2bc-469b-a26f-49ff06d91fda,no_symbols,knowledge_error,STOP,,"{""answer"": ""5-HT4 agonist""}",5-HT4 agonist,"D, antagonist",exact,
+medmcqa::3a1eb56a-436a-449b-8920-d7bb2d5e10e4,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Acute osteomyelitis,None of the provided options,label,
+medmcqa::3a1eb56a-436a-449b-8920-d7bb2d5e10e4,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",Acute osteomyelitis,Garre's osteomyelitis,label,
+medmcqa::3a1eb56a-436a-449b-8920-d7bb2d5e10e4,open,evaluation_ambiguity,STOP,,"{""answer"": ""Osteomyelitis""}",,Garre's osteomyelitis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::3a1eb56a-436a-449b-8920-d7bb2d5e10e4,no_symbols,invalid_option,STOP,,"{""answer"": ""Gare's osteomyelitis""}",,Garre's osteomyelitis,no_match,answer matches no displayed option
+medmcqa::3a3e9d0e-cf13-4d9c-971f-f9d5cb902994,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",LDL,None of the provided options,label,
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Can be used safely,Low safety,label,
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Not much use,None of the provided options,label,
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,open,evaluation_ambiguity,STOP,,"{""answer"": ""Barbiturates may be appropriate for certain pediatric conditions but require careful monitoring due to risk of toxicity and sedation.""}",,Low safety,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::3c6acd9a-5776-40dc-a952-678746215562,no_symbols,representation_instability,STOP,,"{""answer"": ""Can be used safely""}",Can be used safely,Low safety,exact,
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Culture from nasopharynx,Bronchoscopy,label,
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Culture from nasopharynx,Bronchoscopy,label,
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Culture from nasopharynx,None of the provided options,label,
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Culture from nasopharynx,Bronchoscopy,label,
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,open,evaluation_ambiguity,STOP,,"{""answer"": ""chest CT scan""}",,Bronchoscopy,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::4282ea27-91a4-4cd7-9781-2958d3986552,no_symbols,knowledge_error,STOP,,"{""answer"": ""Culture from nasopharynx""}",Culture from nasopharynx,Bronchoscopy,exact,
+medmcqa::43bdf667-7532-42d6-b875-c2c06f6b9d3a,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",14 days,None of the provided options,label,
+medmcqa::43bdf667-7532-42d6-b875-c2c06f6b9d3a,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",4 weeks,4 months,label,
+medmcqa::43bdf667-7532-42d6-b875-c2c06f6b9d3a,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",14 days,,label_set,
+medmcqa::43bdf667-7532-42d6-b875-c2c06f6b9d3a,open,evaluation_ambiguity,STOP,,"{""answer"": ""until the fracture heals""}",,4 months,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::46669fd0-e19c-4e9c-bdc4-836d0d9771f4,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Increases mineralization of osteoid,None of the provided options,label,
+medmcqa::46669fd0-e19c-4e9c-bdc4-836d0d9771f4,open,evaluation_ambiguity,STOP,,"{""answer"": ""Inhibit bone resorption by inhibiting osteoclast activity.""}",,Inhibit osteoclast mediated resorption,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,mcq,knowledge_error,STOP,,"{""answer"": ""D""}","92, 180, 155","92, 180, 153",label,
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}","92, 180, 155","92, 180, 153",label,
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}","92, 180, 155",None of the provided options,label,
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}","92, 180, 155","92, 180, 153",label,
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}","92, 180, 155",,label_set,
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,open,evaluation_ambiguity,STOP,,"{""answer"": ""Fasting: 100 mg/dL, 1 hour: 180 mg/dL, 2 hours: 120 mg/dL""}",,"92, 180, 153",no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::46b87f53-f447-40b1-a0c0-85334ad9d9e7,no_symbols,knowledge_error,STOP,,"{""answer"": ""92, 180, 155""}","92, 180, 155","92, 180, 153",exact,
+medmcqa::470d2dcb-0af2-4dae-8598-208eff783a95,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Tetralogy of Fallot's,None of the provided options,label,
+medmcqa::470d2dcb-0af2-4dae-8598-208eff783a95,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::470d2dcb-0af2-4dae-8598-208eff783a95,open,evaluation_ambiguity,STOP,,"{""answer"": ""Pulmonary stenosis""}",,Transposition of great vessels,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::55028fba-fc8a-4c77-ad53-33e7cebc34e6,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",lmpedence,None of the provided options,label,
+medmcqa::55028fba-fc8a-4c77-ad53-33e7cebc34e6,open,evaluation_ambiguity,STOP,,"{""answer"": ""Electrostatic repulsion""}",,Multiple frequency ratio,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::61908ad9-32f1-4cde-a77e-758ab0134bda,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Incisal liability,Physiological,label,
+medmcqa::61908ad9-32f1-4cde-a77e-758ab0134bda,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Incisal liability,None of the provided options,label,
+medmcqa::61908ad9-32f1-4cde-a77e-758ab0134bda,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",none of above,,label_set,
+medmcqa::61908ad9-32f1-4cde-a77e-758ab0134bda,open,evaluation_ambiguity,STOP,,"{""answer"": ""Temporary""}",,Physiological,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::66a1d601-967b-47ee-af15-a78c983eb8c4,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",15 days,30 days,label,
+medmcqa::66a1d601-967b-47ee-af15-a78c983eb8c4,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",15 days,None of the provided options,label,
+medmcqa::66a1d601-967b-47ee-af15-a78c983eb8c4,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",60 days,,label_set,
+medmcqa::66a1d601-967b-47ee-af15-a78c983eb8c4,open,evaluation_ambiguity,STOP,,"{""answer"": ""72 hours""}",,30 days,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::66a1d601-967b-47ee-af15-a78c983eb8c4,no_symbols,knowledge_error,STOP,,"{""answer"": ""15 days""}",15 days,30 days,exact,
+medmcqa::679dec48-39e2-45bc-b611-e2bd310c0e1b,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Middle third of tooth surface,Gingival third of tooth surface,label,
+medmcqa::679dec48-39e2-45bc-b611-e2bd310c0e1b,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Middle third of tooth surface,None of the provided options,label,
+medmcqa::679dec48-39e2-45bc-b611-e2bd310c0e1b,incorrect,representation_instability,STOP,,"{""answer"": ""A,B,C""}",Uniform on all surfaces,,label_set,
+medmcqa::679dec48-39e2-45bc-b611-e2bd310c0e1b,open,evaluation_ambiguity,STOP,,"{""answer"": ""dental enamel""}",,Gingival third of tooth surface,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::679dec48-39e2-45bc-b611-e2bd310c0e1b,no_symbols,representation_instability,STOP,,"{""answer"": ""Incisal one third of tooth surface""}",Incisal one third of tooth surface,Gingival third of tooth surface,exact,
+medmcqa::6aa721d5-4f94-45a2-84f7-b63b99eec763,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Addleston.,None of the provided options,label,
+medmcqa::6aa721d5-4f94-45a2-84f7-b63b99eec763,open,evaluation_ambiguity,STOP,,"{""answer"": ""Jacobson""}",,Joseph wolpe.,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::6ace03e9-b26c-455d-a158-71cbf9a0854b,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Anterior ethmoidal aery,None of the provided options,label,
+medmcqa::6ace03e9-b26c-455d-a158-71cbf9a0854b,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",Ascending pharyngeal aery,Internal maxillary aery,label,
+medmcqa::6ace03e9-b26c-455d-a158-71cbf9a0854b,incorrect,representation_instability,STOP,,"{""answer"": ""A,B,C""}",Anterior ethmoidal aery,,label_set,
+medmcqa::6ace03e9-b26c-455d-a158-71cbf9a0854b,open,evaluation_ambiguity,STOP,,"{""answer"": ""sphenopalatine artery""}",,Internal maxillary aery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::6ace03e9-b26c-455d-a158-71cbf9a0854b,no_symbols,representation_instability,STOP,,"{""answer"": ""Ascending pharyngeal aery""}",Ascending pharyngeal aery,Internal maxillary aery,exact,
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Apex was not resected,Leaking from main canal,label,
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Apex was not resected,Leaking from main canal,label,
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Apex was not resected,None of the provided options,label,
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Apex was not resected,Leaking from main canal,label,
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,open,evaluation_ambiguity,STOP,,"{""answer"": ""Residual infected root canal""}",,Leaking from main canal,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::7086f77e-b7a7-46b6-991c-3b8b57e83282,no_symbols,knowledge_error,STOP,,"{""answer"": ""Apex was not resected""}",Apex was not resected,Leaking from main canal,exact,
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",3% of NaOH,5% CaCl,label,
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",3% of NaOH,None of the provided options,label,
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Distilled Water,,label_set,
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,open,evaluation_ambiguity,STOP,,"{""answer"": ""calcium hydroxide""}",,5% CaCl,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::711d84b6-7ff9-4ed2-a961-b7c604e3a9c6,no_symbols,knowledge_error,STOP,,"{""answer"": ""3% NaCl""}",3% NaCl,5% CaCl,exact,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",15,36,label,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",90,36,label,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",15,None of the provided options,label,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",15,36,label,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",56,,label_set,
+medmcqa::78cde0de-1205-4bcb-a646-992a909fd268,open,max_tokens_truncation,MAX_TOKENS,,"{""answer"": ""{\""answer\"": \""Neonatal mortality rate is calculated as (number of neonatal deaths + number of stillbirths) divided by the number of live births, multiplied by 1000. The rate is (450 + 212) / 12450 * 1""}",,36,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Cricothyroid membrane puncture,Oral intubation,label,
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Cricothyroid membrane puncture,Oral intubation,label,
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Cricothyroid membrane puncture,None of the provided options,label,
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Cricothyroid membrane puncture,Oral intubation,label,
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",Cricothyroid membrane puncture,,label_set,
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,open,evaluation_ambiguity,STOP,,"{""answer"": ""Begin bag-mask ventilation with supplemental oxygen.""}",,Oral intubation,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::7b2e3490-4efc-45bd-850e-0435ebb15bc5,no_symbols,knowledge_error,STOP,,"{""answer"": ""Cricothyroid membrane puncture""}",Cricothyroid membrane puncture,Oral intubation,exact,
+medmcqa::838f8aa6-e9c7-4e24-ae4b-d430371f9e27,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",H to induce pubey,Bilateral gonadectomy,label,
+medmcqa::838f8aa6-e9c7-4e24-ae4b-d430371f9e27,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Clitoroplasty,Bilateral gonadectomy,label,
+medmcqa::838f8aa6-e9c7-4e24-ae4b-d430371f9e27,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",H to induce pubey,Bilateral gonadectomy,label,
+medmcqa::838f8aa6-e9c7-4e24-ae4b-d430371f9e27,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::838f8aa6-e9c7-4e24-ae4b-d430371f9e27,open,evaluation_ambiguity,STOP,,"{""answer"": ""Evaluate for Turner syndrome""}",,Bilateral gonadectomy,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::84edf98d-5d16-4377-95fc-2bb67058e7d4,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Serum sickness,None of the provided options,label,
+medmcqa::84edf98d-5d16-4377-95fc-2bb67058e7d4,open,evaluation_ambiguity,STOP,,"{""answer"": ""Arthus reaction""}",,Arthus phenomenon,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::87a02021-923f-4cd0-b93d-bfb486c0aa29,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Impaired blood circulation,None of the provided options,label,
+medmcqa::87a02021-923f-4cd0-b93d-bfb486c0aa29,open,evaluation_ambiguity,STOP,,"{""answer"": ""Sign of infection or healing process""}",,Postoperative ecchymosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::8b9c73e9-4e2e-4e4b-8216-9c043a1282cf,open,evaluation_ambiguity,STOP,,"{""answer"": ""homogeneous population""}",,Homogenous population,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,mcq,knowledge_error,STOP,,"{""answer"": ""C""}","Parachlorophenol, camphor and menthol","Iodoform, camphor, parachlorophenol and menthol",label,
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}","Parachlorophenol, camphor and menthol","Iodoform, camphor, parachlorophenol and menthol",label,
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}","Parachlorophenol, camphor and menthol",None of the provided options,label,
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,D""}","Parachlorophenol, camphor and menthol",,label_set,
+medmcqa::8d6cd2e6-9912-4bb5-b276-289f11e6371f,open,evaluation_ambiguity,STOP,,"{""answer"": ""cornstarch, water, and salt""}",,"Iodoform, camphor, parachlorophenol and menthol",no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Cap stage,Bud stage,label,
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Bell stage,Bud stage,label,
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Cap stage,None of the provided options,label,
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Advanced Bell stage,Bud stage,label,
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Advanced Bell stage,,label_set,
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,open,evaluation_ambiguity,STOP,,"{""answer"": ""Cervical loop""}",,Bud stage,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::8d8150e4-2224-4ac1-b41e-b8353a744dcc,no_symbols,invalid_option,STOP,,"{""answer"": ""Dental papilla""}",,Bud stage,no_match,answer matches no displayed option
+medmcqa::91b1635b-021f-4945-bb1d-5bdeed6389f4,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::91b1635b-021f-4945-bb1d-5bdeed6389f4,open,evaluation_ambiguity,STOP,,"{""answer"": ""mean is less than the mode""}",,Mean < Mode,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::91b1635b-021f-4945-bb1d-5bdeed6389f4,no_symbols,invalid_option,STOP,,"{""answer"": ""Mean < Mode""}",,Mean < Mode,ambiguous_exact,answer matches no displayed option
+medmcqa::92bc808f-994e-4669-80e5-77305a9f9178,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Glucagon,None of the provided options,label,
+medmcqa::92bc808f-994e-4669-80e5-77305a9f9178,open,evaluation_ambiguity,STOP,,"{""answer"": ""Angiotensin II""}",,Cortisol,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::92bc808f-994e-4669-80e5-77305a9f9178,no_symbols,invalid_option,STOP,,"{""answer"": ""Aldosterone""}",,Cortisol,no_match,answer matches no displayed option
+medmcqa::93f5e66f-2b58-40a8-84e0-0c4c42dd7a93,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Static,None of the provided options,label,
+medmcqa::93f5e66f-2b58-40a8-84e0-0c4c42dd7a93,open,evaluation_ambiguity,STOP,,"{""answer"": ""muscle tension""}",,Tension of muscle,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,roman_numeral,representation_instability,STOP,,"{""answer"": ""IV""}",Posterior and superior,Anterior and Superior,label,
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Posterior and interior,None of the provided options,label,
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Posterior and superior,Anterior and Superior,label,
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,incorrect,representation_instability,STOP,,"{""answer"": ""A,B,C""}",Posterior and superior,,label_set,
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,open,evaluation_ambiguity,STOP,,"{""answer"": ""laterally""}",,Anterior and Superior,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::988010c6-d24a-4c75-9688-e8d84da035a0,no_symbols,representation_instability,STOP,,"{""answer"": ""Posterior and superior""}",Posterior and superior,Anterior and Superior,exact,
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Amplitude of action potential,Intensity of stimulus,label,
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Number of neurons stimulated,Intensity of stimulus,label,
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Number of receptors stimulated,None of the provided options,label,
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,open,evaluation_ambiguity,STOP,,"{""answer"": ""logarithm of the stimulus intensity""}",,Intensity of stimulus,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::98893c1c-a979-476e-8b82-ef3bd2a02da7,no_symbols,knowledge_error,STOP,,"{""answer"": ""Number of receptors stimulated""}",Number of receptors stimulated,Intensity of stimulus,exact,
+medmcqa::9ba1d3cf-434c-4f68-ab5f-0ccbe263e3a5,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",D-3,D-1,label,
+medmcqa::9ba1d3cf-434c-4f68-ab5f-0ccbe263e3a5,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",D-2,None of the provided options,label,
+medmcqa::9ba1d3cf-434c-4f68-ab5f-0ccbe263e3a5,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",None of the above,,label_set,
+medmcqa::9ba1d3cf-434c-4f68-ab5f-0ccbe263e3a5,open,evaluation_ambiguity,STOP,,"{""answer"": ""End cutting tip file""}",,D-1,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::9ba1d3cf-434c-4f68-ab5f-0ccbe263e3a5,no_symbols,representation_instability,STOP,,"{""answer"": ""D-2""}",D-2,D-1,exact,
+medmcqa::a48f8ece-9420-439a-8ff9-19093ec0c03f,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Fear of dental instruments,Fear of separation from parent,label,
+medmcqa::a48f8ece-9420-439a-8ff9-19093ec0c03f,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Fear of dental instruments,None of the provided options,label,
+medmcqa::a48f8ece-9420-439a-8ff9-19093ec0c03f,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::a48f8ece-9420-439a-8ff9-19093ec0c03f,open,evaluation_ambiguity,STOP,,"{""answer"": ""Fear of separation from parents""}",,Fear of separation from parent,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::aa8da3cd-fdc2-42ef-96f5-9de78597f924,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Cephalosporin,None of the provided options,label,
+medmcqa::aa8da3cd-fdc2-42ef-96f5-9de78597f924,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",Cephalosporin,Clindamycin,label,
+medmcqa::aa8da3cd-fdc2-42ef-96f5-9de78597f924,incorrect,parse_failure,STOP,empty label set,"{""answer"": ""ABD""}",,,,not parsed
+medmcqa::ad6af2c6-763f-42f8-bcfb-57752a45b311,open,evaluation_ambiguity,STOP,,"{""answer"": ""Impaired neutrophil chemotaxis""}",,Neutrophil chemotactic defects or Impaired neutrophil chemotaxis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Respiratory rate,FEV 1,label,
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Respiratory rate,FEV 1,label,
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Respiratory rate,None of the provided options,label,
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Respiratory rate,FEV 1,label,
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,open,evaluation_ambiguity,STOP,,"{""answer"": ""Check for chest rise and fall""}",,FEV 1,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::b4c3fa06-01fe-4c3c-8521-25299a221d43,no_symbols,knowledge_error,STOP,,"{""answer"": ""Respiratory rate""}",Respiratory rate,FEV 1,exact,
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",6 mg 24 hourly 2 doses,6 mg 12 hourly 4 doses,label,
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",6 mg 24 hourly 2 doses,6 mg 12 hourly 4 doses,label,
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",6 mg 24 hourly 2 doses,None of the provided options,label,
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",6 mg 24 hourly 2 doses,6 mg 12 hourly 4 doses,label,
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,open,evaluation_ambiguity,STOP,,"{""answer"": ""10 mg every 6 hours for 2 days""}",,6 mg 12 hourly 4 doses,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::b5aac757-6fb7-48f0-8179-21ffde466c0d,no_symbols,knowledge_error,STOP,,"{""answer"": ""6 mg 24 hourly 2 doses""}",6 mg 24 hourly 2 doses,6 mg 12 hourly 4 doses,exact,
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,mcq,knowledge_error,STOP,,"{""answer"": ""(A)""}",-2 to -4 degC,2-6 degC,label,
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",-2 to -4 degC,2-6 degC,label,
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",-2 to -4 degC,None of the provided options,label,
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",-2 to -4 degC,2-6 degC,label,
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,open,evaluation_ambiguity,STOP,,"{""answer"": ""Temperature is typically 1-6°C""}",,2-6 degC,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::be9a2669-d3a5-41a7-9b1b-608757751254,no_symbols,knowledge_error,STOP,,"{""answer"": ""-2 to -4 degC""}",-2 to -4 degC,2-6 degC,exact,
+medmcqa::bfe1f29e-4880-4b0b-bc9e-c9b96f580f47,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Tendency of 1st premolar to intrude,None of the provided options,label,
+medmcqa::bfe1f29e-4880-4b0b-bc9e-c9b96f580f47,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",Tendency of 1st premolar to intrude,Tendency of 1st premolar to rotate,label,
+medmcqa::bfe1f29e-4880-4b0b-bc9e-c9b96f580f47,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medmcqa::bfe1f29e-4880-4b0b-bc9e-c9b96f580f47,open,evaluation_ambiguity,STOP,,"{""answer"": ""Root resorption""}",,Tendency of 1st premolar to rotate,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Phenylephrine,Ephedrine,label,
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Phenylephrine,Ephedrine,label,
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Phenylephrine,None of the provided options,label,
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Phenylephrine,Ephedrine,label,
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,open,evaluation_ambiguity,STOP,,"{""answer"": ""Epicardial injection of epinephrine""}",,Ephedrine,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::c34c9996-5391-4655-9249-948fe2cb0d2b,no_symbols,knowledge_error,STOP,,"{""answer"": ""Phenylephrine""}",Phenylephrine,Ephedrine,exact,
+medmcqa::c3b4d610-571b-4e86-be27-d41b8b2efc65,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Clearance,None of the provided options,label,
+medmcqa::c3b4d610-571b-4e86-be27-d41b8b2efc65,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""D""]}",,,label_set,"selected 2 options, expected 3"
+medmcqa::c3b4d610-571b-4e86-be27-d41b8b2efc65,open,evaluation_ambiguity,STOP,,"{""answer"": ""The desired concentration of the drug in the body""}",,Volume of distribution,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Inferior alveolar artery,Lingual artery,label,
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Maxillary artery,None of the provided options,label,
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Facial artery,Lingual artery,label,
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,incorrect,representation_instability,STOP,,"{""answer"": ""A,B,C""}",Facial artery,,label_set,
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,open,evaluation_ambiguity,STOP,,"{""answer"": ""Ascending pharyngeal artery""}",,Lingual artery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::c48fcdd2-948f-41e7-a457-56f42646cc60,no_symbols,representation_instability,STOP,,"{""answer"": ""Facial artery""}",Facial artery,Lingual artery,exact,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",An active process involving hydrolysis of ATP,Lateral movement of proteins,label,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",An active process involving hydrolysis of ATP,Lateral movement of proteins,label,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",An active process involving hydrolysis of ATP,None of the provided options,label,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",An active process involving hydrolysis of ATP,Lateral movement of proteins,label,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",An active process involving hydrolysis of ATP,,label_set,
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,open,evaluation_ambiguity,STOP,,"{""answer"": ""endocytosis""}",,Lateral movement of proteins,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::c5065606-5cbb-4adc-85a7-f7e14bf4a75e,no_symbols,knowledge_error,STOP,,"{""answer"": ""Enzyme catalysed process""}",Enzyme catalysed process,Lateral movement of proteins,exact,
+medmcqa::d0b610ce-0221-413d-8d59-aca1b5a1a254,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Common,None of the provided options,label,
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Radial nerve,Deep branch of ulnar nerve,label,
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Median nerve,None of the provided options,label,
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",Median nerve,Deep branch of ulnar nerve,label,
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,open,evaluation_ambiguity,STOP,,"{""answer"": ""Ulnar nerve injury""}",,Deep branch of ulnar nerve,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::e3b365b5-231a-4439-900a-c2cd741266a1,no_symbols,invalid_option,STOP,,"{""answer"": ""Ulnar nerve""}",,Deep branch of ulnar nerve,no_match,answer matches no displayed option
+medmcqa::e6189f82-de06-4469-b26b-1fab6e72fab8,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Arhmogenic right ventricle dysplasia,None of the provided options,label,
+medmcqa::e6189f82-de06-4469-b26b-1fab6e72fab8,open,evaluation_ambiguity,STOP,,"{""answer"": ""Myocardial infarction""}",,Takotsubo cardiomyopathy,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::e7fa6148-7a14-4133-a1d3-c443b970c349,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Maxillary 1st molar,Mandibular 1st premolar,label,
+medmcqa::e7fa6148-7a14-4133-a1d3-c443b970c349,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Maxillary 1st molar,None of the provided options,label,
+medmcqa::e7fa6148-7a14-4133-a1d3-c443b970c349,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Maxillary 1st molar,Mandibular 1st premolar,label,
+medmcqa::e7fa6148-7a14-4133-a1d3-c443b970c349,open,evaluation_ambiguity,STOP,,"{""answer"": ""Molar""}",,Mandibular 1st premolar,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::e7fa6148-7a14-4133-a1d3-c443b970c349,no_symbols,knowledge_error,STOP,,"{""answer"": ""Maxillary 1st molar""}",Maxillary 1st molar,Mandibular 1st premolar,exact,
+medmcqa::e803c024-5cd2-48f7-a3d1-c72f5e1563a6,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Descending loop of Henle,Ascending thick loop Henle,label,
+medmcqa::e803c024-5cd2-48f7-a3d1-c72f5e1563a6,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Descending loop of Henle,None of the provided options,label,
+medmcqa::e803c024-5cd2-48f7-a3d1-c72f5e1563a6,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Descending loop of Henle,,label_set,
+medmcqa::e803c024-5cd2-48f7-a3d1-c72f5e1563a6,open,knowledge_error,STOP,,"{""answer"": ""collecting duct""}",Collecting duct,Ascending thick loop Henle,exact,
+medmcqa::e803c024-5cd2-48f7-a3d1-c72f5e1563a6,no_symbols,invalid_option,STOP,,"{""answer"": ""Descending thick loop Henle""}",,Ascending thick loop Henle,no_match,answer matches no displayed option
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Jacksons clasp,Adams clasp,label,
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Jacksons clasp,None of the provided options,label,
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Circumferential clasp,Adams clasp,label,
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,incorrect,representation_instability,STOP,,"{""answer"": ""A,B,C""}",South end clasp,,label_set,
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,open,evaluation_ambiguity,STOP,,"{""answer"": ""Loop clasp""}",,Adams clasp,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::eab9d801-7f73-4ea9-92e9-2c7077db5e14,no_symbols,representation_instability,STOP,,"{""answer"": ""South end clasp""}",South end clasp,Adams clasp,exact,
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Oligospermia,Asthenozoospermia,label,
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Oligospermia,None of the provided options,label,
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Oligospermia,Asthenozoospermia,label,
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::ee5e4f25-9cee-48ea-b4aa-b631162d4543,open,evaluation_ambiguity,STOP,,"{""answer"": ""Impaired ciliary function""}",,Asthenozoospermia,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",At the time of surgery,6 month before surgery,label,
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",At the time of surgery,6 month before surgery,label,
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",At the time of surgery,None of the provided options,label,
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",At the time of surgery,6 month before surgery,label,
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",At the time of surgery,,label_set,
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,open,evaluation_ambiguity,STOP,,"{""answer"": ""after the patient has completed healing from the osteotomy surgery""}",,6 month before surgery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::eee44fc5-ad97-4eaa-9720-02f6096eece5,no_symbols,knowledge_error,STOP,,"{""answer"": ""At the time of surgery""}",At the time of surgery,6 month before surgery,exact,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",20 times,5 times,label,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",20 times,5 times,label,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",20 times,None of the provided options,label,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",20 times,5 times,label,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",20 times,,label_set,
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,open,evaluation_ambiguity,STOP,,"{""answer"": ""2.56""}",,5 times,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::f6629c78-7a28-4abb-a0ff-98789fbe04da,no_symbols,knowledge_error,STOP,,"{""answer"": ""10 times""}",10 times,5 times,exact,
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Class II div 1,Class II div 2,label,
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Class II div 1,None of the provided options,label,
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Class II div 1,Class II div 2,label,
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Class III,,label_set,
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,open,evaluation_ambiguity,STOP,,"{""answer"": ""Class II""}",,Class II div 2,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::fe12f221-b75a-4418-b14d-642a0d3b8289,no_symbols,knowledge_error,STOP,,"{""answer"": ""Class II div 1""}",Class II div 1,Class II div 2,exact,
+medqa::0014,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Human immunodeficiency virus,Rotavirus,label,
+medqa::0014,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Vaccinia virus,Rotavirus,label,
+medqa::0014,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Vaccinia virus,None of the provided options,label,
+medqa::0014,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Human immunodeficiency virus,Rotavirus,label,
+medqa::0014,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Human immunodeficiency virus,,label_set,
+medqa::0014,open,evaluation_ambiguity,STOP,,"{""answer"": ""reassortment of viral genomes""}",,Rotavirus,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0014,no_symbols,knowledge_error,STOP,,"{""answer"": ""Human immunodeficiency virus""}",Human immunodeficiency virus,Rotavirus,exact,
+medqa::0053,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Metoclopramide,None of the provided options,label,
+medqa::0053,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",Metoclopramide,Atropine,label,
+medqa::0053,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Bethanechol,,label_set,
+medqa::0053,open,evaluation_ambiguity,STOP,,"{""answer"": ""Discontinue galantamine and initiate oral rehydration therapy""}",,Atropine,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0053,no_symbols,representation_instability,STOP,,"{""answer"": ""Metoclopramide""}",Metoclopramide,Atropine,exact,
+medqa::0056,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Agranulocytosis,None of the provided options,label,
+medqa::0056,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Agranulocytosis,Gynecomastia,label,
+medqa::0056,open,evaluation_ambiguity,STOP,,"{""answer"": ""extrapyramidal symptoms""}",,Gynecomastia,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0063,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Digital rectal exam,Insert a ‘straight cath’ into the patient’s bladder,label,
+medqa::0063,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Digital rectal exam,Insert a ‘straight cath’ into the patient’s bladder,label,
+medqa::0063,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Digital rectal exam,None of the provided options,label,
+medqa::0063,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Digital rectal exam,Insert a ‘straight cath’ into the patient’s bladder,label,
+medqa::0063,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,D""}",Digital rectal exam,,label_set,
+medqa::0063,open,evaluation_ambiguity,STOP,,"{""answer"": ""Order a bladder catheterization""}",,Insert a ‘straight cath’ into the patient’s bladder,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0063,no_symbols,knowledge_error,STOP,,"{""answer"": ""Digital rectal exam""}",Digital rectal exam,Insert a ‘straight cath’ into the patient’s bladder,exact,
+medqa::0067,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Transplacental passage of thyroid peroxidase antibodies,None of the provided options,label,
+medqa::0067,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, C""}",Opiate use in the mother,,label_set,
+medqa::0067,open,evaluation_ambiguity,STOP,,"{""answer"": ""Congenital hypothyroidism""}",,Transplacental passage of TSH receptor antibodies,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0067,no_symbols,representation_instability,STOP,,"{""answer"": ""Transplacental passage of thyroid peroxidase antibodies""}",Transplacental passage of thyroid peroxidase antibodies,Transplacental passage of TSH receptor antibodies,exact,
+medqa::0090,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Dog feces,Freshwater snails,label,
+medqa::0090,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Dog feces,Freshwater snails,label,
+medqa::0090,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Dog feces,None of the provided options,label,
+medqa::0090,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Dog feces,Freshwater snails,label,
+medqa::0090,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",Dog feces,,label_set,
+medqa::0090,open,evaluation_ambiguity,STOP,,"{""answer"": ""Parasitic infection with Echinococcus""}",,Freshwater snails,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0090,no_symbols,knowledge_error,STOP,,"{""answer"": ""Undercooked pork meat""}",Undercooked pork meat,Freshwater snails,exact,
+medqa::0095,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Liver function tests,MR angiography of the brain,label,
+medqa::0095,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Liver function tests,MR angiography of the brain,label,
+medqa::0095,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Liver function tests,MR angiography of the brain,label,
+medqa::0095,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(A) (B) (C) (D)""}",,,label_set,"selected 4 options, expected 3"
+medqa::0095,open,evaluation_ambiguity,STOP,,"{""answer"": ""urinary albumin-to-creatinine ratio""}",,MR angiography of the brain,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0117,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Acyclovir,Metformin,label,
+medqa::0117,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Acyclovir,None of the provided options,label,
+medqa::0117,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Acyclovir,Metformin,label,
+medqa::0117,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A, B, C, D""}",,,label_set,"selected 4 options, expected 3"
+medqa::0117,open,evaluation_ambiguity,STOP,,"{""answer"": ""Metabolic acidosis due to diarrhea""}",,Metformin,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0117,no_symbols,knowledge_error,STOP,,"{""answer"": ""Acyclovir""}",Acyclovir,Metformin,exact,
+medqa::0146,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Tumor arising from epidermal keratinocytes,Tumor arising from cutaneous T cells,label,
+medqa::0146,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Tumor arising from epidermal keratinocytes,Tumor arising from cutaneous T cells,label,
+medqa::0146,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Tumor arising from the folliculosebaceous–apocrine germ,Tumor arising from cutaneous T cells,label,
+medqa::0146,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medqa::0146,open,evaluation_ambiguity,STOP,,"{""answer"": ""Malignant melanoma""}",,Tumor arising from cutaneous T cells,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0146,no_symbols,knowledge_error,STOP,,"{""answer"": ""Tumor arising from the folliculosebaceous\u2013apocrine germ""}",Tumor arising from the folliculosebaceous–apocrine germ,Tumor arising from cutaneous T cells,exact,
+medqa::0150,roman_numeral,representation_instability,STOP,,"{""answer"": ""II""}",Trimethoprim/sulfamethoxazole,Levofloxacin,label,
+medqa::0150,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Trimethoprim/sulfamethoxazole,None of the provided options,label,
+medqa::0150,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",Trimethoprim/sulfamethoxazole,Levofloxacin,label,
+medqa::0150,incorrect,instruction_following_failure,STOP,,"{""answer"": [""C"", ""D""]}",,,label_set,"selected 2 options, expected 3"
+medqa::0150,open,evaluation_ambiguity,STOP,,"{""answer"": ""Start intravenous corticosteroids""}",,Levofloxacin,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0165,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Using survival rates in the analysis,Using mortality rates in the analysis,label,
+medqa::0165,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Using survival rates in the analysis,Using mortality rates in the analysis,label,
+medqa::0165,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Using survival rates in the analysis,None of the provided options,label,
+medqa::0165,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Using survival rates in the analysis,Using mortality rates in the analysis,label,
+medqa::0165,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",Using survival rates in the analysis,,label_set,
+medqa::0165,open,evaluation_ambiguity,STOP,,"{""answer"": ""Adjust for confounding variables in the study design.""}",,Using mortality rates in the analysis,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0165,no_symbols,knowledge_error,STOP,,"{""answer"": ""Using survival rates in the analysis""}",Using survival rates in the analysis,Using mortality rates in the analysis,exact,
+medqa::0167,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Restrictive cardiomyopathy,None of the provided options,label,
+medqa::0167,incorrect,representation_instability,STOP,,"{""answer"": ""(C) (D) (A)""}",Constrictive pericarditis,,label_set,
+medqa::0167,open,evaluation_ambiguity,STOP,,"{""answer"": ""Heart failure due to emotional stress""}",,Takotsubo cardiomyopathy,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0182,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Lipomastia (pseudogynecomastia),None of the provided options,label,
+medqa::0182,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""D""]}",,,label_set,"selected 2 options, expected 3"
+medqa::0182,open,evaluation_ambiguity,STOP,,"{""answer"": ""Gynecomastia due to hormonal changes""}",,Glandular tissue enlargement,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0193,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",TNF-alpha,None of the provided options,label,
+medqa::0193,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(B) (D)""}",,,label_set,"selected 2 options, expected 3"
+medqa::0193,open,evaluation_ambiguity,STOP,,"{""answer"": ""interferon-gamma""}",,IFN-gamma,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0195,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Interviewer bias,None of the provided options,label,
+medqa::0195,incorrect,representation_instability,STOP,,"{""answer"": ""(C) (D) (B)""}",Interviewer bias,,label_set,
+medqa::0195,open,evaluation_ambiguity,STOP,,"{""answer"": ""selection bias""}",,Recall bias,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0202,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Cervical lymph nodes,Inferior thyroid arteries,label,
+medqa::0202,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Cervical lymph nodes,None of the provided options,label,
+medqa::0202,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Cervical lymph nodes,Inferior thyroid arteries,label,
+medqa::0202,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Cervical lymph nodes,,label_set,
+medqa::0202,open,evaluation_ambiguity,STOP,,"{""answer"": ""bone or lung""}",,Inferior thyroid arteries,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0202,no_symbols,knowledge_error,STOP,,"{""answer"": ""Cervical lymph nodes""}",Cervical lymph nodes,Inferior thyroid arteries,exact,
+medqa::0211,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Tartrate-resistant acid phosphatase (TRAP) test,Hepatitis C virus antibodies,label,
+medqa::0211,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Tartrate-resistant acid phosphatase (TRAP) test,Hepatitis C virus antibodies,label,
+medqa::0211,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Tartrate-resistant acid phosphatase (TRAP) test,None of the provided options,label,
+medqa::0211,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Tartrate-resistant acid phosphatase (TRAP) test,Hepatitis C virus antibodies,label,
+medqa::0211,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Tartrate-resistant acid phosphatase (TRAP) test,,label_set,
+medqa::0211,open,evaluation_ambiguity,STOP,,"{""answer"": ""Perform an Epstein-Barr virus (EBV) serology panel""}",,Hepatitis C virus antibodies,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0211,no_symbols,knowledge_error,STOP,,"{""answer"": ""Tartrate-resistant acid phosphatase (TRAP) test""}",Tartrate-resistant acid phosphatase (TRAP) test,Hepatitis C virus antibodies,exact,
+medqa::0214,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Insulinoma,Factitious disorder,label,
+medqa::0214,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Insulinoma,None of the provided options,label,
+medqa::0214,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Insulinoma,Factitious disorder,label,
+medqa::0214,incorrect,knowledge_error,STOP,,"{""answer"": ""B, C, D""}",Insulinoma,,label_set,
+medqa::0214,open,evaluation_ambiguity,STOP,,"{""answer"": ""Hypoglycemia due to insulinoma""}",,Factitious disorder,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0214,no_symbols,knowledge_error,STOP,,"{""answer"": ""Insulinoma""}",Insulinoma,Factitious disorder,exact,
+medqa::0233,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Tennis-racket shaped,None of the provided options,label,
+medqa::0233,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medqa::0233,open,evaluation_ambiguity,STOP,,"{""answer"": ""Treponema pallidum""}",,Acid-fast,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0233,no_symbols,representation_instability,STOP,,"{""answer"": ""Tennis-racket shaped""}",Tennis-racket shaped,Acid-fast,exact,
+medqa::0260,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Referral for surgery,Reassurance,label,
+medqa::0260,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Referral for surgery,None of the provided options,label,
+medqa::0260,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Referral for surgery,,label_set,
+medqa::0260,open,evaluation_ambiguity,STOP,,"{""answer"": ""Perform a pelvic ultrasound""}",,Reassurance,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0260,no_symbols,knowledge_error,STOP,,"{""answer"": ""Referral for surgery""}",Referral for surgery,Reassurance,exact,
+medqa::0290,mcq,knowledge_error,STOP,,"{""answer"": ""A""}","If 100 similar experiments were conducted, 5.2 of them would show similar results",There is a 5.2% chance that A is more effective than B is due to chance,label,
+medqa::0290,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}","If 100 similar experiments were conducted, 5.2 of them would show similar results",There is a 5.2% chance that A is more effective than B is due to chance,label,
+medqa::0290,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}","If 100 similar experiments were conducted, 5.2 of them would show similar results",None of the provided options,label,
+medqa::0290,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}","If 100 similar experiments were conducted, 5.2 of them would show similar results",There is a 5.2% chance that A is more effective than B is due to chance,label,
+medqa::0290,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, D""}",There is a 94.8% chance that the difference observed reflects a real difference,,label_set,
+medqa::0290,open,evaluation_ambiguity,STOP,,"{""answer"": ""The results are marginally statistically significant.""}",,There is a 5.2% chance that A is more effective than B is due to chance,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0290,no_symbols,knowledge_error,STOP,,"{""answer"": ""If 100 similar experiments were conducted, 5.2 of them would show similar results""}","If 100 similar experiments were conducted, 5.2 of them would show similar results",There is a 5.2% chance that A is more effective than B is due to chance,exact,
+medqa::0324,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",MRCP,None of the provided options,label,
+medqa::0324,open,evaluation_ambiguity,STOP,,"{""answer"": ""Perform endoscopic retrograde cholangiopancreaticography (ERCP)""}",,ERCP,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0332,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Drug-induced hypokalemia,Inhibition of P-glycoprotein,label,
+medqa::0332,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Drug-induced hypokalemia,Inhibition of P-glycoprotein,label,
+medqa::0332,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Drug-induced hypokalemia,None of the provided options,label,
+medqa::0332,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Drug-induced hypokalemia,Inhibition of P-glycoprotein,label,
+medqa::0332,open,evaluation_ambiguity,STOP,,"{""answer"": ""digoxin toxicity due to verapamil use""}",,Inhibition of P-glycoprotein,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0332,no_symbols,knowledge_error,STOP,,"{""answer"": ""Drug-induced hypokalemia""}",Drug-induced hypokalemia,Inhibition of P-glycoprotein,exact,
+medqa::0339,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Psychotherapy,None of the provided options,label,
+medqa::0339,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(A) (B) (C) (D)""}",,,label_set,"selected 4 options, expected 3"
+medqa::0339,open,evaluation_ambiguity,STOP,,"{""answer"": ""Cognitive-behavioral therapy""}",,Desensitization,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0340,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Warfarin therapy,Cognitive training,label,
+medqa::0340,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Tetrabenazine therapy,Cognitive training,label,
+medqa::0340,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Warfarin therapy,Cognitive training,label,
+medqa::0340,incorrect,knowledge_error,STOP,,"{""answer"": ""B,C,D""}",Warfarin therapy,,label_set,
+medqa::0340,open,evaluation_ambiguity,STOP,,"{""answer"": ""Order a lumbar puncture to rule out subdural hematoma""}",,Cognitive training,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0340,no_symbols,knowledge_error,STOP,,"{""answer"": ""Warfarin therapy""}",Warfarin therapy,Cognitive training,exact,
+medqa::0357,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Amitriptyline,Heroin,label,
+medqa::0357,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Cocaine,Heroin,label,
+medqa::0357,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Amitriptyline,None of the provided options,label,
+medqa::0357,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Amitriptyline,Heroin,label,
+medqa::0357,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Cocaine,,label_set,
+medqa::0357,open,evaluation_ambiguity,STOP,,"{""answer"": ""Metabolic alkalosis with respiratory acidosis""}",,Heroin,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0357,no_symbols,knowledge_error,STOP,,"{""answer"": ""Amitriptyline""}",Amitriptyline,Heroin,exact,
+medqa::0401,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Insert copper-containing intra-uterine device,Administer ulipristal acetate,label,
+medqa::0401,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Insert copper-containing intra-uterine device,Administer ulipristal acetate,label,
+medqa::0401,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Insert copper-containing intra-uterine device,None of the provided options,label,
+medqa::0401,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Insert copper-containing intra-uterine device,Administer ulipristal acetate,label,
+medqa::0401,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Administer depot medroxyprogesterone acetate,,label_set,
+medqa::0401,open,evaluation_ambiguity,STOP,,"{""answer"": ""Prescribe emergency contraception""}",,Administer ulipristal acetate,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0401,no_symbols,knowledge_error,STOP,,"{""answer"": ""Administer depot medroxyprogesterone acetate""}",Administer depot medroxyprogesterone acetate,Administer ulipristal acetate,exact,
+medqa::0415,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",The power of the test is 0.8.,"If the sensitivity of this screening test were decreased, the statistical power would decrease.",label,
+medqa::0415,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}","If the specificity of this screening test were increased, the statistical power would increase.","If the sensitivity of this screening test were decreased, the statistical power would decrease.",label,
+medqa::0415,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",The power of the test is 0.8.,None of the provided options,label,
+medqa::0415,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",The power of the test is 0.8.,"If the sensitivity of this screening test were decreased, the statistical power would decrease.",label,
+medqa::0415,incorrect,knowledge_error,STOP,,"{""answer"": ""A,C,D""}",The power of the test is 0.8.,,label_set,
+medqa::0415,open,evaluation_ambiguity,STOP,,"{""answer"": ""The statistical power is 0.80.""}",,"If the sensitivity of this screening test were decreased, the statistical power would decrease.",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0415,no_symbols,knowledge_error,STOP,,"{""answer"": ""The power of the test is 0.8.""}",The power of the test is 0.8.,"If the sensitivity of this screening test were decreased, the statistical power would decrease.",exact,
+medqa::0438,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",Na+/K+/2Cl- transporters in the membranes of epithelial cells in the ascending loop of Henle,Na+/Cl- cotransporter in the membranes of epithelial cells in the distal convoluted tubule,label,
+medqa::0438,incorrect,instruction_following_failure,STOP,,"{""answer"": ""C, D""}",,,label_set,"selected 2 options, expected 3"
+medqa::0438,open,evaluation_ambiguity,STOP,,"{""answer"": ""colonic mucosa""}",,Na+/Cl- cotransporter in the membranes of epithelial cells in the distal convoluted tubule,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0449,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Internal laryngeal nerve injury,None of the provided options,label,
+medqa::0449,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Internal laryngeal nerve injury,,label_set,
+medqa::0449,open,evaluation_ambiguity,STOP,,"{""answer"": ""Unilateral vocal cord paralysis due to injury during surgery""}",,Recurrent laryngeal nerve injury,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0456,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Breast milk jaundice,None of the provided options,label,
+medqa::0456,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Breast milk jaundice,Breastfeeding jaundice,label,
+medqa::0456,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Breast milk jaundice,,label_set,
+medqa::0456,open,evaluation_ambiguity,STOP,,"{""answer"": ""Biliary atresia""}",,Breastfeeding jaundice,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0456,no_symbols,representation_instability,STOP,,"{""answer"": ""Breast milk jaundice""}",Breast milk jaundice,Breastfeeding jaundice,exact,
+medqa::0458,incorrect,representation_instability,STOP,,"{""answer"": ""(C) (D) (B)""}",Baroreceptor reflex,,label_set,
+medqa::0458,open,evaluation_ambiguity,STOP,,"{""answer"": ""The body's stress response to exercise""}",,Sympathetic nervous system activation,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0460,roman_numeral,representation_instability,STOP,,"{""answer"": ""II""}",Obesity,Leydig cell tumor,label,
+medqa::0460,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Klinefelter syndrome,None of the provided options,label,
+medqa::0460,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(D) Trauma to testis""}",,,label_set,"selected 1 options, expected 3"
+medqa::0460,open,evaluation_ambiguity,STOP,,"{""answer"": ""Hormonal imbalance due to chronic alcohol use and possible hypogonadism""}",,Leydig cell tumor,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0466,open,evaluation_ambiguity,STOP,,"{""answer"": ""rheumatoid arthritis""}",,Excess weight,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0466,no_symbols,invalid_option,STOP,,"{""answer"": ""Rheumatoid arthritis""}",,Excess weight,no_match,answer matches no displayed option
+medqa::0475,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Intravenous esmolol,Synchronized cardioversion,label,
+medqa::0475,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Intravenous esmolol,Synchronized cardioversion,label,
+medqa::0475,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Coronary angiogram,None of the provided options,label,
+medqa::0475,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Intravenous esmolol,Synchronized cardioversion,label,
+medqa::0475,incorrect,knowledge_error,STOP,,"{""answer"": ""A,C,D""}",Intravenous esmolol,,label_set,
+medqa::0475,open,evaluation_ambiguity,STOP,,"{""answer"": ""Administer intravenous nitroglycerin""}",,Synchronized cardioversion,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0475,no_symbols,knowledge_error,STOP,,"{""answer"": ""Intravenous esmolol""}",Intravenous esmolol,Synchronized cardioversion,exact,
+medqa::0478,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Needlestick,Shellfish,label,
+medqa::0478,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Needlestick,Shellfish,label,
+medqa::0478,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Needlestick,None of the provided options,label,
+medqa::0478,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Needlestick,Shellfish,label,
+medqa::0478,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medqa::0478,open,evaluation_ambiguity,STOP,,"{""answer"": ""Hepatitis A virus""}",,Shellfish,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0478,no_symbols,knowledge_error,STOP,,"{""answer"": ""Unprotected sex""}",Unprotected sex,Shellfish,exact,
+medqa::0485,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Budesonide,Omeprazole,label,
+medqa::0485,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Budesonide,Omeprazole,label,
+medqa::0485,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Budesonide,None of the provided options,label,
+medqa::0485,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Budesonide,Omeprazole,label,
+medqa::0485,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(A) (B) (C) (D)""}",,,label_set,"selected 4 options, expected 3"
+medqa::0485,open,evaluation_ambiguity,STOP,,"{""answer"": ""Prednisone""}",,Omeprazole,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0511,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Warfarin therapy,Ultrasonography of the neck,label,
+medqa::0511,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Echocardiography,None of the provided options,label,
+medqa::0511,incorrect,representation_instability,STOP,,"{""answer"": ""A, C, D""}",Echocardiography,,label_set,
+medqa::0511,open,evaluation_ambiguity,STOP,,"{""answer"": ""Evaluate the patient for peripheral arterial disease""}",,Ultrasonography of the neck,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0511,no_symbols,representation_instability,STOP,,"{""answer"": ""CT angiography of the head""}",CT angiography of the head,Ultrasonography of the neck,exact,
+medqa::0551,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Increased lipoprotein lipase activity,Decreased glucose uptake by adipocytes,label,
+medqa::0551,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Decreased proteolysis,Decreased glucose uptake by adipocytes,label,
+medqa::0551,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Increased lipoprotein lipase activity,None of the provided options,label,
+medqa::0551,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Increased lipoprotein lipase activity,,label_set,
+medqa::0551,open,evaluation_ambiguity,STOP,,"{""answer"": ""Kussmaul breathing""}",,Decreased glucose uptake by adipocytes,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0551,no_symbols,knowledge_error,STOP,,"{""answer"": ""Decreased activity of hormone sensitive lipase""}",Decreased activity of hormone sensitive lipase,Decreased glucose uptake by adipocytes,exact,
+medqa::0556,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Brucellosis,Bacillary angiomatosis,label,
+medqa::0556,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Brucellosis,Bacillary angiomatosis,label,
+medqa::0556,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Bubonic plague,None of the provided options,label,
+medqa::0556,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Brucellosis,Bacillary angiomatosis,label,
+medqa::0556,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Bubonic plague,,label_set,
+medqa::0556,open,evaluation_ambiguity,STOP,,"{""answer"": ""Tuberculosis""}",,Bacillary angiomatosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0556,no_symbols,knowledge_error,STOP,,"{""answer"": ""Brucellosis""}",Brucellosis,Bacillary angiomatosis,exact,
+medqa::0558,open,evaluation_ambiguity,STOP,,"{""answer"": ""Lymphogranuloma venereum""}",,Molluscum contagiosum,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0562,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Jaundice,Gynecomastia,label,
+medqa::0562,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Caput medusae,None of the provided options,label,
+medqa::0562,open,evaluation_ambiguity,STOP,,"{""answer"": ""Spider angiomas""}",,Gynecomastia,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0573,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Increased right ventricular preload,Increased right ventricular afterload,label,
+medqa::0573,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Increased right ventricular preload,None of the provided options,label,
+medqa::0573,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Increased right ventricular preload,Increased right ventricular afterload,label,
+medqa::0573,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Increased left-to-right shunting,,label_set,
+medqa::0573,open,evaluation_ambiguity,STOP,,"{""answer"": ""Pulmonary hypertension""}",,Increased right ventricular afterload,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0579,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Medullary bone destruction with elevated periosteum from cortical bone,Well-defined cystic lesion with peritrabecular fibrosis,label,
+medqa::0579,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Medullary bone destruction with elevated periosteum from cortical bone,Well-defined cystic lesion with peritrabecular fibrosis,label,
+medqa::0579,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Medullary bone destruction with elevated periosteum from cortical bone,Well-defined cystic lesion with peritrabecular fibrosis,label,
+medqa::0579,open,evaluation_ambiguity,STOP,,"{""answer"": ""osteopenia and possible bone resorption""}",,Well-defined cystic lesion with peritrabecular fibrosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0579,no_symbols,knowledge_error,STOP,,"{""answer"": ""Expansile lytic lesion with thin sclerotic margins""}",Expansile lytic lesion with thin sclerotic margins,Well-defined cystic lesion with peritrabecular fibrosis,exact,
+medqa::0602,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}","Rifampin inhibits CYP3A4, which metabolizes progestins.",None of the provided options,label,
+medqa::0602,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Rifampin directly interferes with intestinal absorption of estrogens.,"Rifampin alters normal gastrointestinal flora, which leads to a decrease in the enterohepatic circulation of estrogens.",label,
+medqa::0602,incorrect,representation_instability,STOP,,"{""answer"": ""A, C, D""}","Rifampin inhibits CYP3A4, which metabolizes progestins.",,label_set,
+medqa::0602,open,evaluation_ambiguity,STOP,,"{""answer"": ""Rifampin may reduce the effectiveness of oral contraceptives""}",,"Rifampin alters normal gastrointestinal flora, which leads to a decrease in the enterohepatic circulation of estrogens.",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0610,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Repeat antibody screening at 28 weeks and administer anti-D immunoglobulin at 28 weeks. No further management is needed.,None of the provided options,label,
+medqa::0610,incorrect,representation_instability,STOP,,"{""answer"": ""A, C, D""}",Repeat antibody screening at 28 weeks and administer anti-D immunoglobulin at 28 weeks. No further management is needed.,,label_set,
+medqa::0610,open,evaluation_ambiguity,STOP,,"{""answer"": ""Administer RhD immune globulin""}",,Repeat antibody screening at 28 weeks. Administer anti-D immunoglobulin at 28 weeks and after delivery if the newborn is Rh(D) positive.,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0656,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Duodenal peptic ulcer,None of the provided options,label,
+medqa::0656,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(D) Perforated gastric peptic ulcer""}",,,label_set,"selected 1 options, expected 3"
+medqa::0656,open,evaluation_ambiguity,STOP,,"{""answer"": ""Perforated peptic ulcer""}",,Perforated gastric peptic ulcer,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0674,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Canagliflozin,None of the provided options,label,
+medqa::0674,open,evaluation_ambiguity,STOP,,"{""answer"": ""GLP-1 receptor agonist""}",,Sitagliptin,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0700,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Echocardiogram,None of the provided options,label,
+medqa::0700,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Echocardiogram,,label_set,
+medqa::0700,open,evaluation_ambiguity,STOP,,"{""answer"": ""warfarin level""}",,International normalized ratio,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0707,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Distal tubule,None of the provided options,label,
+medqa::0707,open,evaluation_ambiguity,STOP,,"{""answer"": ""in the proximal convoluted tubule""}",,Proximal tubule,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0716,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Mast cell activation in subcutaneous tissues,Hyperpermeability of superficial dermal microvasculature,label,
+medqa::0716,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Mast cell activation in subcutaneous tissues,Hyperpermeability of superficial dermal microvasculature,label,
+medqa::0716,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Mast cell activation in subcutaneous tissues,None of the provided options,label,
+medqa::0716,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Mast cell activation in subcutaneous tissues,Hyperpermeability of superficial dermal microvasculature,label,
+medqa::0716,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(D) Mast cell activation in subcutaneous tissues""}",,,label_set,"selected 1 options, expected 3"
+medqa::0716,open,evaluation_ambiguity,STOP,,"{""answer"": ""Drug eruption""}",,Hyperpermeability of superficial dermal microvasculature,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0716,no_symbols,knowledge_error,STOP,,"{""answer"": ""Mast cell activation in subcutaneous tissues""}",Mast cell activation in subcutaneous tissues,Hyperpermeability of superficial dermal microvasculature,exact,
+medqa::0739,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Arteriovenous malformation,Tearing of the middle meningeal artery,label,
+medqa::0739,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Arteriovenous malformation,Tearing of the middle meningeal artery,label,
+medqa::0739,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Arteriovenous malformation,None of the provided options,label,
+medqa::0739,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Arteriovenous malformation,,label_set,
+medqa::0739,open,evaluation_ambiguity,STOP,,"{""answer"": ""Basilar artery occlusion""}",,Tearing of the middle meningeal artery,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0739,no_symbols,max_tokens_truncation,MAX_TOKENS,,"{""answer"": ""Fixed and dilated left pupil with no pupillary light reflex and a blood pressure of 190/110 mm Hg suggest increased intracranial pressure (ICP). The CT scan would likely show a large intracranial mass or hemorrhage. The most likely etiology in this scenario""}",,Tearing of the middle meningeal artery,no_match,answer matches no displayed option
+medqa::0747,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Methylprednisolone and cyclophosphamide,"Methylprednisolone, plasmapheresis, and cyclophosphamide",label,
+medqa::0747,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Methylprednisolone and cyclophosphamide,None of the provided options,label,
+medqa::0747,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Methylprednisolone and cyclophosphamide,"Methylprednisolone, plasmapheresis, and cyclophosphamide",label,
+medqa::0747,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Plasmapheresis and cyclophosphamide,,label_set,
+medqa::0747,open,evaluation_ambiguity,STOP,,"{""answer"": ""Start intravenous fluids and consider hospitalization for possible acute kidney injury or sepsis""}",,"Methylprednisolone, plasmapheresis, and cyclophosphamide",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0747,no_symbols,invalid_option,STOP,,"{""answer"": ""Goodpasture's syndrome""}",,"Methylprednisolone, plasmapheresis, and cyclophosphamide",no_match,answer matches no displayed option
+medqa::0752,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Aldesleukin,Filgrastim,label,
+medqa::0752,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Aldesleukin,None of the provided options,label,
+medqa::0752,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Aldesleukin,Filgrastim,label,
+medqa::0752,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",Aldesleukin,,label_set,
+medqa::0752,open,evaluation_ambiguity,STOP,,"{""answer"": ""granulocyte colony-stimulating factor""}",,Filgrastim,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0759,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",Thrombopoietin,Sargramostim,label,
+medqa::0759,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medqa::0759,open,evaluation_ambiguity,STOP,,"{""answer"": ""pentoxifylline""}",,Sargramostim,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0770,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Different interventions with 2 or more variables can be studied,,label_set,
+medqa::0770,open,evaluation_ambiguity,STOP,,"{""answer"": ""It is a case series study.""}",,Hypothesis testing cannot be performed,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0787,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Carpopedal spasm,Night blindness,label,
+medqa::0787,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Carpopedal spasm,None of the provided options,label,
+medqa::0787,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Carpopedal spasm,Night blindness,label,
+medqa::0787,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+medqa::0787,open,evaluation_ambiguity,STOP,,"{""answer"": ""hyperkeratosis""}",,Night blindness,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0787,no_symbols,knowledge_error,STOP,,"{""answer"": ""Carpopedal spasm""}",Carpopedal spasm,Night blindness,exact,
+medqa::0789,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Brugada syndrome,Prolonged QT interval,label,
+medqa::0789,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Hyperkalemia,Prolonged QT interval,label,
+medqa::0789,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Hyperkalemia,None of the provided options,label,
+medqa::0789,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Hyperkalemia,Prolonged QT interval,label,
+medqa::0789,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Hyperkalemia,,label_set,
+medqa::0789,open,evaluation_ambiguity,STOP,,"{""answer"": ""Takayasu's arteritis""}",,Prolonged QT interval,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0789,no_symbols,knowledge_error,STOP,,"{""answer"": ""Brugada syndrome""}",Brugada syndrome,Prolonged QT interval,exact,
+medqa::0790,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",270 mg,None of the provided options,label,
+medqa::0790,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}","540 mg
+""",480 mg,label,
+medqa::0790,open,evaluation_ambiguity,STOP,,"{""answer"": ""1.33 mg""}",,480 mg,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0790,no_symbols,representation_instability,STOP,,"{""answer"": ""540 mg""}","540 mg
+""",480 mg,exact,
+medqa::0833,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Periodic acid-Schiff,Tartrate-resistant acid phosphatase,label,
+medqa::0833,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Periodic acid-Schiff,Tartrate-resistant acid phosphatase,label,
+medqa::0833,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Periodic acid-Schiff,Tartrate-resistant acid phosphatase,label,
+medqa::0833,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",Prussian Blue,,label_set,
+medqa::0833,open,evaluation_ambiguity,STOP,,"{""answer"": ""Pappenheimer's stain""}",,Tartrate-resistant acid phosphatase,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0833,no_symbols,knowledge_error,STOP,,"{""answer"": ""Periodic acid-Schiff""}",Periodic acid-Schiff,Tartrate-resistant acid phosphatase,exact,
+medqa::0871,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Chronic prostatitis by resistant Escherichia coli,None of the provided options,label,
+medqa::0871,open,evaluation_ambiguity,STOP,,"{""answer"": ""prostatitis""}",,"Chronic, non-bacterial prostatitis",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0876,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",100% oxygen,,label_set,
+medqa::0876,open,evaluation_ambiguity,STOP,,"{""answer"": ""Administer triptans""}",,Sumatriptan,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0877,open,evaluation_ambiguity,STOP,,"{""answer"": ""32""}",,32 breaths per minute,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0931,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Segmental demyelination of peripheral axons,Accumulation of S-adenosylmethionine,label,
+medqa::0931,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Segmental demyelination of peripheral axons,Accumulation of S-adenosylmethionine,label,
+medqa::0931,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Segmental demyelination of peripheral axons,None of the provided options,label,
+medqa::0931,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Segmental demyelination of peripheral axons,Accumulation of S-adenosylmethionine,label,
+medqa::0931,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",Segmental demyelination of peripheral axons,,label_set,
+medqa::0931,open,evaluation_ambiguity,STOP,,"{""answer"": ""drug-induced peripheral neuropathy""}",,Accumulation of S-adenosylmethionine,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0931,no_symbols,knowledge_error,STOP,,"{""answer"": ""Segmental demyelination of peripheral axons""}",Segmental demyelination of peripheral axons,Accumulation of S-adenosylmethionine,exact,
+medqa::0940,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Decrease in plasma proteins,Increase in capillary pressure,label,
+medqa::0940,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Decrease in plasma proteins,Increase in capillary pressure,label,
+medqa::0940,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Increase in interstitial fluid pressure,None of the provided options,label,
+medqa::0940,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Decrease in plasma proteins,Increase in capillary pressure,label,
+medqa::0940,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, C""}",Increase in interstitial fluid pressure,,label_set,
+medqa::0940,open,evaluation_ambiguity,STOP,,"{""answer"": ""Heart failure""}",,Increase in capillary pressure,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0952,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Prednisone,Avoiding all dairy products,label,
+medqa::0952,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Prednisone,Avoiding all dairy products,label,
+medqa::0952,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Prednisone,None of the provided options,label,
+medqa::0952,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Prednisone,Avoiding all dairy products,label,
+medqa::0952,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(C) (D)""}",,,label_set,"selected 2 options, expected 3"
+medqa::0952,open,evaluation_ambiguity,STOP,,"{""answer"": ""Start a gluten-free diet immediately""}",,Avoiding all dairy products,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::0952,no_symbols,knowledge_error,STOP,,"{""answer"": ""Prednisone""}",Prednisone,Avoiding all dairy products,exact,
+medqa::0958,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",There is a disruption of primary active transport of glucose in the proximal renal tubules,None of the provided options,label,
+medqa::0958,open,evaluation_ambiguity,STOP,,"{""answer"": ""Diabetic nephropathy""}",,Secondary active transporters fail to completely reabsorb glucose in the renal tubules,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1046,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",30%,15%,label,
+medqa::1046,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",30%,15%,label,
+medqa::1046,open,evaluation_ambiguity,STOP,,"{""answer"": ""0.0228""}",,15%,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1106,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Bipolar I disorder,Cyclothymic disorder,label,
+medqa::1106,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Bipolar I disorder,Cyclothymic disorder,label,
+medqa::1106,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Bipolar I disorder,None of the provided options,label,
+medqa::1106,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Bipolar I disorder,Cyclothymic disorder,label,
+medqa::1106,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",Bipolar I disorder,,label_set,
+medqa::1106,open,evaluation_ambiguity,STOP,,"{""answer"": ""Major Depressive Disorder with cyclothymic features""}",,Cyclothymic disorder,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1106,no_symbols,knowledge_error,STOP,,"{""answer"": ""Bipolar I disorder""}",Bipolar I disorder,Cyclothymic disorder,exact,
+medqa::1112,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Dependent personality disorder,None of the provided options,label,
+medqa::1112,incorrect,representation_instability,STOP,,"{""answer"": ""(C) (B) (D)""}",Schizotypal personality disorder,,label_set,
+medqa::1112,open,evaluation_ambiguity,STOP,,"{""answer"": ""Social anxiety and low self-esteem""}",,Avoidant personality disorder,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1130,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Amiodarone,Propranolol,label,
+medqa::1130,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Digoxin,None of the provided options,label,
+medqa::1130,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Warfarin,,label_set,
+medqa::1130,open,evaluation_ambiguity,STOP,,"{""answer"": ""Dobutamine""}",,Propranolol,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1130,no_symbols,representation_instability,STOP,,"{""answer"": ""Amiodarone""}",Amiodarone,Propranolol,exact,
+medqa::1144,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Low T4 and T3,High TSH,label,
+medqa::1144,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Low T4 and T3,None of the provided options,label,
+medqa::1144,open,evaluation_ambiguity,STOP,,"{""answer"": ""Thickened, dry skin""}",,High TSH,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1144,no_symbols,knowledge_error,STOP,,"{""answer"": ""Low T4 and T3""}",Low T4 and T3,High TSH,exact,
+medqa::1154,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",T-score of -0.8,T-score of -1.6,label,
+medqa::1154,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",T-score of -0.8,T-score of -1.6,label,
+medqa::1154,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",T-score of -0.8,None of the provided options,label,
+medqa::1154,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",T-score of -0.8,T-score of -1.6,label,
+medqa::1154,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",T-score of 1.2,,label_set,
+medqa::1154,open,evaluation_ambiguity,STOP,,"{""answer"": ""T-scores between -1 and -2.5""}",,T-score of -1.6,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1154,no_symbols,invalid_option,STOP,,"{""answer"": ""-1.6""}",,T-score of -1.6,no_match,answer matches no displayed option
+medqa::1163,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Columnar mucinous epithelium,Granulation tissue,label,
+medqa::1163,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Columnar mucinous epithelium,Granulation tissue,label,
+medqa::1163,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Columnar mucinous epithelium,None of the provided options,label,
+medqa::1163,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Columnar mucinous epithelium,Granulation tissue,label,
+medqa::1163,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Columnar mucinous epithelium,,label_set,
+medqa::1163,open,evaluation_ambiguity,STOP,,"{""answer"": ""columnar epithelium""}",,Granulation tissue,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1163,no_symbols,knowledge_error,STOP,,"{""answer"": ""Columnar mucinous epithelium""}",Columnar mucinous epithelium,Granulation tissue,exact,
+medqa::1196,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Leuprolide therapy,Clomiphene therapy,label,
+medqa::1196,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Leuprolide therapy,Clomiphene therapy,label,
+medqa::1196,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Leuprolide therapy,None of the provided options,label,
+medqa::1196,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Leuprolide therapy,Clomiphene therapy,label,
+medqa::1196,incorrect,knowledge_error,STOP,,"{""answer"": ""A, C, D""}",Progesterone therapy,,label_set,
+medqa::1196,open,evaluation_ambiguity,STOP,,"{""answer"": ""Prescribe oral contraceptive therapy""}",,Clomiphene therapy,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1220,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Lysine,Glycine,label,
+medqa::1220,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Proline,None of the provided options,label,
+medqa::1220,fixed_pos,representation_instability,STOP,,"{""answer"": ""A""}",Arginine,Glycine,label,
+medqa::1220,open,evaluation_ambiguity,STOP,,"{""answer"": ""Heme""}",,Glycine,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1220,no_symbols,max_tokens_truncation,MAX_TOKENS,,"{""answer"": ""Swollen gums, petechiae, and easy bruising are signs of a deficiency in vitamin C, which is essential for the synthesis of collagen. Collagen is a protein that provides structure to blood vessels, skin, and connective tissues. A deficiency in vitamin C leads to the breakdown of collagen, resulting in weakened""}",,Glycine,no_match,answer matches no displayed option
+medqa::1223,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}","Engorged hepatocytes with red blood cell infiltration
+""",None of the provided options,label,
+medqa::1223,open,evaluation_ambiguity,STOP,,"{""answer"": ""lymphocytic hepatitis""}",,"Hepatocytes with shrunken, eosinophilic cytoplasm and pyknotic nuclei",no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1223,no_symbols,representation_instability,STOP,,"{""answer"": ""Engorged hepatocytes with red blood cell infiltration""}","Engorged hepatocytes with red blood cell infiltration
+""","Hepatocytes with shrunken, eosinophilic cytoplasm and pyknotic nuclei",exact,
+medqa::1246,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",17-hydroxyprogesterone and cortisol level measurements,Blood glucose and cholesterol level measurements,label,
+medqa::1246,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",17-hydroxyprogesterone and cortisol level measurements,None of the provided options,label,
+medqa::1246,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",17-hydroxyprogesterone and cortisol level measurements,Blood glucose and cholesterol level measurements,label,
+medqa::1246,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(A) (B) (C) (D)""}",,,label_set,"selected 4 options, expected 3"
+medqa::1246,open,evaluation_ambiguity,STOP,,"{""answer"": ""Test for polycystic ovary syndrome (PCOS)""}",,Blood glucose and cholesterol level measurements,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1250,mcq,knowledge_error,STOP,,"{""answer"": ""D""}","Lamivudine
+""",Efavirenz,label,
+medqa::1250,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Raltegravir,Efavirenz,label,
+medqa::1250,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}","Lamivudine
+""",None of the provided options,label,
+medqa::1250,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Raltegravir,Efavirenz,label,
+medqa::1250,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(D) Lamivudine""}",,,label_set,"selected 1 options, expected 3"
+medqa::1250,open,evaluation_ambiguity,STOP,,"{""answer"": ""Tenofovir disoproxil""}",,Efavirenz,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1250,no_symbols,knowledge_error,STOP,,"{""answer"": ""Raltegravir""}",Raltegravir,Efavirenz,exact,
+medqa::1261,open,evaluation_ambiguity,STOP,,"{""answer"": ""Administer chemotherapy""}",,Retinoic acid,no_match,free-text answer matches no reference option; needs semantic judgment
+medqa::1261,no_symbols,max_tokens_truncation,MAX_TOKENS,,"{""answer"": ""Acute myeloid leukemia (AML) is a type of cancer that affects the blood and bone marrow. It is characterized by the uncontrolled growth of abnormal white blood cells, which can interfere with the normal function of the bone marrow. The presence of myeloblasts in the bone marrow biopsy, along with""}",,Retinoic acid,no_match,answer matches no displayed option
+mmlu::anatomy-000,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",paralysis of the facial muscles and loss of taste.,paralysis of the facial muscles.,label,
+mmlu::anatomy-000,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",paralysis of the facial muscles and loss of taste.,paralysis of the facial muscles.,label,
+mmlu::anatomy-000,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",paralysis of the facial muscles and loss of taste.,None of the provided options,label,
+mmlu::anatomy-000,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",paralysis of the facial muscles and loss of taste.,paralysis of the facial muscles.,label,
+mmlu::anatomy-000,open,evaluation_ambiguity,STOP,,"{""answer"": ""Facial nerve paralysis on one side""}",,paralysis of the facial muscles.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-000,no_symbols,knowledge_error,STOP,,"{""answer"": ""paralysis of the facial muscles and loss of taste.""}",paralysis of the facial muscles and loss of taste.,paralysis of the facial muscles.,exact,
+mmlu::anatomy-003,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Sweat glands,Melanocytes,label,
+mmlu::anatomy-003,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Sweat glands,Melanocytes,label,
+mmlu::anatomy-003,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Sweat glands,None of the provided options,label,
+mmlu::anatomy-003,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Sweat glands,Melanocytes,label,
+mmlu::anatomy-003,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""C""]}",Sweat glands,,label_set,
+mmlu::anatomy-003,open,evaluation_ambiguity,STOP,,"{""answer"": ""tooth""}",,Melanocytes,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-003,no_symbols,knowledge_error,STOP,,"{""answer"": ""Sweat glands""}",Sweat glands,Melanocytes,exact,
+mmlu::anatomy-023,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",mesoderm formation and occurs before neurulation.,None of the provided options,label,
+mmlu::anatomy-023,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,label,
+mmlu::anatomy-023,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+mmlu::anatomy-023,open,evaluation_ambiguity,STOP,,"{""answer"": ""Gastrulation is the process that forms the three germ layers, occurring before neurulation.""}",,ectomesenchyme formation and occurs before neurulation.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-023,no_symbols,knowledge_error,STOP,,"{""answer"": ""mesoderm formation and occurs before neurulation.""}",mesoderm formation and occurs before neurulation.,ectomesenchyme formation and occurs before neurulation.,exact,
+mmlu::anatomy-065,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",The muscles of mastication,The muscles of mastication and anterior belly of digastric,label,
+mmlu::anatomy-065,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",The muscles of mastication and anterior and posterior bellies of digastric,The muscles of mastication and anterior belly of digastric,label,
+mmlu::anatomy-065,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",The muscles of mastication and anterior and posterior bellies of digastric,None of the provided options,label,
+mmlu::anatomy-065,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}","The muscles of mastication, anterior and posterior bellies of digastric and geniohyoid",The muscles of mastication and anterior belly of digastric,label,
+mmlu::anatomy-065,incorrect,knowledge_error,STOP,,"{""answer"": ""B,C,D""}",The muscles of mastication,,label_set,
+mmlu::anatomy-065,open,evaluation_ambiguity,STOP,,"{""answer"": ""Mandibular muscles""}",,The muscles of mastication and anterior belly of digastric,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-065,no_symbols,knowledge_error,STOP,,"{""answer"": ""The muscles of mastication, anterior and posterior bellies of digastric and geniohyoid""}","The muscles of mastication, anterior and posterior bellies of digastric and geniohyoid",The muscles of mastication and anterior belly of digastric,exact,
+mmlu::anatomy-076,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",flaccid paralysis.,None of the provided options,label,
+mmlu::anatomy-076,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",flaccid paralysis.,spastic paralysis.,label,
+mmlu::anatomy-076,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",flaccid paralysis.,,label_set,
+mmlu::anatomy-076,open,evaluation_ambiguity,STOP,,"{""answer"": ""ipsilateral hemiparesis""}",,spastic paralysis.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-087,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",muscles of the soft palate.,muscles of the lower lip.,label,
+mmlu::anatomy-087,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",muscles of the soft palate.,None of the provided options,label,
+mmlu::anatomy-087,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",muscles of the soft palate.,muscles of the lower lip.,label,
+mmlu::anatomy-087,incorrect,knowledge_error,STOP,,"{""answer"": ""A, C, D""}",muscles of the soft palate.,,label_set,
+mmlu::anatomy-087,open,evaluation_ambiguity,STOP,,"{""answer"": ""Masticatory muscles, tongue, and pharynx""}",,muscles of the lower lip.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-087,no_symbols,knowledge_error,STOP,,"{""answer"": ""muscles of the soft palate.""}",muscles of the soft palate.,muscles of the lower lip.,exact,
+mmlu::anatomy-094,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Right lateral pterygoid muscle,Left lateral pterygoid muscle,label,
+mmlu::anatomy-094,roman_numeral,knowledge_error,STOP,,"{""answer"": ""IV""}",Right medial pterygoid muscle,Left lateral pterygoid muscle,label,
+mmlu::anatomy-094,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Right medial pterygoid muscle,None of the provided options,label,
+mmlu::anatomy-094,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Right lateral pterygoid muscle,Left lateral pterygoid muscle,label,
+mmlu::anatomy-094,incorrect,knowledge_error,STOP,,"{""answer"": ""A, C, D""}",Right lateral pterygoid muscle,,label_set,
+mmlu::anatomy-094,open,evaluation_ambiguity,STOP,,"{""answer"": ""temporalis muscle""}",,Left lateral pterygoid muscle,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-094,no_symbols,knowledge_error,STOP,,"{""answer"": ""Right medial pterygoid muscle""}",Right medial pterygoid muscle,Left lateral pterygoid muscle,exact,
+mmlu::anatomy-116,roman_numeral,representation_instability,STOP,,"{""answer"": ""I""}",the neural tube.,all three structures.,label,
+mmlu::anatomy-116,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",the neural tube.,None of the provided options,label,
+mmlu::anatomy-116,incorrect,representation_instability,STOP,,"{""answer"": ""B,C,D""}",the neural tube.,,label_set,
+mmlu::anatomy-116,open,evaluation_ambiguity,STOP,,"{""answer"": ""neural tube, eyes, ears, and skin""}",,all three structures.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::anatomy-116,no_symbols,representation_instability,STOP,,"{""answer"": ""the neural tube.""}",the neural tube.,all three structures.,exact,
+mmlu::anatomy-123,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",The maxillary bone,None of the provided options,label,
+mmlu::anatomy-123,open,representation_instability,STOP,,"{""answer"": ""sphenoid bone""}",The sphenoid bone,The temporal bone,answer_in_option,
+mmlu::clinical_knowledge-004,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",In the immediate post-operative period.,The patient has a colostomy.,label,
+mmlu::clinical_knowledge-004,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",In the immediate post-operative period.,The patient has a colostomy.,label,
+mmlu::clinical_knowledge-004,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",In the immediate post-operative period.,None of the provided options,label,
+mmlu::clinical_knowledge-004,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",In the immediate post-operative period.,,label_set,
+mmlu::clinical_knowledge-004,open,evaluation_ambiguity,STOP,,"{""answer"": ""For temporary stoma closure""}",,The patient has a colostomy.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-004,no_symbols,knowledge_error,STOP,,"{""answer"": ""In the immediate post-operative period.""}",In the immediate post-operative period.,The patient has a colostomy.,exact,
+mmlu::clinical_knowledge-008,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",quadruplet sequences of nucleotide bases in mRNA or DNA.,None of the provided options,label,
+mmlu::clinical_knowledge-008,open,evaluation_ambiguity,STOP,,"{""answer"": ""Three nucleotides""}",,triplet sequences of nucleotide bases in mRNA or DNA .,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-050,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Every 8 hours.,Every 12 hours.,label,
+mmlu::clinical_knowledge-050,fixed_pos,knowledge_error,STOP,,"{""answer"": ""(B) Every 8 hours.""}",Every 8 hours.,Every 12 hours.,label,
+mmlu::clinical_knowledge-050,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Every 8 hours.,,label_set,
+mmlu::clinical_knowledge-056,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",muscle cramps.,gain in body mass.,label,
+mmlu::clinical_knowledge-056,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",muscle cramps.,None of the provided options,label,
+mmlu::clinical_knowledge-056,open,evaluation_ambiguity,STOP,,"{""answer"": ""dehydration""}",,gain in body mass.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-062,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, C""}",The use of unscented soap to cleanse the skin.,,label_set,
+mmlu::clinical_knowledge-062,open,evaluation_ambiguity,STOP,,"{""answer"": ""irritation from the stoma site""}",,Leakage of effluent onto peristomal skin.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-086,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",daily.,None of the provided options,label,
+mmlu::clinical_knowledge-086,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}",daily.,each time post-operative observations are undertaken.,label,
+mmlu::clinical_knowledge-086,incorrect,instruction_following_failure,STOP,,"{""answer"": [""C"", ""D""]}",,,label_set,"selected 2 options, expected 3"
+mmlu::clinical_knowledge-086,open,evaluation_ambiguity,STOP,,"{""answer"": ""Every 24 hours""}",,each time post-operative observations are undertaken.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-112,open,evaluation_ambiguity,STOP,,"{""answer"": ""Shampoo is not meant for skin, it's for hair.""}",,It can cause dryness of the skin.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-152,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Hydrogen bonds,None of the provided options,label,
+mmlu::clinical_knowledge-152,open,evaluation_ambiguity,STOP,,"{""answer"": ""peptide bond""}",,Peptide bonds,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-174,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}","mRNA, ribosomes and RNA polymerase.",None of the provided options,label,
+mmlu::clinical_knowledge-174,open,evaluation_ambiguity,STOP,,"{""answer"": ""mRNA, tRNA, ribosomes, amino acids, and enzymes""}",,"mRNA, tRNA and ribosomes.",no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-175,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",A symptom of phlebitis.,None of the provided options,label,
+mmlu::clinical_knowledge-175,open,evaluation_ambiguity,STOP,,"{""answer"": ""Using a needle to draw medication from a sealed vial.""}",,"When drugs are withdrawn from a sealed vial, fragments of the rubber bung can be cut out by the needle.",no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-203,open,evaluation_ambiguity,STOP,,"{""answer"": ""A prosthetic group is a non-protein component of an enzyme that is essential for its function.""}",,tightly bound to enzymes and are required for their activity.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-218,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",calcium ions which initiate an action potential along the muscle fibre.,acetylcholine which traverses the neuromuscular junction.,label,
+mmlu::clinical_knowledge-218,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",calcium ions which initiate an action potential along the muscle fibre.,None of the provided options,label,
+mmlu::clinical_knowledge-218,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, D""}",calcium ions which initiate an action potential along the muscle fibre.,,label_set,
+mmlu::clinical_knowledge-218,open,evaluation_ambiguity,STOP,,"{""answer"": ""Acetylcholine""}",,acetylcholine which traverses the neuromuscular junction.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-246,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",affects the resting muscle pH.,None of the provided options,label,
+mmlu::clinical_knowledge-246,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, C""}",results in greater reliance on muscle glycogen during exercise.,,label_set,
+mmlu::clinical_knowledge-246,open,evaluation_ambiguity,STOP,,"{""answer"": ""reduces high intensity exercise performance""}",,may impair high intensity exercise performance.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-246,no_symbols,representation_instability,STOP,,"{""answer"": ""affects the resting muscle pH.""}",affects the resting muscle pH.,may impair high intensity exercise performance.,exact,
+mmlu::clinical_knowledge-251,open,evaluation_ambiguity,STOP,,"{""answer"": ""cerebellum""}",,It is indicative of a cerebellar lesion,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-261,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",the TCA cycle (Krebs' cycle) to the production of ATP.,None of the provided options,label,
+mmlu::clinical_knowledge-261,open,evaluation_ambiguity,STOP,,"{""answer"": ""aerobic respiration""}",,anaerobic energy production.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::clinical_knowledge-263,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",the mitochondria.,None of the provided options,label,
+mmlu::clinical_knowledge-263,open,evaluation_ambiguity,STOP,,"{""answer"": ""in the sarcoplasm""}",,the cytoplasm.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_biology-015,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",fertilization reaction,None of the provided options,label,
+mmlu::college_biology-015,fixed_pos,representation_instability,STOP,,"{""answer"": ""C""}",fertilization reaction,cortical reaction,label,
+mmlu::college_biology-015,open,evaluation_ambiguity,STOP,,"{""answer"": ""Calcium-induced exocytosis""}",,cortical reaction,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_biology-036,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Each myosin helical tail contains an actinbinding site and an ATP-hydrolyzing site.,In the relaxed position tropomyosin impedes myosin's access to the binding site of actin.,label,
+mmlu::college_biology-036,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A, B, C, D""}",,,label_set,"selected 4 options, expected 3"
+mmlu::college_biology-036,open,evaluation_ambiguity,STOP,,"{""answer"": ""blocks""}",,In the relaxed position tropomyosin impedes myosin's access to the binding site of actin.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_biology-071,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",tight junction,None of the provided options,label,
+mmlu::college_biology-071,open,representation_instability,STOP,,"{""answer"": ""tight junction""}",tight junction,gap junction,exact,
+mmlu::college_biology-083,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Fumarate,Oxaloacetate,label,
+mmlu::college_biology-083,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Fumarate,Oxaloacetate,label,
+mmlu::college_biology-083,open,evaluation_ambiguity,STOP,,"{""answer"": ""alpha-ketoglutarate""}",,Oxaloacetate,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_biology-083,no_symbols,knowledge_error,STOP,,"{""answer"": ""Fumarate""}",Fumarate,Oxaloacetate,exact,
+mmlu::college_medicine-008,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}","mRNA, ribosomes and RNA polymerase.",None of the provided options,label,
+mmlu::college_medicine-008,open,evaluation_ambiguity,STOP,,"{""answer"": ""mRNA, tRNA, ribosomes, amino acids, and enzymes""}",,"mRNA, tRNA and ribosomes.",no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-022,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",The presence of certain metal ions.,None of the provided options,label,
+mmlu::college_medicine-022,open,evaluation_ambiguity,STOP,,"{""answer"": ""Temperature, pH, substrate concentration, and enzyme concentration.""}",,All of the above.,ambiguous_multiple_options_in_answer,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-048,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Increases surface permeability,None of the provided options,label,
+mmlu::college_medicine-048,open,evaluation_ambiguity,STOP,,"{""answer"": ""reduces surface tension in alveoli""}",,Maintains alveoli in an open state,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-053,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",affects the resting muscle pH.,None of the provided options,label,
+mmlu::college_medicine-053,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, C""}",results in greater reliance on muscle glycogen during exercise.,,label_set,
+mmlu::college_medicine-053,open,evaluation_ambiguity,STOP,,"{""answer"": ""reduces high intensity exercise performance""}",,may impair high intensity exercise performance.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-053,no_symbols,representation_instability,STOP,,"{""answer"": ""affects the resting muscle pH.""}",affects the resting muscle pH.,may impair high intensity exercise performance.,exact,
+mmlu::college_medicine-076,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",calcium ions which initiate an action potential along the muscle fibre.,acetylcholine which traverses the neuromuscular junction.,label,
+mmlu::college_medicine-076,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",calcium ions which initiate an action potential along the muscle fibre.,None of the provided options,label,
+mmlu::college_medicine-076,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, D""}",calcium ions which initiate an action potential along the muscle fibre.,,label_set,
+mmlu::college_medicine-076,open,evaluation_ambiguity,STOP,,"{""answer"": ""Acetylcholine""}",,acetylcholine which traverses the neuromuscular junction.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-091,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Hydrogen bonds,None of the provided options,label,
+mmlu::college_medicine-091,open,evaluation_ambiguity,STOP,,"{""answer"": ""peptide bond""}",,Peptide bonds,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-098,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Cardiac muscle contraction,Meiosis,label,
+mmlu::college_medicine-098,roman_numeral,knowledge_error,STOP,,"{""answer"": ""I""}",Cardiac muscle contraction,Meiosis,label,
+mmlu::college_medicine-098,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Cardiac muscle contraction,Meiosis,label,
+mmlu::college_medicine-098,open,evaluation_ambiguity,STOP,,"{""answer"": ""axonal transport""}",,Meiosis,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-098,no_symbols,invalid_option,STOP,,"{""answer"": ""Cellular activity that would likely be most affected is: Transcription of mRNA from DNA.""}",,Meiosis,no_match,answer matches no displayed option
+mmlu::college_medicine-110,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}","white, glycolytic, slow contracting.",None of the provided options,label,
+mmlu::college_medicine-110,open,evaluation_ambiguity,STOP,,"{""answer"": ""Fast-twitch, fatigue-resistant, and used for short bursts of power.""}",,"red, oxidative, slow contracting.",no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-117,roman_numeral,representation_instability,STOP,,"{""answer"": ""III""}",Microculture,Subculture,label,
+mmlu::college_medicine-117,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Microculture,None of the provided options,label,
+mmlu::college_medicine-117,incorrect,instruction_following_failure,STOP,,"{""answer"": ""B, D""}",,,label_set,"selected 2 options, expected 3"
+mmlu::college_medicine-117,open,evaluation_ambiguity,STOP,,"{""answer"": ""ethnic group""}",,Subculture,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-118,open,evaluation_ambiguity,STOP,,"{""answer"": ""A prosthetic group is a non-protein component of an enzyme that is essential for its function.""}",,tightly bound to enzymes and are required for their activity.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-119,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",quadruplet sequences of nucleotide bases in mRNA or DNA.,None of the provided options,label,
+mmlu::college_medicine-119,open,evaluation_ambiguity,STOP,,"{""answer"": ""Three nucleotides""}",,triplet sequences of nucleotide bases in mRNA or DNA .,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-152,roman_numeral,parse_failure,STOP,"ambiguous: multiple labels ['I', 'III', 'IV']","{""answer"": ""I III IV""}",,ATP.,,not parsed
+mmlu::college_medicine-152,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",oxidative phosphorylation.,None of the provided options,label,
+mmlu::college_medicine-154,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",the mitochondria.,None of the provided options,label,
+mmlu::college_medicine-154,open,evaluation_ambiguity,STOP,,"{""answer"": ""in the sarcoplasm""}",,the cytoplasm.,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::college_medicine-164,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",8 m/s,6 m/s,label,
+mmlu::college_medicine-164,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",8 m/s,None of the provided options,label,
+mmlu::college_medicine-164,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",8 m/s,6 m/s,label,
+mmlu::college_medicine-164,incorrect,knowledge_error,STOP,,"{""answer"": ""(B) (C) (D)""}",2 m/s,,label_set,
+mmlu::medical_genetics-003,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",guanine.,None of the provided options,label,
+mmlu::medical_genetics-023,roman_numeral,max_tokens_truncation,MAX_TOKENS,no valid label found,"{""answer"": ""IIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIVIIIIVIIV""}",,are present in the genome of many animal species,,not parsed
+mmlu::medical_genetics-023,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",represent integration sites for transposable elements,None of the provided options,label,
+mmlu::medical_genetics-023,open,evaluation_ambiguity,STOP,,"{""answer"": ""All animals and plants""}",,are present in the genome of many animal species,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::medical_genetics-063,open,evaluation_ambiguity,STOP,,"{""answer"": ""F factor""}",,a bacterial chromosome with the F factor inserted,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::medical_genetics-078,open,evaluation_ambiguity,STOP,,"{""answer"": ""5' untranslated region""}",,Intron,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::medical_genetics-098,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",amplification of specific genes during development,None of the provided options,label,
+mmlu::medical_genetics-098,open,evaluation_ambiguity,STOP,,"{""answer"": ""Formation of cellular layers""}",,differences in gene expression which may establish a pattern in the embryo as the cells divide,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-015,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Interview the patient while paying close attention to his willingness to make eye contact,None of the provided options,label,
+mmlu::professional_medicine-015,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Administer amobarbital and then interview the patient,,label_set,
+mmlu::professional_medicine-015,open,evaluation_ambiguity,STOP,,"{""answer"": ""Administer a structured clinical interview for DSM-5 criteria""}",,Ask the patient to provide a narrative with detailed description of the incident and of his symptoms,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-017,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Southern blotting,None of the provided options,label,
+mmlu::professional_medicine-017,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}",Northern blotting,,label_set,
+mmlu::professional_medicine-037,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Mycobacterium avium-intracellulare complex,Cryptosporidium parvum,label,
+mmlu::professional_medicine-037,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Mycobacterium avium-intracellulare complex,Cryptosporidium parvum,label,
+mmlu::professional_medicine-037,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Mycobacterium avium-intracellulare complex,None of the provided options,label,
+mmlu::professional_medicine-037,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Mycobacterium avium-intracellulare complex,Cryptosporidium parvum,label,
+mmlu::professional_medicine-037,incorrect,knowledge_error,STOP,,"{""answer"": ""A, B, D""}",Mycobacterium avium-intracellulare complex,,label_set,
+mmlu::professional_medicine-037,no_symbols,knowledge_error,STOP,,"{""answer"": ""Mycobacterium avium-intracellulare complex""}",Mycobacterium avium-intracellulare complex,Cryptosporidium parvum,exact,
+mmlu::professional_medicine-102,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Medial longitudinal fasciculus,None of the provided options,label,
+mmlu::professional_medicine-105,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Biofeedback-based stress reduction program,None of the provided options,label,
+mmlu::professional_medicine-105,open,evaluation_ambiguity,STOP,,"{""answer"": ""Addressing modifiable risk factors through lifestyle changes and medical intervention""}",,Smoking cessation program,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-116,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Deviation of the tongue to the left side,None of the provided options,label,
+mmlu::professional_medicine-116,incorrect,representation_instability,STOP,,"{""answer"": ""B, C, D""}",Babinski sign present bilaterally,,label_set,
+mmlu::professional_medicine-116,open,evaluation_ambiguity,STOP,,"{""answer"": ""Trousseau's sign""}",,Chvostek sign,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-146,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}","mid velocity, mid amplitude",None of the provided options,label,
+mmlu::professional_medicine-146,fixed_pos,representation_instability,STOP,,"{""answer"": ""B""}","mid velocity, mid amplitude",indirect myofascial release,label,
+mmlu::professional_medicine-146,incorrect,representation_instability,STOP,,"{""answer"": ""(B) (C) (D)""}","high velocity, low amplitude",,label_set,
+mmlu::professional_medicine-146,open,evaluation_ambiguity,STOP,,"{""answer"": ""No osteopathic manipulative technique is appropriate""}",,indirect myofascial release,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-148,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",KOH preparation,Microscopic examination of the stool,label,
+mmlu::professional_medicine-148,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",KOH preparation,Microscopic examination of the stool,label,
+mmlu::professional_medicine-148,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",KOH preparation,None of the provided options,label,
+mmlu::professional_medicine-148,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",KOH preparation,Microscopic examination of the stool,label,
+mmlu::professional_medicine-148,incorrect,instruction_following_failure,STOP,,"{""answer"": ""(C) (D)""}",,,label_set,"selected 2 options, expected 3"
+mmlu::professional_medicine-148,open,evaluation_ambiguity,STOP,,"{""answer"": ""stool examination for ova and parasites""}",,Microscopic examination of the stool,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-153,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Progressive supranuclear palsy,None of the provided options,label,
+mmlu::professional_medicine-153,incorrect,representation_instability,STOP,,"{""answer"": [""A"", ""C"", ""D""]}",Progressive supranuclear palsy,,label_set,
+mmlu::professional_medicine-153,open,evaluation_ambiguity,STOP,,"{""answer"": ""gallbladder cancer""}",,Systemic sclerosis (scleroderma),no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-156,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Meconium aspiration syndrome,Transient tachypnea of newborn,label,
+mmlu::professional_medicine-156,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Meconium aspiration syndrome,Transient tachypnea of newborn,label,
+mmlu::professional_medicine-156,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Meconium aspiration syndrome,None of the provided options,label,
+mmlu::professional_medicine-156,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Meconium aspiration syndrome,Transient tachypnea of newborn,label,
+mmlu::professional_medicine-156,incorrect,knowledge_error,STOP,,"{""answer"": ""A, C, D""}",Meconium aspiration syndrome,,label_set,
+mmlu::professional_medicine-156,open,knowledge_error,STOP,,"{""answer"": ""Respiratory Distress Syndrome""}",Respiratory distress syndrome,Transient tachypnea of newborn,exact,
+mmlu::professional_medicine-156,no_symbols,knowledge_error,STOP,,"{""answer"": ""Meconium aspiration syndrome""}",Meconium aspiration syndrome,Transient tachypnea of newborn,exact,
+mmlu::professional_medicine-167,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",DNA genome,None of the provided options,label,
+mmlu::professional_medicine-167,incorrect,instruction_following_failure,STOP,,"{""answer"": [""A"", ""B"", ""C"", ""D""]}",,,label_set,"selected 4 options, expected 3"
+mmlu::professional_medicine-167,open,evaluation_ambiguity,STOP,,"{""answer"": ""fusion protein""}",,Mediation of cell entry via a fusion protein,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-197,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Peripheral vasodilation,None of the provided options,label,
+mmlu::professional_medicine-197,incorrect,representation_instability,STOP,,"{""answer"": ""A, B, C""}",Preventing fibrin and platelet plugs,,label_set,
+mmlu::professional_medicine-197,open,evaluation_ambiguity,STOP,,"{""answer"": ""Reduce myocardial oxygen demand""}",,Decreasing myocardial contractility,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-206,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Begin amphotericin therapy,None of the provided options,label,
+mmlu::professional_medicine-206,open,evaluation_ambiguity,STOP,,"{""answer"": ""Confirm diagnosis of cytomegalovirus (CMV) infection""}",,Begin ganciclovir therapy,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-225,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",cortisol,None of the provided options,label,
+mmlu::professional_medicine-235,mcq,knowledge_error,STOP,,"{""answer"": ""D""}",Transfer to a burn center,Incision and drainage,label,
+mmlu::professional_medicine-235,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Psychiatric consultation,Incision and drainage,label,
+mmlu::professional_medicine-235,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""D""}",Transfer to a burn center,None of the provided options,label,
+mmlu::professional_medicine-235,incorrect,knowledge_error,STOP,,"{""answer"": ""A, C, D""}",Psychiatric consultation,,label_set,
+mmlu::professional_medicine-235,open,evaluation_ambiguity,STOP,,"{""answer"": ""Start intravenous antibiotics""}",,Incision and drainage,no_match,free-text answer matches no reference option; needs semantic judgment
+mmlu::professional_medicine-235,no_symbols,knowledge_error,STOP,,"{""answer"": ""Transfer to a burn center""}",Transfer to a burn center,Incision and drainage,exact,
+mmlu::professional_medicine-267,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Friedreich ataxia,None of the provided options,label,

@@ -1,0 +1,7 @@
+condition,both_evaluable,corr_to_corr,corr_to_inc,inc_to_corr,inc_to_inc
+fixed_pos,207,0,0,0,0
+incorrect,204,0,0,0,0
+no_symbols,207,0,0,0,0
+none_of_the_provided,207,0,0,0,0
+open,18,0,0,0,0
+roman_numeral,205,0,0,0,0

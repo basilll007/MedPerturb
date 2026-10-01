@@ -1,0 +1,256 @@
+question_id,source_dataset,condition,category,provider,model,model_version,prompt,raw_response,raw_answer,normalized_answer,parse_success,parse_failure_reason,evaluable,correct,match_method,eval_note,selected_option_index,selected_option_text,selected_option_indices,implied_option_index,gold_label,gold_option_index,gold_option_text,gold_option_indices,api_failure,api_error,finish_reason,truncated,input_tokens,output_tokens,thinking_tokens,thinking_tokens_source,latency_s,cost_usd,timestamp,from_cache
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,mcq,baseline,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) Middle meningeal artery
+(D) Deep temporal
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""A""}","""A""","""A""",True,,True,False,label,,0.0,Superficial temporal artery,,,"""C""",2.0,Middle meningeal artery,null,False,,STOP,False,144,2,0,reported,0.9200890000211075,0.0,2026-10-01T09:08:06.848455+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,roman_numeral,presentation / answer-label transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+(I) Superficial temporal artery
+(II) Superficial temporal vein
+(III) Middle meningeal artery
+(IV) Deep temporal
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""III""}","""III""","""III""",True,,True,True,label,,2.0,Middle meningeal artery,,,"""III""",2.0,Middle meningeal artery,null,False,,STOP,False,148,2,0,reported,0.20454350000363775,0.0,2026-10-01T09:08:07.256676+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) None of the provided options
+(D) Deep temporal
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""A""}","""A""","""A""",True,,True,False,label,,0.0,Superficial temporal artery,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,144,2,0,reported,0.20502220001071692,0.0,2026-10-01T09:08:07.665673+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,fixed_pos,answer-position diagnostic,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) Deep temporal
+(D) Middle meningeal artery
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""A""}","""A""","""A""",True,,True,False,label,,0.0,Superficial temporal artery,,,"""D""",3.0,Middle meningeal artery,null,False,,STOP,False,144,2,0,reported,0.21642649997374974,0.0,2026-10-01T09:08:08.085219+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,incorrect,task/instruction inversion,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+(A) Superficial temporal artery
+(B) Superficial temporal vein
+(C) Middle meningeal artery
+(D) Deep temporal
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{""answer"": ""A,B,C""}","""A,B,C""","[""A"", ""B"", ""C""]",True,,True,False,label_set,,,Deep temporal,"[0, 1, 2]",3.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,143,9,0,reported,0.6864409999980126,0.0,2026-10-01T09:08:08.975561+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,open,response-space / MCQ-to-generation transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which artery is encircled by the auriculotemporal nerve?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{""answer"": ""maxillary artery""}","""maxillary artery""","""maxillary artery""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Middle meningeal artery,null,False,,STOP,False,108,9,0,reported,0.692908199998783,0.0,2026-10-01T09:08:09.871151+00:00,True
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,medmcqa,no_symbols,output-interface / answer-format transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Auriculotemporal nerve encircles which artery
+
+- Superficial temporal artery
+- Superficial temporal vein
+- Middle meningeal artery
+- Deep temporal
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{""answer"": ""Superficial temporal artery""}","""Superficial temporal artery""","""Superficial temporal artery""",True,,True,False,exact,,0.0,Superficial temporal artery,,,null,2.0,Middle meningeal artery,null,False,,STOP,False,138,6,0,reported,0.4781702000182122,0.0,2026-10-01T09:08:10.552463+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,mcq,baseline,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Sagittal sinus thrombosis
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""B""}","""B""","""B""",True,,True,False,label,,1.0,Hypeensive intracranial hemorrhage,,,"""C""",2.0,Sagittal sinus thrombosis,null,False,,STOP,False,207,2,0,reported,0.9002181999967434,0.0,2026-10-01T09:08:39.834403+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,roman_numeral,presentation / answer-label transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(I) Eclampsia
+(II) Hypeensive intracranial hemorrhage
+(III) Sagittal sinus thrombosis
+(IV) Pituitary apoplexy
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""II""}","""II""","""II""",True,,True,False,label,,1.0,Hypeensive intracranial hemorrhage,,,"""III""",2.0,Sagittal sinus thrombosis,null,False,,STOP,False,211,2,0,reported,0.21141369998804294,0.0,2026-10-01T09:08:40.249561+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) None of the provided options
+(D) Pituitary apoplexy
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""B""}","""B""","""B""",True,,True,False,label,,1.0,Hypeensive intracranial hemorrhage,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,206,2,0,reported,0.2470583000103943,0.0,2026-10-01T09:08:40.699767+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,fixed_pos,answer-position diagnostic,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Pituitary apoplexy
+(D) Sagittal sinus thrombosis
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""B""}","""B""","""B""",True,,True,False,label,,1.0,Hypeensive intracranial hemorrhage,,,"""D""",3.0,Sagittal sinus thrombosis,null,False,,STOP,False,207,2,0,reported,0.24065120000159368,0.0,2026-10-01T09:08:41.143171+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,incorrect,task/instruction inversion,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+(A) Eclampsia
+(B) Hypeensive intracranial hemorrhage
+(C) Sagittal sinus thrombosis
+(D) Pituitary apoplexy
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{""answer"": ""A,B,C,D""}","""A,B,C,D""","[""A"", ""B"", ""C"", ""D""]",True,,True,False,label_set,"selected 4 options, expected 3",,,"[0, 1, 2, 3]",,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,206,10,0,reported,0.8017492000071798,0.0,2026-10-01T09:08:42.148227+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,open,response-space / MCQ-to-generation transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26-year-old healthy female had her first pregnancy and underwent LSCS for fetal distress. She had mild hypertension during pregnancy. Two days after delivery, she developed headache and seizures but did not have proteinuria. CT scan shows a 2 x 3 cm parasagittal hematoma. What is the most likely diagnosis?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{""answer"": ""Hypertensive encephalopathy""}","""Hypertensive encephalopathy""","""Hypertensive encephalopathy""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,Sagittal sinus thrombosis,null,False,,STOP,False,160,14,0,reported,1.0636732999992091,0.0,2026-10-01T09:08:43.415787+00:00,True
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,medmcqa,no_symbols,output-interface / answer-format transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A 26 years old healthy female got pregnant for 1st time and LSCS was done for fetal distress. Mild hypeension was present during pregnancy. Two days after delivery she had headache and seizures but proteinuria was not seen. CT scan shows 2 x 3 cm parasagittal hematoma. Diagnosis is:
+
+- Eclampsia
+- Hypeensive intracranial hemorrhage
+- Sagittal sinus thrombosis
+- Pituitary apoplexy
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{""answer"": ""Hypeensive intracranial hemorrhage""}","""Hypeensive intracranial hemorrhage""","""Hypeensive intracranial hemorrhage""",True,,True,False,exact,,1.0,Hypeensive intracranial hemorrhage,,,null,2.0,Sagittal sinus thrombosis,null,False,,STOP,False,201,10,0,reported,0.7964837999898009,0.0,2026-10-01T09:08:44.415599+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,mcq,baseline,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) The time from start of mixing till just before the start of appearing elastic properties of impression material
+(D) Loss of lusture of impression material
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,True,label,,2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,,,"""C""",2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,null,False,,STOP,False,174,2,0,reported,0.19309170002816245,0.0,2026-10-01T09:08:44.812197+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,roman_numeral,presentation / answer-label transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+(I) After the start of appearing elastic properties of impression material
+(II) Just after the start of appearing elastic properties of impression material
+(III) The time from start of mixing till just before the start of appearing elastic properties of impression material
+(IV) Loss of lusture of impression material
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""III""}","""III""","""III""",True,,True,True,label,,2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,,,"""III""",2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,null,False,,STOP,False,178,2,0,reported,0.20361890000640415,0.0,2026-10-01T09:08:45.219007+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) None of the provided options
+(D) Loss of lusture of impression material
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""B""}","""B""","""B""",True,,True,False,label,,1.0,Just after the start of appearing elastic properties of impression material,,,"""C""",2.0,None of the provided options,null,False,,STOP,False,161,2,0,reported,0.2077036999980919,0.0,2026-10-01T09:08:45.630723+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,fixed_pos,answer-position diagnostic,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) Loss of lusture of impression material
+(D) The time from start of mixing till just before the start of appearing elastic properties of impression material
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""D""}","""D""","""D""",True,,True,True,label,,3.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,,,"""D""",3.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,null,False,,STOP,False,174,2,0,reported,0.21044109997455962,0.0,2026-10-01T09:08:46.043823+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,incorrect,task/instruction inversion,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+(A) After the start of appearing elastic properties of impression material
+(B) Just after the start of appearing elastic properties of impression material
+(C) The time from start of mixing till just before the start of appearing elastic properties of impression material
+(D) Loss of lusture of impression material
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{""answer"": ""A,B,D""}","""A,B,D""","[""A"", ""B"", ""D""]",True,,True,True,label_set,,,The time from start of mixing till just before the start of appearing elastic properties of impression material,"[0, 1, 3]",2.0,"[""A"", ""B"", ""D""]",,,"[0, 1, 3]",False,,STOP,False,173,9,0,reported,0.6607692000106908,0.0,2026-10-01T09:08:46.907423+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,open,response-space / MCQ-to-generation transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: What is meant by the working time of an impression material?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{""answer"": ""The time during which an impression material remains in the mouth before it is removed.""}","""The time during which an impression material remains in the mouth before it is removed.""","""The time during which an impression material remains in the mouth before it is removed.""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,null,False,,STOP,False,104,22,0,reported,1.619439500005683,0.0,2026-10-01T09:08:48.730936+00:00,True
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,medmcqa,no_symbols,output-interface / answer-format transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: Which of the following best describes the working time of impression material?
+
+- After the start of appearing elastic properties of impression material
+- Just after the start of appearing elastic properties of impression material
+- The time from start of mixing till just before the start of appearing elastic properties of impression material
+- Loss of lusture of impression material
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{""answer"": ""The time from start of mixing till just before the start of appearing elastic properties of impression material""}","""The time from start of mixing till just before the start of appearing elastic properties of impression material""","""The time from start of mixing till just before the start of appearing elastic properties of impression material""",True,,True,True,exact,,2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,,,null,2.0,The time from start of mixing till just before the start of appearing elastic properties of impression material,null,False,,STOP,False,168,19,0,reported,1.3721764000074472,0.0,2026-10-01T09:08:50.306146+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,mcq,baseline,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) Hair
+(B) Clothes
+(C) Bullet fragments
+(D) Blood
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,False,label,,2.0,Bullet fragments,,,"""A""",0.0,Hair,null,False,,STOP,False,219,2,0,reported,0.2310519999882672,0.0,2026-10-01T09:08:50.740643+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,roman_numeral,presentation / answer-label transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(I) Hair
+(II) Clothes
+(III) Bullet fragments
+(IV) Blood
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""III""}","""III""","""III""",True,,True,False,label,,2.0,Bullet fragments,,,"""I""",0.0,Hair,null,False,,STOP,False,223,2,0,reported,0.23300249999738298,0.0,2026-10-01T09:08:51.179321+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) None of the provided options
+(B) Clothes
+(C) Bullet fragments
+(D) Blood
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,False,label,,2.0,Bullet fragments,,,"""A""",0.0,None of the provided options,null,False,,STOP,False,223,2,0,reported,0.21976970002288,0.0,2026-10-01T09:08:51.603650+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,fixed_pos,answer-position diagnostic,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) Blood
+(B) Clothes
+(C) Bullet fragments
+(D) Hair
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""C""}","""C""","""C""",True,,True,False,label,,2.0,Bullet fragments,,,"""D""",3.0,Hair,null,False,,STOP,False,219,2,0,reported,0.2148254000057932,0.0,2026-10-01T09:08:52.023712+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,incorrect,task/instruction inversion,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+(A) Hair
+(B) Clothes
+(C) Bullet fragments
+(D) Blood
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{""answer"": [""A"", ""B"", ""D""]}","[""A"", ""B"", ""D""]","[""A"", ""B"", ""D""]",True,,True,False,label_set,,,Bullet fragments,"[0, 1, 3]",2.0,"[""B"", ""C"", ""D""]",,,"[1, 2, 3]",False,,STOP,False,218,13,0,reported,0.9953238000161946,0.0,2026-10-01T09:08:53.222889+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,open,response-space / MCQ-to-generation transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: In a forensic case involving a gunshot wound with tattooing and blackening around the entry wound, what type of evidence can be used to determine the distance from which the weapon was fired?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{""answer"": ""Ballistics analysis""}","""Ballistics analysis""","""Ballistics analysis""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,0.0,Hair,null,False,,STOP,False,129,9,0,reported,0.7085014000185765,0.0,2026-10-01T09:08:54.135811+00:00,True
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,medmcqa,no_symbols,output-interface / answer-format transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A middle aged lady was found in a robbed room lying in a pool of blood on forensic examination there was an entry wound of size around 2 x 2 cm on the left temporal region with tattooing and blackening around the wound. There was also an exit wound with beveling at the right temporal region. On fuher examination two bullet fragments were found inside the brain parenchyma. Which of the following could be used to determine the distance from which the weapon was fired?
+
+- Hair
+- Clothes
+- Bullet fragments
+- Blood
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{""answer"": ""Bullet fragments""}","""Bullet fragments""","""Bullet fragments""",True,,True,False,exact,,2.0,Bullet fragments,,,null,0.0,Hair,null,False,,STOP,False,213,3,0,reported,0.3037254000082612,0.0,2026-10-01T09:08:54.644820+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,mcq,baseline,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) As early as feasible
+(B) After 5 years
+(C) After 10 years
+(D) Only after visual symptoms level
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""A""}","""A""","""A""",True,,True,True,label,,0.0,As early as feasible,,,"""A""",0.0,As early as feasible,null,False,,STOP,False,155,2,0,reported,0.21170849999180064,0.0,2026-10-01T09:08:55.061297+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,roman_numeral,presentation / answer-label transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(I) As early as feasible
+(II) After 5 years
+(III) After 10 years
+(IV) Only after visual symptoms level
+
+Answer with only the roman numeral of the correct option (I, II, III, or IV). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""I""}","""I""","""I""",True,,True,True,label,,0.0,As early as feasible,,,"""I""",0.0,As early as feasible,null,False,,STOP,False,159,2,0,reported,0.22604609999689274,0.0,2026-10-01T09:08:55.490459+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,none_of_the_provided,answer-set / decision-boundary transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) None of the provided options
+(B) After 5 years
+(C) After 10 years
+(D) Only after visual symptoms level
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""B""}","""B""","""B""",True,,True,False,label,,1.0,After 5 years,,,"""A""",0.0,None of the provided options,null,False,,STOP,False,156,2,0,reported,0.20916310002212413,0.0,2026-10-01T09:08:55.902836+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,fixed_pos,answer-position diagnostic,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) Only after visual symptoms level
+(B) After 5 years
+(C) After 10 years
+(D) As early as feasible
+
+Answer with only the letter of the correct option (A, B, C, or D). Output only that single token and nothing else - no explanation, no punctuation, no reasoning.","{""answer"": ""D""}","""D""","""D""",True,,True,True,label,,3.0,As early as feasible,,,"""D""",3.0,As early as feasible,null,False,,STOP,False,155,2,0,reported,0.20570819999556988,0.0,2026-10-01T09:08:56.311844+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,incorrect,task/instruction inversion,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+(A) As early as feasible
+(B) After 5 years
+(C) After 10 years
+(D) Only after visual symptoms level
+
+Exactly 3 of these options are INCORRECT. Answer with only the letters of all the incorrect options. Output only those letters and nothing else - no explanation, no reasoning.","{""answer"": [""B"", ""C"", ""D""]}","[""B"", ""C"", ""D""]","[""B"", ""C"", ""D""]",True,,True,True,label_set,,,As early as feasible,"[1, 2, 3]",0.0,"[""B"", ""C"", ""D""]",,,"[1, 2, 3]",False,,STOP,False,154,13,0,reported,0.9607479000114836,0.0,2026-10-01T09:08:57.475624+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,open,response-space / MCQ-to-generation transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: When should a patient with a one-year history of diabetes and no other complications have their first ophthalmic examination?
+
+Answer with only the concise final answer (a short phrase). Output only that answer and nothing else - no explanation, no reasoning.","{""answer"": ""At the time of diagnosis or within the first year""}","""At the time of diagnosis or within the first year""","""At the time of diagnosis or within the first year""",True,,False,,no_match,free-text answer matches no reference option; needs semantic judgment,,,,,null,0.0,As early as feasible,null,False,,STOP,False,115,16,0,reported,1.210733199986862,0.0,2026-10-01T09:08:58.888781+00:00,True
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,medmcqa,no_symbols,output-interface / answer-format transformation,unsloth,unsloth/Qwen3-4B-unsloth-bnb-4bit,bnb-4bit,"Question: A patient with a history of diabetes for one year with no other complications should have an ophthalmic examination?
+
+- As early as feasible
+- After 5 years
+- After 10 years
+- Only after visual symptoms level
+
+Answer with only the exact text of the correct option, copied verbatim, without any letter or symbol. Output only that text and nothing else - no explanation, no reasoning.","{""answer"": ""As early as feasible""}","""As early as feasible""","""As early as feasible""",True,,True,True,exact,,0.0,As early as feasible,,,null,0.0,As early as feasible,null,False,,STOP,False,149,5,0,reported,0.41389060000074096,0.0,2026-10-01T09:08:59.506158+00:00,True

@@ -1,23 +1,25 @@
 """Leakage-safe grouped dataset splitting for Phase 3.
 
-Splits ReMedQA original questions into train, validation, and test splits
-such that:
-1. Every underlying question (and all 7 of its representations: mcq baseline +
-   6 perturbations) stays strictly within a single split (grouped by question_id).
-2. Questions sharing identical normalized question text (transitive equivalence
-   classes across categories/sources) are assigned together to the same split,
-   preventing stem leakage.
-3. Proportional stratification by source_dataset (medqa, medmcqa, mmlu) is
-   strictly maintained.
-4. The 200-question pilot cohort (and its 50-question Phase 2A subset) is
-   guaranteed to reside exclusively in the held-out test split, providing zero
-   training contamination and exact comparability against Phase 2A benchmarks.
-5. All random allocations are deterministic given the seed.
+Splits ReMedQA original questions into four distinct, leakage-safe groups:
+1. `train`: previously unexamined questions for post-training (LoRA/GRPO).
+2. `val`: previously unexamined validation questions for model selection and checkpointing.
+3. `diagnostic`: contains ALL previously inspected questions (the 200-question pilot cohort
+   and the 50-question Phase 2A subset, plus any questions clustered with them by identical stems).
+   Used for sanity checks, sanity evaluation, and direct comparison against Phase 2A Gemini baselines.
+4. `final_test`: strictly untouched, previously unexamined held-out questions. Evaluated ONLY
+   after training and hyperparameters are completely frozen.
+
+Guarantees:
+- Every underlying question (and all 7 of its representations: mcq baseline + 6 perturbations)
+  stays strictly within a single split (grouped by question_id).
+- Questions sharing identical normalized question text (transitive equivalence classes via graph
+  connected components) are assigned together to the same split, preventing question-stem leakage.
+- Proportional stratification by source_dataset (medqa, medmcqa, mmlu) is preserved.
+- Deterministic given seed=42.
 """
 
 from __future__ import annotations
 
-import hashlib
 import random
 import re
 from collections import Counter
@@ -26,6 +28,8 @@ from typing import Any
 
 import networkx as nx
 import pandas as pd
+
+SPLIT_NAMES = ["train", "val", "diagnostic", "final_test"]
 
 
 def normalize_question_text(text: str) -> str:
@@ -58,7 +62,10 @@ def build_question_clusters(
         nq_node = f"NORM::{r['norm_q']}"
         g.add_edge(qid, nq_node)
 
-    components = sorted(list(nx.connected_components(g)), key=lambda comp: sorted([x for x in comp if not x.startswith("NORM::")])[0])
+    components = sorted(
+        list(nx.connected_components(g)),
+        key=lambda comp: sorted([x for x in comp if not x.startswith("NORM::")])[0],
+    )
     clusters = []
 
     for i, comp in enumerate(components):
@@ -83,23 +90,17 @@ def build_question_clusters(
     return clusters
 
 
-def split_clusters_stratified(
+def split_clusters_four_way(
     clusters: list[dict[str, Any]],
     train_ratio: float = 0.70,
     val_ratio: float = 0.10,
-    test_ratio: float = 0.20,
     seed: int = 42,
-    holdout_pilot: bool = True,
 ) -> dict[str, str]:
-    """Assign each cluster to 'train', 'val', or 'test' using stratified allocation.
+    """Assign each cluster to 'train', 'val', 'diagnostic', or 'final_test'.
 
-    If holdout_pilot is True, any cluster containing a pilot question is assigned
-    to 'test'. Remaining quota is filled deterministically.
+    - All clusters containing any pilot question (has_pilot=True) go to 'diagnostic'.
+    - Non-pilot clusters are stratified by source into 'train', 'val', and 'final_test'.
     """
-    total_ratio = train_ratio + val_ratio + test_ratio
-    if abs(total_ratio - 1.0) > 1e-6:
-        raise ValueError(f"Split ratios must sum to 1.0, got {total_ratio}")
-
     rng = random.Random(seed)
     split_assignment: dict[str, str] = {}
 
@@ -107,50 +108,33 @@ def split_clusters_stratified(
 
     for src in sources:
         src_clusters = [c for c in clusters if c["source_dataset"] == src]
-        total_q = sum(c["size"] for c in src_clusters)
+        pilot_c = [c for c in src_clusters if c["has_pilot"]]
+        non_pilot_c = [c for c in src_clusters if not c["has_pilot"]]
 
-        target_test_q = int(round(total_q * test_ratio))
+        # 1. Pilot clusters strictly assigned to diagnostic
+        for c in pilot_c:
+            split_assignment[c["cluster_id"]] = "diagnostic"
+
+        # 2. Non-pilot clusters partitioned deterministically
+        non_pilot_c = sorted(non_pilot_c, key=lambda c: c["question_ids"][0])
+        rng.shuffle(non_pilot_c)
+
+        total_q = sum(c["size"] for c in src_clusters)
+        target_train_q = int(round(total_q * train_ratio))
         target_val_q = int(round(total_q * val_ratio))
 
-        if holdout_pilot:
-            pilot_c = [c for c in src_clusters if c["has_pilot"]]
-            non_pilot_c = [c for c in src_clusters if not c["has_pilot"]]
+        curr_train = 0
+        curr_val = 0
 
-            for c in pilot_c:
-                split_assignment[c["cluster_id"]] = "test"
-
-            curr_test_q = sum(c["size"] for c in pilot_c)
-            curr_val_q = 0
-
-            # Deterministic sorting before seeded shuffle
-            non_pilot_c = sorted(non_pilot_c, key=lambda c: c["question_ids"][0])
-            rng.shuffle(non_pilot_c)
-
-            for c in non_pilot_c:
-                if curr_test_q < target_test_q:
-                    split_assignment[c["cluster_id"]] = "test"
-                    curr_test_q += c["size"]
-                elif curr_val_q < target_val_q:
-                    split_assignment[c["cluster_id"]] = "val"
-                    curr_val_q += c["size"]
-                else:
-                    split_assignment[c["cluster_id"]] = "train"
-        else:
-            all_c = sorted(src_clusters, key=lambda c: c["question_ids"][0])
-            rng.shuffle(all_c)
-
-            curr_test_q = 0
-            curr_val_q = 0
-
-            for c in all_c:
-                if curr_test_q < target_test_q:
-                    split_assignment[c["cluster_id"]] = "test"
-                    curr_test_q += c["size"]
-                elif curr_val_q < target_val_q:
-                    split_assignment[c["cluster_id"]] = "val"
-                    curr_val_q += c["size"]
-                else:
-                    split_assignment[c["cluster_id"]] = "train"
+        for c in non_pilot_c:
+            if curr_train < target_train_q:
+                split_assignment[c["cluster_id"]] = "train"
+                curr_train += c["size"]
+            elif curr_val < target_val_q:
+                split_assignment[c["cluster_id"]] = "val"
+                curr_val += c["size"]
+            else:
+                split_assignment[c["cluster_id"]] = "final_test"
 
     return split_assignment
 
@@ -161,24 +145,27 @@ def verify_split_leakage(
     pilot_qids: set[str] | None = None,
     phase2a_qids: set[str] | None = None,
 ) -> list[str]:
-    """Exhaustively verify that no leakage exists between train, val, and test splits.
+    """Exhaustively verify that no leakage exists among train, val, diagnostic, and final_test splits.
 
     Returns a list of error strings. If clean, returns an empty list.
     """
     errors = []
 
-    splits = ["train", "val", "test"]
-    qids_by_split: dict[str, set[str]] = {s: set(manifest_df.loc[manifest_df["split"] == s, "question_id"]) for s in splits}
+    splits = SPLIT_NAMES
+    qids_by_split: dict[str, set[str]] = {
+        s: set(manifest_df.loc[manifest_df["split"] == s, "question_id"]) for s in splits
+    }
 
     # 1. Question ID Disjointness
     for i, s1 in enumerate(splits):
         for s2 in splits[i + 1:]:
             intersection = qids_by_split[s1] & qids_by_split[s2]
             if intersection:
-                errors.append(f"Question ID leakage between {s1} and {s2}: {len(intersection)} overlapping IDs: {sorted(list(intersection))[:5]}")
+                errors.append(
+                    f"Question ID leakage between {s1} and {s2}: {len(intersection)} overlapping IDs: {sorted(list(intersection))[:5]}"
+                )
 
     # 2. Normalized Question Text Disjointness
-    # Map each question to its normalized text
     mcq_df = pairs_df[["source_dataset", "source_id", "original_question"]].drop_duplicates().copy()
     mcq_df["question_id"] = mcq_df["source_dataset"] + "::" + mcq_df["source_id"]
     mcq_df["norm_q"] = mcq_df["original_question"].map(normalize_question_text)
@@ -192,19 +179,31 @@ def verify_split_leakage(
         for s2 in splits[i + 1:]:
             intersection = norms_by_split[s1] & norms_by_split[s2]
             if intersection:
-                errors.append(f"Normalized text leakage between {s1} and {s2}: {len(intersection)} shared question stems: {sorted(list(intersection))[:5]}")
+                errors.append(
+                    f"Normalized text leakage between {s1} and {s2}: {len(intersection)} shared stems: {sorted(list(intersection))[:5]}"
+                )
 
-    # 3. Pilot Cohort Containment
+    # 3. Pilot Cohort Containment: pilot questions must be in diagnostic only
     if pilot_qids:
-        train_val_pilot = (qids_by_split["train"] | qids_by_split["val"]) & pilot_qids
-        if train_val_pilot:
-            errors.append(f"Pilot cohort leaked into train/val: {len(train_val_pilot)} IDs: {sorted(list(train_val_pilot))[:5]}")
+        outside_diagnostic_pilot = (qids_by_split["train"] | qids_by_split["val"] | qids_by_split["final_test"]) & pilot_qids
+        if outside_diagnostic_pilot:
+            errors.append(
+                f"Pilot cohort leaked outside diagnostic: {len(outside_diagnostic_pilot)} IDs: {sorted(list(outside_diagnostic_pilot))[:5]}"
+            )
+        diag_pilot_count = len(qids_by_split["diagnostic"] & pilot_qids)
+        if diag_pilot_count != len(pilot_qids):
+            errors.append(f"Expected all {len(pilot_qids)} pilot questions in diagnostic, got {diag_pilot_count}")
 
-    # 4. Phase 2A Cohort Containment
+    # 4. Phase 2A Cohort Containment: Phase 2A questions must be in diagnostic only
     if phase2a_qids:
-        train_val_p2a = (qids_by_split["train"] | qids_by_split["val"]) & phase2a_qids
-        if train_val_p2a:
-            errors.append(f"Phase 2A cohort leaked into train/val: {len(train_val_p2a)} IDs: {sorted(list(train_val_p2a))[:5]}")
+        outside_diagnostic_p2a = (qids_by_split["train"] | qids_by_split["val"] | qids_by_split["final_test"]) & phase2a_qids
+        if outside_diagnostic_p2a:
+            errors.append(
+                f"Phase 2A cohort leaked outside diagnostic: {len(outside_diagnostic_p2a)} IDs: {sorted(list(outside_diagnostic_p2a))[:5]}"
+            )
+        diag_p2a_count = len(qids_by_split["diagnostic"] & phase2a_qids)
+        if diag_p2a_count != len(phase2a_qids):
+            errors.append(f"Expected all {len(phase2a_qids)} Phase 2A questions in diagnostic, got {diag_p2a_count}")
 
     # 5. Row Completeness across conditions
     all_qids = set(manifest_df["question_id"])
@@ -212,13 +211,11 @@ def verify_split_leakage(
     if all_qids != pairs_qids:
         errors.append(f"Manifest questions ({len(all_qids)}) do not match pairs table questions ({len(pairs_qids)})")
 
-    # Every question must have exactly 6 non-mcq perturbation rows in pairs_df
     counts_per_q = Counter(pairs_df["source_dataset"] + "::" + pairs_df["source_id"])
     bad_counts = {q: cnt for q, cnt in counts_per_q.items() if cnt != 6}
     if bad_counts:
         errors.append(f"{len(bad_counts)} questions have != 6 perturbation rows in pairs table: {list(bad_counts.items())[:5]}")
 
-    # 6. Check that all questions in manifest have valid non-null split
     invalid_splits = manifest_df[~manifest_df["split"].isin(splits)]
     if len(invalid_splits) > 0:
         errors.append(f"{len(invalid_splits)} rows have invalid split value: {invalid_splits['split'].unique()}")
@@ -232,11 +229,9 @@ def generate_phase3_split(
     phase2a_manifest_path: Path,
     train_ratio: float = 0.70,
     val_ratio: float = 0.10,
-    test_ratio: float = 0.20,
     seed: int = 42,
-    holdout_pilot: bool = True,
 ) -> tuple[pd.DataFrame, dict[str, pd.DataFrame], dict[str, Any]]:
-    """Generate and validate leakage-safe train/val/test splits."""
+    """Generate and validate leakage-safe 4-way dataset splits (train, val, diagnostic, final_test)."""
     pairs_df = pd.read_parquet(pairs_parquet_path)
     pilot_df = pd.read_parquet(pilot_parquet_path)
     phase2a_df = pd.read_csv(phase2a_manifest_path)
@@ -245,13 +240,11 @@ def generate_phase3_split(
     phase2a_qids = set(phase2a_df["question_id"])
 
     clusters = build_question_clusters(pairs_df, pilot_qids=pilot_qids)
-    split_assignment = split_clusters_stratified(
+    split_assignment = split_clusters_four_way(
         clusters,
         train_ratio=train_ratio,
         val_ratio=val_ratio,
-        test_ratio=test_ratio,
         seed=seed,
-        holdout_pilot=holdout_pilot,
     )
 
     manifest_rows = []
@@ -286,16 +279,14 @@ def generate_phase3_split(
 
     split_dfs = {
         s: pairs_with_split[pairs_with_split["split"] == s].drop(columns=["split"]).reset_index(drop=True)
-        for s in ["train", "val", "test"]
+        for s in SPLIT_NAMES
     }
 
-    # Summary report metrics
     summary = {
         "seed": seed,
         "train_ratio_target": train_ratio,
         "val_ratio_target": val_ratio,
-        "test_ratio_target": test_ratio,
-        "holdout_pilot": holdout_pilot,
+        "splits": SPLIT_NAMES,
         "total_questions": len(manifest_df),
         "total_clusters": len(clusters),
         "total_pairs_rows": len(pairs_df),
@@ -308,7 +299,7 @@ def generate_phase3_split(
                 "pilot_questions": int((manifest_df.loc[manifest_df["split"] == s, "in_pilot_200"]).sum()),
                 "phase2a_questions": int((manifest_df.loc[manifest_df["split"] == s, "in_phase2a_cohort"]).sum()),
             }
-            for s in ["train", "val", "test"]
+            for s in SPLIT_NAMES
         },
         "leakage_checks_passed": True,
         "n_leakage_errors": 0,

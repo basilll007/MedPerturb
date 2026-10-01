@@ -1,0 +1,22 @@
+{
+  "policy": "correctness",
+  "policy_name": "smoke_test_correctness",
+  "smoke_test": true,
+  "base_model": "unsloth/Qwen3-4B-unsloth-bnb-4bit",
+  "lambda_symbolic": 1.0,
+  "beta_format": 0.0,
+  "max_steps": 3,
+  "num_generations": 2,
+  "gradient_accumulation_steps": 2,
+  "seed": 42,
+  "total_training_time_s": 38.17,
+  "peak_vram_gb": 3.908,
+  "metrics": {
+    "train_runtime": 36.6854,
+    "train_samples_per_second": 0.164,
+    "train_steps_per_second": 0.082,
+    "total_flos": 0.0,
+    "train_loss": 0.0
+  },
+  "completed_at": "2026-10-01T09:25:53.026734+00:00"
+}

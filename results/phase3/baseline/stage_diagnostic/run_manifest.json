@@ -1,0 +1,27 @@
+{
+  "experiment_id": "phase3_baseline_stage_diagnostic_f473f05356",
+  "stage": "diagnostic",
+  "timestamp": "2026-10-01T09:22:54.369556+00:00",
+  "git_commit": "86bcfe610f0b437669691f37c6b204878986d197",
+  "git_dirty": true,
+  "model_id": "unsloth/Qwen3-4B-unsloth-bnb-4bit",
+  "n_questions": 207,
+  "n_expected": 1449,
+  "n_new_calls": 1414,
+  "n_cached": 35,
+  "n_failed": 0,
+  "config_hash": "f473f05356eee969ef02dc2040dd31b5fb6a7c096cf37b934b3de8938621c7db",
+  "runtime_seconds": 725.39,
+  "qc_errors": [],
+  "group_consistency": {
+    "conditions": [
+      "mcq",
+      "roman_numeral",
+      "fixed_pos",
+      "no_symbols"
+    ],
+    "n_questions_all_evaluable": 205,
+    "ReAcc_all": 0.35121951219512193,
+    "ReCon_all": 0.5073170731707317
+  }
+}

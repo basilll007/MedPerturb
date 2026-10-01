@@ -2,8 +2,12 @@
   "seed": 42,
   "train_ratio_target": 0.7,
   "val_ratio_target": 0.1,
-  "test_ratio_target": 0.2,
-  "holdout_pilot": true,
+  "splits": [
+    "train",
+    "val",
+    "diagnostic",
+    "final_test"
+  ],
   "total_questions": 3154,
   "total_clusters": 3084,
   "total_pairs_rows": 18924,
@@ -21,34 +25,46 @@
       "phase2a_questions": 0
     },
     "val": {
-      "questions": 316,
-      "pct_questions": 0.1002,
-      "pairs_rows": 1896,
+      "questions": 317,
+      "pct_questions": 0.1005,
+      "pairs_rows": 1902,
       "by_source": {
         "medqa": 126,
         "medmcqa": 100,
-        "mmlu": 90
+        "mmlu": 91
       },
       "pilot_questions": 0,
       "phase2a_questions": 0
     },
-    "test": {
-      "questions": 631,
-      "pct_questions": 0.2001,
-      "pairs_rows": 3786,
+    "diagnostic": {
+      "questions": 207,
+      "pct_questions": 0.0656,
+      "pairs_rows": 1242,
       "by_source": {
-        "medqa": 252,
-        "medmcqa": 200,
-        "mmlu": 179
+        "medqa": 80,
+        "mmlu": 64,
+        "medmcqa": 63
       },
       "pilot_questions": 200,
       "phase2a_questions": 50
+    },
+    "final_test": {
+      "questions": 423,
+      "pct_questions": 0.1341,
+      "pairs_rows": 2538,
+      "by_source": {
+        "medqa": 172,
+        "medmcqa": 137,
+        "mmlu": 114
+      },
+      "pilot_questions": 0,
+      "phase2a_questions": 0
     }
   },
   "leakage_checks_passed": true,
   "n_leakage_errors": 0,
-  "timestamp": "2026-10-01T08:50:58.797193+00:00",
-  "git_commit": "78baa1bec4a7bedf34076806fa83c7435ec75392",
+  "timestamp": "2026-10-01T08:59:19.707418+00:00",
+  "git_commit": "86bcfe610f0b437669691f37c6b204878986d197",
   "git_dirty": true,
   "input_files": {
     "pairs_parquet": "data\\processed\\remedqa_pairs.parquet",
@@ -60,12 +76,14 @@
   },
   "output_files": {
     "manifest_csv": "data\\processed\\phase3\\split_manifest.csv",
-    "manifest_sha256": "80b96855ec3df25edb75be01ab1ca73518bedc253cbb1e90bd31ffb82ad50259",
+    "manifest_sha256": "37b141e46434e639bcac8a7f8fa87a2dfa0c7d269b702000bae868b1bf09a0b4",
     "train_parquet": "data\\processed\\phase3\\train.parquet",
-    "train_sha256": "3f0ad6ed87c6d68ac3410d91615fc8ae84fc39d7b7185964d7feb3cc07419562",
+    "train_sha256": "a012939d6318eeb18a2a495e09c98c4f2b3d5342203fa773d3a621870585dcce",
     "val_parquet": "data\\processed\\phase3\\val.parquet",
-    "val_sha256": "7bc2faa330fe312fff75f23e00f171f72a2a64cfb5cff6ad2c257058e2482941",
-    "test_parquet": "data\\processed\\phase3\\test.parquet",
-    "test_sha256": "f7ea55dc220dcd9297d603c77bf967ac1781cf6acf21a69ed8d403b7af12f5e2"
+    "val_sha256": "f59f4e5e8c1b194e6beda1619e96aa21a9a54898d6b35ee1301f91da65dd1a60",
+    "diagnostic_parquet": "data\\processed\\phase3\\diagnostic.parquet",
+    "diagnostic_sha256": "aabff685c6037f3025d7d442854b9bf1ce1be79bf9bf3f656fdbaedf82d098a6",
+    "final_test_parquet": "data\\processed\\phase3\\final_test.parquet",
+    "final_test_sha256": "649b05e2a45eaea8b5c098a3de63fecea494987951dd27f0c0d57621b0bdeb4d"
   }
 }

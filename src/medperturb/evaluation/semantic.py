@@ -16,7 +16,9 @@ MIN_COVER_ANSWER_IN_OPTION = 0.6
 
 
 def norm_text(s: str) -> str:
-    s = (s or "").lower()
+    if not isinstance(s, str):
+        return ""
+    s = s.lower()
     s = re.sub(r"[^a-z0-9]+", " ", s)
     return re.sub(r"\s+", " ", s).strip()
 

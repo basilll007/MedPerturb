@@ -14,7 +14,7 @@ def _norm(s):
 
 
 def _observed_display(prompt: str) -> str:
-    if re.search(r"\((A|I)\)\s", prompt):
+    if re.search(r"(?m)^\s*\((A|I)\)\s", prompt):
         return "labeled"
     if re.search(r"\n- \S", prompt):
         return "bullets"

@@ -1,0 +1,22 @@
+{
+  "policy": "neurosymbolic",
+  "policy_name": "policy_neurosymbolic",
+  "smoke_test": false,
+  "base_model": "unsloth/Qwen3-4B-unsloth-bnb-4bit",
+  "lambda_symbolic": 1.0,
+  "beta_format": 0.0,
+  "max_steps": 60,
+  "num_generations": 4,
+  "gradient_accumulation_steps": 4,
+  "seed": 42,
+  "total_training_time_s": 463.37,
+  "peak_vram_gb": 4.551,
+  "metrics": {
+    "train_runtime": 461.7678,
+    "train_samples_per_second": 0.52,
+    "train_steps_per_second": 0.13,
+    "total_flos": 0.0,
+    "train_loss": 0.004807921747366588
+  },
+  "completed_at": "2026-10-01T09:43:46.176412+00:00"
+}

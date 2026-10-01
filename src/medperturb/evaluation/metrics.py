@@ -87,7 +87,7 @@ def build_paired(resp: pd.DataFrame) -> pd.DataFrame:
             m_txt, p_txt = _answer_text(m), _answer_text(p)
             pos_changed = (m_pos != p_pos) if (both and m_pos is not None and p_pos is not None
                                                 and not _nan(m_pos) and not _nan(p_pos)) else None
-            sem_changed = (norm_text(m_txt) != norm_text(p_txt)) if (both and m_txt and p_txt) else None
+            sem_changed = (norm_text(m_txt) != norm_text(p_txt)) if (both and m_txt and p_txt and not _nan(m_txt) and not _nan(p_txt)) else None
             rows.append({
                 "question_id": q, "source_dataset": m["source_dataset"], "condition": cond,
                 "transition_type": REGISTRY[cond].transition_type,

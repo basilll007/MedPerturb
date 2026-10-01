@@ -1,0 +1,25 @@
+question_id,condition,failure_type,finish_reason,parse_failure_reason,raw_response,selected_option_text,gold_option_text,match_method,eval_note
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,mcq,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""A""}",Superficial temporal artery,None of the provided options,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,fixed_pos,knowledge_error,STOP,,"{""answer"": ""A""}",Superficial temporal artery,Middle meningeal artery,label,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,incorrect,knowledge_error,STOP,,"{""answer"": ""A,B,C""}",Deep temporal,,label_set,
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,open,evaluation_ambiguity,STOP,,"{""answer"": ""maxillary artery""}",,Middle meningeal artery,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::03c11d83-2266-4c72-89f9-fa2615c10ae2,no_symbols,knowledge_error,STOP,,"{""answer"": ""Superficial temporal artery""}",Superficial temporal artery,Middle meningeal artery,exact,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,mcq,knowledge_error,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,roman_numeral,knowledge_error,STOP,,"{""answer"": ""II""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,None of the provided options,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,fixed_pos,knowledge_error,STOP,,"{""answer"": ""B""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,label,
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,incorrect,instruction_following_failure,STOP,,"{""answer"": ""A,B,C,D""}",,,label_set,"selected 4 options, expected 3"
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,open,evaluation_ambiguity,STOP,,"{""answer"": ""Hypertensive encephalopathy""}",,Sagittal sinus thrombosis,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::0fc0b4ce-9bfd-48a2-920d-88c67e2c4e9c,no_symbols,knowledge_error,STOP,,"{""answer"": ""Hypeensive intracranial hemorrhage""}",Hypeensive intracranial hemorrhage,Sagittal sinus thrombosis,exact,
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",Just after the start of appearing elastic properties of impression material,None of the provided options,label,
+medmcqa::12cb2ea3-b10c-44e2-8cab-46afcd3ac0c9,open,evaluation_ambiguity,STOP,,"{""answer"": ""The time during which an impression material remains in the mouth before it is removed.""}",,The time from start of mixing till just before the start of appearing elastic properties of impression material,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,mcq,knowledge_error,STOP,,"{""answer"": ""C""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,roman_numeral,knowledge_error,STOP,,"{""answer"": ""III""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""C""}",Bullet fragments,None of the provided options,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,fixed_pos,knowledge_error,STOP,,"{""answer"": ""C""}",Bullet fragments,Hair,label,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,incorrect,knowledge_error,STOP,,"{""answer"": [""A"", ""B"", ""D""]}",Bullet fragments,,label_set,
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,open,evaluation_ambiguity,STOP,,"{""answer"": ""Ballistics analysis""}",,Hair,no_match,free-text answer matches no reference option; needs semantic judgment
+medmcqa::132fec12-271f-4778-93af-042d6ec32a22,no_symbols,knowledge_error,STOP,,"{""answer"": ""Bullet fragments""}",Bullet fragments,Hair,exact,
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,none_of_the_provided,required_adaptation_failure,STOP,,"{""answer"": ""B""}",After 5 years,None of the provided options,label,
+medmcqa::18c1a5f9-d998-414e-bb9c-991191c10710,open,evaluation_ambiguity,STOP,,"{""answer"": ""At the time of diagnosis or within the first year""}",,As early as feasible,no_match,free-text answer matches no reference option; needs semantic judgment
