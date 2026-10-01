@@ -1,0 +1,10 @@
+{
+  "data_version": "v0-unreviewed",
+  "total_items": 900,
+  "num_templates": 300,
+  "train_items": 450,
+  "near_ood_items": 180,
+  "far_ood_items": 270,
+  "rules_count": 10,
+  "seed": 42
+}

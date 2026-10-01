@@ -1,0 +1,7 @@
+run_id,model,condition,seed,peak_vram_gb,tokens_per_sec,wall_clock_min,gpu_hours
+gate0_env_verify,Qwen/Qwen2.5-1.5B,forward_pass_4bit,42,1.438,5.63,0.089,0.00148
+vram_sweep_bs1,Qwen/Qwen2.5-1.5B,bt_train_bs1_ga32,42,2.124,582.53,4.688,0.07813
+vram_sweep_bs2,Qwen/Qwen2.5-1.5B,bt_train_bs2_ga16,42,3.131,823.16,3.317,0.05529
+vram_sweep_bs4,Qwen/Qwen2.5-1.5B,bt_train_bs4_ga8,42,3.777,856.65,3.188,0.05313
+vram_sweep_bs8,Qwen/Qwen2.5-1.5B,bt_train_bs8_ga4,42,5.071,90.57,30.151,0.50252
+gate0_env_verify,Qwen/Qwen2.5-1.5B,forward_pass_4bit,42,1.438,4.32,0.116,0.00193

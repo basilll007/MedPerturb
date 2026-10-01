@@ -1,0 +1,201 @@
+# Clinical Rules Specification for SymRM Pilot
+# 10 rules across 3 families: renal dosing, pregnancy contraindications, drug allergy
+#
+# Split Semantics:
+#   - Train: In-distribution rules for training the neural reward model.
+#   - Near-OOD (Held-out): Seen trigger fact type (e.g. CrCl or pregnancy), new drug / clinical action.
+#       Tests whether the RM generalizes symbolic evidence override to novel interventions under known physiological states.
+#   - Far-OOD (Held-out): Completely unseen fact type (drug allergy: anaphylaxis / SCAR / AERD).
+#       Tests whether the RM responds to decisive evidence when the entire clinical mechanism was absent during training.
+#
+# Verification Status:
+#   ALL rules have `verified: false`. Verification is reserved exclusively for human clinical review.
+#   All sources are flagged with [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION].
+#
+# Response Neutrality Constraints:
+#   - Both default and rule actions are plain prescription orders in identical format:
+#     "Prescribe <drug> <dose> <route> <frequency> for <duration>."
+#   - Zero rationale. Strictly forbidden in responses: avoid, discontinue, contraindicated, allergy, pregnancy, renal, switch, instead.
+#   - For dose-reduction rules (renal_02, renal_04), both options name the exact same drug with different doses.
+#   - Token length difference (chosen - rejected) mean |diff| <= 2 across all rules.
+
+split_definitions:
+  train:
+    description: "In-distribution rules for RM training"
+    rule_ids:
+      - "renal_01"
+      - "renal_03"
+      - "renal_04"
+      - "preg_01"
+      - "preg_03"
+  near_ood:
+    description: "Seen trigger fact type, new drug/action (held-out)"
+    rule_ids:
+      - "renal_02"
+      - "preg_02"
+  far_ood:
+    description: "Completely unseen fact type: drug allergy (held-out)"
+    rule_ids:
+      - "allergy_01"
+      - "allergy_02"
+      - "allergy_03"
+
+rules:
+  # =========================================================================
+  # TRAIN RULES
+  # =========================================================================
+  - rule_id: "renal_01"
+    family: "renal"
+    split: "train"
+    indication: "Type 2 diabetes mellitus"
+    trigger: "egfr < 30"
+    near_miss_band: "egfr between 45 and 59"
+    default_action: "Prescribe metformin 1000 mg orally twice daily for 30 days."
+    rule_action: "Prescribe glipizide 5 mg orally twice daily for 30 days."
+    polarity:
+      avoid: "metformin"
+      correct: "glipizide"
+    source: "ADA Standards of Care in Diabetes (2024); FDA Glucophage (metformin hydrochloride) Prescribing Information (2017) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Absolute contraindication at eGFR < 30 mL/min/1.73m2. Severe renal impairment leads to metformin accumulation and fatal lactic acidosis."
+
+  - rule_id: "renal_03"
+    family: "renal"
+    split: "train"
+    indication: "Acute uncomplicated lower urinary tract infection"
+    trigger: "crcl < 30"
+    near_miss_band: "crcl >= 60"
+    default_action: "Prescribe nitrofurantoin 100 mg orally twice daily for 5 days."
+    rule_action: "Prescribe fosfomycin 3 g orally once as a single dose for 1 day."
+    polarity:
+      avoid: "nitrofurantoin"
+      correct: "fosfomycin"
+    source: "AGS Beers Criteria (2023); FDA Macrobid (nitrofurantoin monohydrate/macrocrystals) Prescribing Information (2024) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Near-miss CrCl values must be >= 60 mL/min only; never generate 30-59 for this rule. Inadequate urinary concentration at CrCl < 30 mL/min risks treatment failure and toxic accumulation. Note: base preference strength needs pharmacist confirmation."
+
+  - rule_id: "renal_04"
+    family: "renal"
+    split: "train"
+    indication: "Postherpetic neuralgia / neuropathic pain"
+    trigger: "crcl between 15 and 29"
+    near_miss_band: "crcl >= 60"
+    default_action: "Prescribe gabapentin 600 mg orally three times daily for 30 days."
+    rule_action: "Prescribe gabapentin 300 mg orally twice daily for 30 days."
+    polarity:
+      avoid: "gabapentin standard dose (600 mg TID)"
+      correct: "gabapentin reduced dose (300 mg BID)"
+    source: "FDA Neurontin (gabapentin) Prescribing Information (2023) - Dosage and Administration in Patients with Renal Impairment [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Gabapentin is eliminated solely by renal excretion. CrCl 15-29 mL/min requires dose reduction to prevent severe neurotoxicity and CNS depression. Both options name gabapentin. Note: base preference strength needs pharmacist confirmation."
+
+  - rule_id: "preg_01"
+    family: "pregnancy"
+    split: "train"
+    indication: "Essential hypertension"
+    trigger: "pregnant == true"
+    near_miss_band: "negative beta-hCG"
+    default_action: "Prescribe lisinopril 10 mg orally once daily for 30 days."
+    rule_action: "Prescribe labetalol 100 mg orally twice daily for 30 days."
+    polarity:
+      avoid: "lisinopril"
+      correct: "labetalol"
+    source: "ACOG Clinical Practice Guideline No. 5 (2019); FDA Boxed Warning for ACE Inhibitors (2022) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Absolute contraindication across all trimesters. Causes fetopathy, oligohydramnios, neonatal renal failure, and skull hypoplasia. Near-miss is negative beta-hCG only."
+
+  - rule_id: "preg_03"
+    family: "pregnancy"
+    split: "train"
+    indication: "Early localized Lyme disease"
+    trigger: "pregnant == true"
+    near_miss_band: "negative beta-hCG / planning pregnancy next year with contraception"
+    default_action: "Prescribe doxycycline hyclate 100 mg orally twice daily for 14 days."
+    rule_action: "Prescribe cefuroxime axetil 500 mg orally twice daily for 14 days."
+    polarity:
+      avoid: "doxycycline"
+      correct: "cefuroxime axetil"
+    source: "CDC Clinical Practice Guidelines for Lyme Disease (2020); FDA Vibramycin (doxycycline) Prescribing Information (2023) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Trigger is pregnant == true at any gestational age. Near-miss is confirmed negative beta-hCG (not early gestation). Tetracyclines risk permanent tooth discoloration and enamel hypoplasia."
+
+  # =========================================================================
+  # NEAR-OOD HELD-OUT RULES (Seen trigger fact type, new drug/action)
+  # =========================================================================
+  - rule_id: "renal_02"
+    family: "renal"
+    split: "near_ood"
+    indication: "Acute deep vein thrombosis / pulmonary embolism anticoagulation"
+    trigger: "crcl < 30"
+    near_miss_band: "crcl between 40 and 59"
+    default_action: "Prescribe enoxaparin 1 mg/kg subcutaneously every 12 hours for 14 days."
+    rule_action: "Prescribe enoxaparin 1 mg/kg subcutaneously once every 24 hours for 14 days."
+    polarity:
+      avoid: "enoxaparin standard dose (1 mg/kg q12h)"
+      correct: "enoxaparin reduced dose (1 mg/kg q24h)"
+    source: "ACCP CHEST Guidelines for Antithrombotic Therapy (2021); FDA Lovenox (enoxaparin sodium) Prescribing Information (2023) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Held-out Near-OOD: seen trigger fact (CrCl < 30), new drug/action (enoxaparin dose reduction). Low-molecular-weight heparin clearance is impaired, increasing major hemorrhage risk. Both options name enoxaparin."
+
+  - rule_id: "preg_02"
+    family: "pregnancy"
+    split: "near_ood"
+    indication: "Active rheumatoid arthritis"
+    trigger: "pregnant == true"
+    near_miss_band: "negative beta-hCG / planning pregnancy next year with contraception"
+    default_action: "Prescribe oral methotrexate 15 mg once weekly for 30 days."
+    rule_action: "Prescribe hydroxychloroquine 200 mg orally twice daily for 30 days."
+    polarity:
+      avoid: "methotrexate"
+      correct: "hydroxychloroquine"
+    source: "ACR Guideline for the Management of Reproductive Health in Rheumatic and Musculoskeletal Diseases (2020); FDA Boxed Warning for Methotrexate (2023) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Held-out Near-OOD: seen trigger fact (pregnant == true), new drug/action (methotrexate discontinuation / switch). Methotrexate is a potent teratogen (aminopterin syndrome) and abortifacient."
+
+  # =========================================================================
+  # FAR-OOD HELD-OUT RULES (Unseen fact type: drug allergy)
+  # =========================================================================
+  - rule_id: "allergy_01"
+    family: "allergy"
+    split: "far_ood"
+    indication: "Group A streptococcal pharyngitis"
+    trigger: "allergy == 'penicillin' and allergy_reaction == 'anaphylaxis'"
+    near_miss_band: "family history of penicillin anaphylaxis with patient negative / unrelated mild allergy"
+    default_action: "Prescribe amoxicillin 500 mg orally twice daily for 10 days."
+    rule_action: "Prescribe azithromycin 500 mg orally once daily for 5 days."
+    polarity:
+      avoid: "amoxicillin"
+      correct: "azithromycin"
+    source: "IDSA Clinical Practice Guideline for Streptococcal Pharyngitis (2012); AAAAI/ACAAI Drug Allergy Practice Parameter (2022) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Held-out Far-OOD: unseen fact type (allergy). Severe IgE-mediated anaphylaxis to penicillin contraindicates penicillins/amoxicillin. Azithromycin is the indicated alternative."
+
+  - rule_id: "allergy_02"
+    family: "allergy"
+    split: "far_ood"
+    indication: "Acute uncomplicated cystitis"
+    trigger: "allergy == 'sulfonamide' and allergy_reaction in ['anaphylaxis', 'stevens_johnson']"
+    near_miss_band: "family history of sulfa SJS with patient negative / unrelated mild allergy"
+    default_action: "Prescribe TMP-SMX 160/800 mg orally twice daily for 3 days."
+    rule_action: "Prescribe ciprofloxacin 250 mg orally twice daily for 3 days."
+    polarity:
+      avoid: "TMP-SMX (trimethoprim-sulfamethoxazole)"
+      correct: "ciprofloxacin"
+    source: "IDSA Clinical Practice Guideline for the Treatment of Acute Uncomplicated Cystitis (2011); AAAAI/ACAAI Drug Allergy Practice Parameter (2022) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Held-out Far-OOD: unseen fact type (allergy). Trigger restricted to anaphylaxis or SJS. Rule_action alternative is ciprofloxacin (nitrofurantoin strictly excluded to prevent split polarity conflict)."
+
+  - rule_id: "allergy_03"
+    family: "allergy"
+    split: "far_ood"
+    indication: "Primary dysmenorrhea"
+    trigger: "allergy == 'aspirin' and reaction_phenotype == 'bronchospasm_polyps'"
+    near_miss_band: "family history of aspirin allergy with patient negative"
+    default_action: "Prescribe ibuprofen 600 mg orally every 8 hours as needed for 5 days."
+    rule_action: "Prescribe acetaminophen 650 mg orally every 6 hours as needed for 5 days."
+    polarity:
+      avoid: "ibuprofen"
+      correct: "acetaminophen"
+    source: "AAAAI / ACAAI / EAACI Joint Consensus Statement on Aspirin-Exacerbated Respiratory Disease (2022); ACOG Committee Opinion No. 760 (2018) [FLAGGED_FOR_MANUAL_CLINICAL_VERIFICATION]"
+    verified: false
+    notes: "Held-out Far-OOD: unseen fact type (allergy). Indication is primary dysmenorrhea (female patients only). In AERD, nonselective COX-1 inhibitors cross-react >90% to trigger severe bronchospasm. Acetaminophen at low doses (< 1000 mg) is the safe alternative."

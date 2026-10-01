@@ -1,0 +1,62 @@
+[
+  {
+    "batch_size": 1,
+    "grad_accum_steps": 32,
+    "effective_batch_size": 32,
+    "peak_vram_gb": 2.124,
+    "under_7gb": true,
+    "avg_step_time_s": 56.251,
+    "tokens_per_sec": 582.5,
+    "total_time_s": 281.26,
+    "temp_start_c": 62.0,
+    "temp_end_c": 77.0,
+    "clock_start_mhz": 870.0,
+    "clock_end_mhz": 2212.0,
+    "status": "PASS"
+  },
+  {
+    "batch_size": 2,
+    "grad_accum_steps": 16,
+    "effective_batch_size": 32,
+    "peak_vram_gb": 3.131,
+    "under_7gb": true,
+    "avg_step_time_s": 39.808,
+    "tokens_per_sec": 823.2,
+    "total_time_s": 199.04,
+    "temp_start_c": 71.0,
+    "temp_end_c": 77.0,
+    "clock_start_mhz": 772.0,
+    "clock_end_mhz": 1927.0,
+    "status": "PASS"
+  },
+  {
+    "batch_size": 4,
+    "grad_accum_steps": 8,
+    "effective_batch_size": 32,
+    "peak_vram_gb": 3.777,
+    "under_7gb": true,
+    "avg_step_time_s": 38.251,
+    "tokens_per_sec": 856.7,
+    "total_time_s": 191.26,
+    "temp_start_c": 72.0,
+    "temp_end_c": 77.0,
+    "clock_start_mhz": 802.0,
+    "clock_end_mhz": 1815.0,
+    "status": "PASS"
+  },
+  {
+    "batch_size": 8,
+    "grad_accum_steps": 4,
+    "effective_batch_size": 32,
+    "peak_vram_gb": 5.071,
+    "under_7gb": true,
+    "avg_step_time_s": 361.811,
+    "tokens_per_sec": 90.6,
+    "total_time_s": 1809.06,
+    "temp_start_c": 72.0,
+    "temp_end_c": 74.0,
+    "clock_start_mhz": 795.0,
+    "clock_end_mhz": 2767.0,
+    "status": "PASS"
+  }
+]

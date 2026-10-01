@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>SymRM Pilot · Gate 2a Dataset &amp; Forensics Dashboard</title>
+  <meta name="description" content="NAACL 2027 Main Track — SymRM Pilot: Symbolic Supervision for Neural Reward Models, Counterfactual Dataset Forensics, and Hardware Calibration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .figure-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .figure-box img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+    }
+    .figure-caption {
+      margin-top: 10px;
+      font-size: 0.88rem;
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+    .triplet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .prompt-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      color: var(--ink);
+    }
+    .tag-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tag-base { background: var(--surface-2); color: var(--ink-2); border: 1px solid var(--border); }
+    .tag-edited { background: var(--warn-soft); color: var(--warn); border: 1px solid var(--warn); }
+    .tag-near-miss { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+    .table-responsive { overflow-x: auto; margin-top: 12px; }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    table.data-table th, table.data-table td {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+    }
+    table.data-table th {
+      background: var(--surface-2);
+      font-weight: 600;
+      color: var(--ink);
+    }
+    table.data-table tr:nth-child(even) { background: color-mix(in srgb, var(--surface-2) 40%, transparent); }
+    .pass-pill { color: var(--good); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">MedPerturb <span>/ SymRM</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot</a>
+        <a href="phase1a.html">Phase 1A</a>
+        <a href="phase1b.html">Phase 1B</a>
+        <a href="phase1c.html">Phase 1C</a>
+        <a href="phase2a.html">Phase 2A</a>
+        <a href="phase3.html">Phase 3</a>
+        <a href="symrm.html" class="active">SymRM Pilot</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">SymRM Pilot (Gate 2a)</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">NAACL 2027 Main Track · Symbolic Reward Models (SymRM) · Gate 2a Report</div>
+    <h1>Can symbolic supervision teach reward models to generalize beyond written rules?</h1>
+    <p class="lede">
+      Neural reward models (RMs) cover arbitrary inputs but frequently fail to let decisive patient evidence override default
+      heuristics ("knows but does not use"). Symbolic verifiers offer exact constraint enforcement but only over rules humans manually wrote.
+      <b>SymRM tests whether symbolic supervision applied strictly during post-training forces neural RMs to adapt to decisive evidence on held-out clinical rules where the verifier is completely absent.</b>
+    </p>
+    <div class="status-row">
+      <span class="pill dot">Gate 0 (Hardware &amp; VRAM Sweep) — PASSED</span>
+      <span class="pill dot">Gate 1 (Neutral Responses &amp; Near-Miss Redesign) — PASSED</span>
+      <span class="pill dot">Gate 2a (Leakage Elimination &amp; Deduplication) — RESUBMITTED</span>
+      <span class="pill" style="background:var(--warn-soft); color:var(--warn); border-color:var(--warn);">Data Tag: v0-unreviewed</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">900</div><div class="l">Total vignettes (300 base, 300 edited, 300 near-miss) across 10 rules</div></div>
+      <div class="stat"><div class="v num">0</div><div class="l">Banned tokens across all prompts (raw values only, zero leakage)</div></div>
+      <div class="stat"><div class="v num">0.7849</div><div class="l">Max cross-scenario Jaccard similarity (&le; 0.90 limit &rarr; PASS)</div></div>
+      <div class="stat"><div class="v num">50.0%</div><div class="l">Far-OOD BoW balanced CF accuracy (&lt; 70.0% floor &rarr; PASS)</div></div>
+      <div class="stat"><div class="v num">0.90 tok</div><div class="l">Mean response |diff| between chosen &amp; rejected (&le; 2.0 limit)</div></div>
+      <div class="stat"><div class="v num">21 / 21</div><div class="l">Automated QC &amp; unit tests passing with zero failures</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: HARDWARE & VRAM SWEEP -->
+  <section id="hardware">
+    <div class="section-head">
+      <div class="kicker">§1 · Gate 0 Calibration</div>
+      <h2>Training-Step VRAM sweep &amp; padding invariance</h2>
+      <p>Local execution on single NVIDIA RTX 5060 Laptop GPU (8 GB VRAM budget, Blackwell architecture, PyTorch 2.12.1+cu130, Unsloth 2026.9.12).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>VRAM Scaling &amp; Operating Point Selection</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
+          A Bradley-Terry pairwise preference loss was benchmarked across per-device batch sizes 1, 2, 4, 8 with Qwen2.5-1.5B (NF4 4-bit, LoRA r=16 on all linear projections, sequence length 512, paged AdamW 8-bit).
+          Batch size 2 with gradient accumulation of 16 (effective batch = 32) achieves <b>823.2 tokens/sec at 3.13 GB peak VRAM</b>, staying well below the 7.0 GB thermal and paging safety threshold.
+          Batch size 8 demonstrated laptop thermal throttling / memory paging, collapsing throughput to 90.6 tokens/sec.
+        </p>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr><th>Batch Size</th><th>Grad Accum</th><th>Peak VRAM</th><th>Throughput</th><th>Step Time</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>32</td><td>2.12 GB</td><td>582.5 tok/s</td><td>4.69 s</td><td class="pass-pill">PASS</td></tr>
+              <tr><td><b>2</b></td><td><b>16</b></td><td><b>3.13 GB</b></td><td><b>823.2 tok/s</b></td><td><b>3.32 s</b></td><td class="pass-pill"><b>SELECTED</b></td></tr>
+              <tr><td>4</td><td>8</td><td>3.78 GB</td><td>856.7 tok/s</td><td>3.19 s</td><td class="pass-pill">PASS</td></tr>
+              <tr><td>8</td><td>4</td><td>5.07 GB</td><td>90.6 tok/s</td><td>30.15 s</td><td style="color:var(--bad);">THROTTLED</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="figure-box">
+        <img src="figures/symrm/fig1_vram_and_throughput_scaling.png" alt="Hardware Scaling and VRAM Sweep">
+        <div class="figure-caption">
+          <b>Figure 1:</b> Gate 0 VRAM allocation and throughput scaling on RTX 5060. Batch size 2 achieves optimal throughput with over 4.8 GB of safety margin beneath the 8 GB device limit.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: COUNTERFACTUAL DATASET & ANSWER LEAKAGE ELIMINATION -->
+  <section id="dataset-design">
+    <div class="section-head">
+      <div class="kicker">§2 · Gate 2a Dataset Regeneration</div>
+      <h2>Answer leakage elimination &amp; field-level diff invariance</h2>
+      <p>Strict raw-value representation across all triplets ensures that the presence of clinical lab fields conveys zero label information.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Standardized Field Structure Across Triplets</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
+          - <b>Renal:</b> Rendered exclusively as raw numbers: <code class="mono">"Renal function: eGFR &lt;val&gt; mL/min/1.73m2, serum creatinine &lt;val&gt; mg/dL."</code> Base items contain normal range values (85–110 mL/min), eliminating field-presence shortcuts.<br>
+          - <b>Pregnancy:</b> Standardized to <code class="mono">"Reproductive status: urine beta-hCG &lt;positive|negative&gt;."</code> Gestational age appears only when positive. Base items state non-pregnant.<br>
+          - <b>Allergy:</b> Specific drug reaction in decisive field; family history placed in an identical separate <code class="mono">"Family history:"</code> field across all items.<br>
+          - <b>Banned Tokens:</b> Audited for zero occurrences of 14 clinical interpretative words (severe, moderate, impairment, dysfunction, preserved, reference range, etc.).
+        </p>
+      </div>
+      <div class="card">
+        <h3>Demographics &amp; Split Representation</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
+          - <b>Age Distribution:</b> Strictly spans 25 to 80 years across every single rule (mean: 52.5 years).<br>
+          - <b>Sex Balance:</b> Exactly 50% Female / 50% Male (15F/15M) for all general clinical rules; 100% female for pregnancy contraindications (<code class="mono">preg_01..03</code>) and primary dysmenorrhea (<code class="mono">allergy_03</code>).<br>
+          - <b>Split Isolation:</b> Train (5 rules, 450 items), Near-OOD (2 rules, 180 items), Far-OOD (3 rules, 270 items).
+        </p>
+      </div>
+    </div>
+
+    <div class="figure-box">
+      <img src="figures/symrm/fig3_dataset_composition_and_demographics.png" alt="Dataset Composition and Demographics">
+      <div class="figure-caption">
+        <b>Figure 2:</b> Vignette volume by clinical family and split (left) alongside patient age span and balanced sex distributions (right).
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: CANDIDATE OPTION NEUTRALITY -->
+  <section id="response-neutrality">
+    <div class="section-head">
+      <div class="kicker">§3 · Option Neutrality</div>
+      <h2>Plain prescription orders &amp; length symmetry</h2>
+      <p>Chosen and rejected candidate completions follow identical neutral syntax, preventing models from exploiting length or rationale shortcuts.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Symmetric Prescription Constraints</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
+          Every candidate option matches the deterministic format:<br>
+          <code class="mono">"Prescribe &lt;drug&gt; &lt;dose&gt; &lt;route&gt; &lt;frequency&gt; for &lt;duration&gt;."</code><br><br>
+          All rationale keywords (<code class="mono">avoid</code>, <code class="mono">discontinue</code>, <code class="mono">contraindicated</code>, <code class="mono">allergy</code>, <code class="mono">pregnancy</code>, <code class="mono">renal</code>, <code class="mono">switch</code>, <code class="mono">instead</code>) are strictly banned.
+          For dose-reduction rules (<code class="mono">renal_02</code>, <code class="mono">renal_04</code>), both candidate options name the exact same drug with different dosages.
+        </p>
+      </div>
+      <div class="figure-box">
+        <img src="figures/symrm/fig5_token_length_neutrality.png" alt="Response Token Length Neutrality">
+        <div class="figure-caption">
+          <b>Figure 3:</b> Token length difference (Default &minus; Alternative) per rule under Qwen tokenizer. Mean absolute difference is 0.90 tokens (&le; 2.0 bound across all 10 rules).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: LEXICAL SHORTCUT FLOORS -->
+  <section id="baselines">
+    <div class="section-head">
+      <div class="kicker">§4 · Gating Baselines</div>
+      <h2>Lexical shortcut floors &amp; non-neural baselines</h2>
+      <p>Preregistered gating threshold: If Far-OOD BoW Balanced CF Accuracy &ge; 70.0%, STOP the project.</p>
+    </div>
+
+    <div class="figure-box">
+      <img src="figures/symrm/fig2_lexical_shortcut_floors.png" alt="Lexical Shortcut Floors">
+      <div class="figure-caption">
+        <b>Figure 4:</b> Non-neural baseline performance across splits. BoW LogReg on Far-OOD scores 50.0% (exact chance), confirming zero lexical shortcut leakage.
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Baseline</th>
+            <th>Split</th>
+            <th>Base ($y=0$)</th>
+            <th>Edited ($y=1$)</th>
+            <th>Near-Miss ($y=0$)</th>
+            <th>Balanced CF Pairs</th>
+            <th>Pooled Triplet</th>
+            <th>Gating Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Always-Default</td><td>Train</td><td>100.0%</td><td>0.0%</td><td>100.0%</td><td>50.0%</td><td>66.7%</td><td>Reference</td></tr>
+          <tr><td>Always-Default</td><td>Near-OOD</td><td>100.0%</td><td>0.0%</td><td>100.0%</td><td>50.0%</td><td>66.7%</td><td>Reference</td></tr>
+          <tr><td>Always-Default</td><td>Far-OOD</td><td>100.0%</td><td>0.0%</td><td>100.0%</td><td>50.0%</td><td>66.7%</td><td>Reference</td></tr>
+          <tr><td>Response-Only LogReg</td><td>All Splits</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td><b>50.0%</b></td><td>&mdash;</td><td>Reference (Chance)</td></tr>
+          <tr><td>Keyword Heuristic</td><td>Train</td><td>100.0%</td><td>40.0%</td><td>60.0%</td><td>70.0%</td><td>66.7%</td><td>Over-flips on near-miss</td></tr>
+          <tr><td>Keyword Heuristic</td><td>Near-OOD</td><td>100.0%</td><td>50.0%</td><td>50.0%</td><td>75.0%</td><td>66.7%</td><td>Over-flips on near-miss</td></tr>
+          <tr><td>Keyword Heuristic</td><td>Far-OOD</td><td>100.0%</td><td>100.0%</td><td>0.0%</td><td>100.0%</td><td>66.7%</td><td>100% near-miss over-flip</td></tr>
+          <tr><td>BoW LogReg (Prompt)</td><td>Train</td><td>100.0%</td><td>100.0%</td><td>20.7%</td><td>100.0%</td><td>73.6%</td><td>In-Distribution Fit</td></tr>
+          <tr><td>BoW LogReg (Prompt)</td><td>Near-OOD</td><td>100.0%</td><td>100.0%</td><td>35.0%</td><td>100.0%</td><td>78.3%</td><td>Near Transfer</td></tr>
+          <tr><td><b>BoW LogReg (Prompt)</b></td><td><b>Far-OOD</b></td><td><b>100.0%</b></td><td><b>0.0%</b></td><td><b>100.0%</b></td><td><b>50.0%</b></td><td><b>66.7%</b></td><td class="pass-pill"><b>PASS (&lt; 70.0%)</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 5: TEMPLATE DIVERSITY & DEDUPLICATION -->
+  <section id="diversity">
+    <div class="section-head">
+      <div class="kicker">§5 · Lexical Deduplication</div>
+      <h2>Sentence skeleton diversity &amp; cross-scenario similarity</h2>
+      <p>Quality constraint: No two prompts from DIFFERENT scenarios with word-level Jaccard similarity &gt; 0.90.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Deduplication Verification</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
+          By pairing 6 unique clinical presentations per rule with 7 outpatient care settings and 11 distractor lab panels under modular coprime cycle shifts, cross-scenario lexical overlap is tightly controlled.<br><br>
+          - <b>Max Jaccard Across Distinct Scenarios:</b> <b>0.7849</b> (Threshold: &le; 0.90 &rarr; <span class="pass-pill">PASS</span>).<br>
+          - <b>Mean Jaccard Across Distinct Scenarios:</b> <b>0.4324</b>.<br>
+          - <b>Mean Jaccard Within Rules:</b> 0.500 to 0.547 (all &le; 0.80 &rarr; <span class="pass-pill">PASS</span>).
+        </p>
+      </div>
+      <div class="figure-box">
+        <img src="figures/symrm/fig4_template_diversity_and_deduplication.png" alt="Template Diversity and Deduplication">
+        <div class="figure-caption">
+          <b>Figure 5:</b> Distribution of pairwise Jaccard similarities across all 44,850 distinct scenario pairs in the dataset. Zero pairs cross the 0.90 deduplication ceiling.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: SCENARIO INSPECTOR -->
+  <section id="inspector">
+    <div class="section-head">
+      <div class="kicker">§6 · Vignette Verification</div>
+      <h2>Full counterfactual scenario triplets (2 per split)</h2>
+      <p>Direct view of raw vignette texts, demonstrating exact field alignment and raw lab rendering.</p>
+    </div>
+
+    <!-- TRAIN SCENARIOS -->
+    <div class="card" style="margin-bottom:18px;">
+      <div class="kv"><div class="k">Train Split · Scenario tpl_renal_01_001 (Type 2 Diabetes Mellitus)</div></div>
+      <p style="margin-top:4px; font-size:0.88rem; color:var(--ink-2);">
+        <b>Default:</b> Prescribe metformin 1000 mg orally twice daily for 30 days. | <b>Alternative:</b> Prescribe glipizide 5 mg orally twice daily for 30 days.
+      </p>
+      <div class="triplet-grid">
+        <div>
+          <span class="tag-badge tag-base">Base (y=0)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.
+Renal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: none.
+Family history: noncontributory.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+        <div>
+          <span class="tag-badge tag-edited">Edited (y=1)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.
+Renal function: eGFR 16 mL/min/1.73m2, serum creatinine 3.2 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: none.
+Family history: noncontributory.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+        <div>
+          <span class="tag-badge tag-near-miss">Near-Miss (y=0)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.
+Renal function: eGFR 46 mL/min/1.73m2, serum creatinine 1.3 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: none.
+Family history: noncontributory.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAR-OOD SCENARIO -->
+    <div class="card" style="margin-bottom:18px;">
+      <div class="kv"><div class="k">Far-OOD Split · Scenario tpl_allergy_01_001 (Streptococcal Pharyngitis)</div></div>
+      <p style="margin-top:4px; font-size:0.88rem; color:var(--ink-2);">
+        <b>Default:</b> Prescribe amoxicillin 500 mg orally twice daily for 10 days. | <b>Alternative:</b> Prescribe azithromycin 500 mg orally once daily for 5 days.
+      </p>
+      <div class="triplet-grid">
+        <div>
+          <span class="tag-badge tag-base">Base (y=0)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.
+Renal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: none.
+Family history: noncontributory.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+        <div>
+          <span class="tag-badge tag-edited">Edited (y=1)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.
+Renal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: penicillin (anaphylaxis).
+Family history: noncontributory.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+        <div>
+          <span class="tag-badge tag-near-miss">Near-Miss (y=0)</span>
+          <div class="prompt-box">Clinical Vignette:
+A 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.
+Renal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.
+Reproductive status: non-pregnant.
+Drug allergies: none.
+Family history: penicillin allergy (anaphylaxis) in mother.
+Serum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.
+
+Question: What is the most appropriate pharmacological prescription order for this patient?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: STEP 3 EXECUTION ROADMAP -->
+  <section id="step3-plan">
+    <div class="section-head">
+      <div class="kicker">§7 · Post-Approval Roadmap</div>
+      <h2>Step 3 execution plan with trained open-weight RMs</h2>
+      <p>Pre-registered models, precision profiles, and per-model normalized epsilon calibration.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Verified Open-Weight Reward Models (&le; 8 GB VRAM)</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+          1. <b>`OpenAssistant/reward-model-deberta-v3-large-v2`</b> (435M): DeBERTa-v3 sequence classification head. BF16 / ~1.1 GB VRAM. Revision: <code class="mono">c355404efa64195c255b6a3ef89d6e87a2a07cbe</code>.<br><br>
+          2. <b>`weqweasdas/RM-Gemma-2B`</b> (2.6B): Gemma-2B causal backbone with regression reward head. 4-bit NF4 / ~2.2 GB VRAM. Revision: <code class="mono">77461496adbcbb53a5fe6b77dfdc18ad40536c4b</code>.<br><br>
+          3. <b>`Skywork/Skywork-Reward-Llama-3.1-8B-v0.2`</b> (8.0B): Llama-3.1-8B sequence classification RM. 4-bit NF4 / ~5.4 GB VRAM. Revision: <code class="mono">d4117fbfd8819d9bca1b5853549646b9a2b53e77</code>.<br><br>
+          4. <b>Instruct Readout:</b> <code class="mono">Qwen/Qwen2.5-1.5B-Instruct</code> scored by sequence log-likelihood: &Delta; log P(prescription | prompt).
+        </p>
+      </div>
+      <div class="card">
+        <h3>Epsilon Normalization &amp; Discriminative Flip Metric</h3>
+        <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
+          - <b>Padding Invariance &amp; Model Epsilon:</b> Epsilon is recomputed per model via padding invariance: &epsilon; = max |r(x) &minus; r_batched(x)|.<br>
+          - <b>Normalized Epsilon:</b> Reported in units of each model's score standard deviation on base items: &epsilon;_norm = &epsilon; / &sigma;(r(x_base)).<br>
+          - <b>Headline Metric:</b> Discriminative Counterfactual Flip:
+          $$\Delta_{\text{flip}} = \text{FlipRate}(\text{edited}) - \text{FlipRate}(\text{near-miss})$$
+          Measures true sensitivity to decisive evidence penalized for false-positive over-flipping on decoy concepts.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer style="margin-top:40px; padding:24px 0; border-top:1px solid var(--border); text-align:center; font-size:0.84rem; color:var(--ink-muted);">
+  SymRM NAACL 2027 Research Pilot · Antigravity IDE · Reproducible Research Artifacts
+</footer>
+
+<script>
+  // Theme toggle script matching site-wide style
+  const btn = document.querySelector('.theme-toggle');
+  btn?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    btn.textContent = isDark ? '☾' : '☼';
+  });
+</script>
+</body>
+</html>

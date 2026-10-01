@@ -1,0 +1,66 @@
+{
+  "mean_abs_diff": 0.9,
+  "passed": true,
+  "per_rule": {
+    "renal_01": {
+      "len_default": 20,
+      "len_alt": 18,
+      "diff": 2,
+      "abs_diff": 2
+    },
+    "renal_03": {
+      "len_default": 20,
+      "len_alt": 20,
+      "diff": 0,
+      "abs_diff": 0
+    },
+    "renal_04": {
+      "len_default": 20,
+      "len_alt": 19,
+      "diff": 1,
+      "abs_diff": 1
+    },
+    "preg_01": {
+      "len_default": 19,
+      "len_alt": 19,
+      "diff": 0,
+      "abs_diff": 0
+    },
+    "preg_03": {
+      "len_default": 24,
+      "len_alt": 24,
+      "diff": 0,
+      "abs_diff": 0
+    },
+    "renal_02": {
+      "len_default": 24,
+      "len_alt": 25,
+      "diff": -1,
+      "abs_diff": 1
+    },
+    "preg_02": {
+      "len_default": 19,
+      "len_alt": 21,
+      "diff": -2,
+      "abs_diff": 2
+    },
+    "allergy_01": {
+      "len_default": 19,
+      "len_alt": 19,
+      "diff": 0,
+      "abs_diff": 0
+    },
+    "allergy_02": {
+      "len_default": 22,
+      "len_alt": 20,
+      "diff": 2,
+      "abs_diff": 2
+    },
+    "allergy_03": {
+      "len_default": 22,
+      "len_alt": 23,
+      "diff": -1,
+      "abs_diff": 1
+    }
+  }
+}

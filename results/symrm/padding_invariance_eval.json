@@ -1,0 +1,11 @@
+{
+  "model_id": "Qwen/Qwen2.5-1.5B",
+  "dtype": "bfloat16 (compute) / 4-bit NF4 (weights)",
+  "num_pairs": 32,
+  "num_texts": 64,
+  "max_abs_score_diff": 0.0546875,
+  "mean_abs_score_diff": 0.0242919921875,
+  "max_abs_margin_diff": 0.0859375,
+  "sign_match_rate": 100.0,
+  "all_signs_match": true
+}

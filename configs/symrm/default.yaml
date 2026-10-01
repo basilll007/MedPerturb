@@ -1,0 +1,93 @@
+# SymRM Default Configuration
+# Pinned for RTX 5060 8GB VRAM (Blackwell sm_120)
+
+phase: gate0
+
+model:
+  model_id: "Qwen/Qwen2.5-1.5B"
+  revision: null
+  load_in_4bit: true
+  compute_dtype: "bfloat16"
+  quant_type: "nf4"
+  max_seq_length: 512
+  padding_strategy: "dynamic"
+  device_map: "auto"
+
+lora:
+  r: 16
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+  bias: "none"
+  task_type: "SEQ_CLS"
+
+data:
+  rules_file: "configs/symrm/rules.yaml"
+  target_pairs: 300
+  train_families:
+    - "renal"
+    - "pregnancy"
+  heldout_family: "allergy"
+  near_ood_rule_ids:
+    - "renal_02"
+    - "preg_02"
+  near_miss_ratio: 0.5
+  seed: 42
+  output_dir: "results/symrm/data"
+
+probe:
+  target_rms:
+    - "Qwen/Qwen2.5-1.5B"
+    - "Qwen/Qwen2.5-0.5B"
+  layers: null
+  cv_folds: 5
+  seed: 42
+  output_dir: "results/symrm/probe"
+
+training:
+  condition: "c1_outcome"
+  batch_size: 4
+  gradient_accumulation_steps: 8
+  padding_strategy: "dynamic"
+  learning_rate: 0.0002
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  num_epochs: 3
+  seeds:
+    - 42
+    - 43
+    - 44
+  early_stopping_patience: 2
+  pair_consistency_weight: 1.0
+  symbolic_aux_weight: 1.0
+  balanced_loss_weighting: true
+  sample_weight_base: 1.0
+  sample_weight_near_miss: 1.0
+  sample_weight_edited: 2.0
+  output_dir: "results/symrm/checkpoints"
+
+best_of_n:
+  policy_model_id: "Qwen/Qwen2.5-1.5B-Instruct"
+  n_candidates: 8
+  temperature: 0.7
+  top_p: 0.9
+  max_new_tokens: 128
+  eval_n_values:
+    - 1
+    - 2
+    - 4
+    - 8
+  seed: 42
+  output_dir: "results/symrm/best_of_n"
+
+logging:
+  results_dir: "results/symrm"
+  compute_log_path: "results/symrm/compute_log.csv"
+  preregistration_file: "results/symrm/preregistration.md"

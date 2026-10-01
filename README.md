@@ -26,6 +26,7 @@ folder is GitHub-Pages-ready if this repo is pushed to GitHub.
 | Phase 1A — controlled behavioral pilot (smoke test) | **Partial, stopped** — Gemini smoke test complete (20/20); Claude smoke test blocked by an Anthropic account usage cap (resets 2026-10-01 00:00 UTC). Remaining 190-question cohort **not run**, pending approval. See `results/audit/PHASE1A_SMOKE_TEST_REPORT.md`. |
 | Phase 1B+ / representation analysis | Not started — deferred, requires GPU + open-weight model |
 | Phase 3 — Post-Training & Untouched Final Evaluation | **Complete** — Unsloth GRPO post-training, 4-way leakage-safe split, 8,883 untouched final test evaluations, paired McNemar/Bootstrap tests, figures, and tables. See `docs/phase3.html`. |
+| **SymRM Pilot (Gate 2a Resubmission)** | **Complete & Verified** — 900 vignettes, 0 banned tokens, raw-value diff invariance, 21/21 QC tests passed, Far-OOD BoW floor 50.0% (< 70% threshold). Data tagged `v0-unreviewed`. See `docs/symrm.html`. |
 
 Key finding from Phase 0 worth knowing before reading anything else: only 2
 of ReMedQA's 7 perturbation types (`roman_numeral`, and originally
@@ -151,6 +152,72 @@ uv run --no-sync python scripts\phase3_run_final_evaluations.py --stage final_te
 
 - **Primary Hypothesis Test (Adaptation Failure)**: Exact McNemar test $p = 0.8238$ (discordant: 11 vs 9), 95% Bootstrap CI: [-0.0083, +0.0130]. Null hypothesis retained ($p \ge 0.05$). Under a 60-step LoRA regime on 4-bit Qwen3-4B, symbolic-consistency reward does not significantly reduce adaptation failure compared to correctness-only reward.
 - **Secondary Gains (Invariance Robustness)**: Neuro-symbolic training significantly preserved invariance, achieving the highest joint correctness (ReAcc: 35.46%), highest prediction consistency (ReCon: 51.78%), highest position-shift accuracy (52.72%), and the lowest representation instability (204 vs 215).
+
+## SymRM: Symbolic Supervision for Neural Reward Models (NAACL 2027 Main Track)
+
+### Research Question & Hypothesis
+*"Can symbolic supervision teach neural reward models to generalize beyond the rules they were trained on?"*
+
+Neural reward models (RMs) cover arbitrary inputs but frequently fail to let decisive patient evidence override default heuristics ("knows but does not use"). Symbolic verifiers provide exact constraint satisfaction, but only on rules manually authored by humans. We test whether a symbolic verifier, used strictly during post-training, forces neural RMs to adapt correctly to decisive clinical evidence on held-out rules where the verifier is absent at inference.
+
+**Interactive Dashboard:** Open [`docs/symrm.html`](docs/symrm.html) in any browser for interactive figures, full scenario triplet inspector, demographic distributions, and baseline breakdowns.
+
+### Gate Progression & Current Status
+
+| Gate Stage | Objective | Status | Artifacts & Evidence |
+| :--- | :--- | :--- | :--- |
+| **Gate 0** | Hardware verification, VRAM sweep, padding invariance | **PASSED** | Peak VRAM 3.13 GB at BS=2 (GA=16), padding margin sign pass, `results/symrm/compute_log.csv` |
+| **Gate 1** | Response option neutrality & near-miss redesign | **PASSED** | Plain prescription syntax, zero rationale, mean token \|diff\| = 0.90 &le; 2.0, `configs/symrm/rules.yaml` |
+| **Gate 2a** | Answer leakage elimination & prompt deduplication | **RESUBMITTED** | Raw values only, 0 banned tokens, field diff invariance, Jaccard max 0.7849 &le; 0.90, BoW floor 50.0% (PASS) |
+| **Gate 2b** | Human clinical sign-off & pharmacist review | Pending | All rules flagged `verified: false`, dataset tagged `v0-unreviewed` |
+| **Gate 3** | Probe training & RM evaluation across splits | Pre-Registered | Trained open-weight RMs (DeBERTa-v3, Gemma-2B, Skywork-8B) on RTX 5060 (8GB) |
+
+### Key Figures & Visualizations
+
+| Figure | Description | File Path |
+| :--- | :--- | :--- |
+| **Figure 1** | Hardware Scaling & VRAM Sweep on RTX 5060 (8GB) | [`figures/symrm/fig1_vram_and_throughput_scaling.png`](figures/symrm/fig1_vram_and_throughput_scaling.png) |
+| **Figure 2** | Lexical Shortcut Floors Across Splits | [`figures/symrm/fig2_lexical_shortcut_floors.png`](figures/symrm/fig2_lexical_shortcut_floors.png) |
+| **Figure 3** | Clinical Family Breakdown & Demographics (Age 25–80, Sex) | [`figures/symrm/fig3_dataset_composition_and_demographics.png`](figures/symrm/fig3_dataset_composition_and_demographics.png) |
+| **Figure 4** | Prompt Deduplication & Pairwise Jaccard Distribution | [`figures/symrm/fig4_template_diversity_and_deduplication.png`](figures/symrm/fig4_template_diversity_and_deduplication.png) |
+| **Figure 5** | Response Option Symmetry Audit (Mean \|Diff\| &le; 2.0) | [`figures/symrm/fig5_token_length_neutrality.png`](figures/symrm/fig5_token_length_neutrality.png) |
+
+### Lexical Shortcut Floors & Baseline Evaluation
+
+Evaluation of four non-neural baselines across splits and item subsets.
+*Preregistered Gating Rule: Far-OOD Balanced CF Accuracy < 70.0% is required to proceed.*
+
+| Baseline | Split | Base Items ($y=0$) | Edited Items ($y=1$) | Near-Miss Items ($y=0$) | **Balanced CF Pairs** | Pooled (3:1 Triplet) | Far-OOD Gating Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Always-Default** | Train | 100.0% | 0.0% | 100.0% | **50.0%** | 66.7% | Reference |
+| **Always-Default** | Near-OOD | 100.0% | 0.0% | 100.0% | **50.0%** | 66.7% | Reference |
+| **Always-Default** | Far-OOD | 100.0% | 0.0% | 100.0% | **50.0%** | 66.7% | Reference |
+| **Response-Only LogReg** | All Splits | — | — | — | **50.0%** | — | Reference (Chance) |
+| **Keyword Heuristic** | Train | 100.0% | 40.0% | 60.0% | **70.0%** | 66.7% | Over-flips on near-miss |
+| **Keyword Heuristic** | Near-OOD | 100.0% | 50.0% | 50.0% | **75.0%** | 66.7% | Over-flips on near-miss |
+| **Keyword Heuristic** | Far-OOD | 100.0% | 100.0% | 0.0% | **100.0%** | 66.7% | 100% near-miss over-flip |
+| **BoW LogReg (Prompt)** | Train | 100.0% | 100.0% | 20.7% | **100.0%** | 73.6% | In-Distribution Fit |
+| **BoW LogReg (Prompt)** | Near-OOD | 100.0% | 100.0% | 35.0% | **100.0%** | 78.3% | Near Transfer |
+| **BoW LogReg (Prompt)** | **Far-OOD** | **100.0%** | **0.0%** | **100.0%** | **50.0%** | **66.7%** | **PASS (< 70.0%)** |
+
+### Reproducing SymRM Pilot Artifacts
+
+```powershell
+# 1. Regenerate 900-vignette counterfactual dataset (tagged v0-unreviewed)
+uv run python src/symrm/data/generator.py
+
+# 2. Run the 21-test automated QC suite (Neutrality, Diff Invariance, Polarity, Padding)
+uv run pytest -v tests/symrm
+
+# 3. Evaluate non-neural shortcut baselines & update results table
+uv run python src/symrm/eval/lexical_shortcuts.py
+
+# 4. Run template diversity & deduplication audit
+uv run python src/symrm/data/diversity.py
+
+# 5. Generate high-resolution figures for dashboard and publication
+uv run python scripts/generate_symrm_figures.py
+```
 
 ## Research guardrails
 

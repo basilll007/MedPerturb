@@ -25,3 +25,8 @@ dependencies = [
     "tqdm>=4.70.1",
     "transformers>=5.17.0",
 ]
+
+[tool.pytest.ini_options]
+markers = [
+    "cuda: mark test as requiring a CUDA GPU device",
+]

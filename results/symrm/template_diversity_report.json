@@ -1,0 +1,197 @@
+{
+  "summary": {
+    "total_rules": 10,
+    "flagged_rules_count": 0,
+    "flagged_rules": [],
+    "all_rules_pass_jaccard_check": true,
+    "cross_scenario_dedup": {
+      "max_jaccard": 0.7849462365591398,
+      "max_pair": [
+        "tpl_preg_03_013",
+        "tpl_preg_03_019"
+      ],
+      "mean_jaccard": 0.43236679706044306,
+      "passed_le_0_90": true
+    }
+  },
+  "per_rule": {
+    "renal_01": {
+      "rule_id": "renal_01",
+      "family": "renal",
+      "split": "train",
+      "num_items": 90,
+      "num_unique_skeletons": 30,
+      "mean_jaccard": 0.5474144865695613,
+      "max_jaccard": 0.9746835443037974,
+      "min_jaccard": 0.4067796610169492,
+      "flagged_gt_0_8": false
+    },
+    "renal_03": {
+      "rule_id": "renal_03",
+      "family": "renal",
+      "split": "train",
+      "num_items": 90,
+      "num_unique_skeletons": 30,
+      "mean_jaccard": 0.5176874578874887,
+      "max_jaccard": 0.9743589743589743,
+      "min_jaccard": 0.38596491228070173,
+      "flagged_gt_0_8": false
+    },
+    "renal_04": {
+      "rule_id": "renal_04",
+      "family": "renal",
+      "split": "train",
+      "num_items": 90,
+      "num_unique_skeletons": 30,
+      "mean_jaccard": 0.5003777462883393,
+      "max_jaccard": 0.972972972972973,
+      "min_jaccard": 0.358974358974359,
+      "flagged_gt_0_8": false
+    },
+    "preg_01": {
+      "rule_id": "preg_01",
+      "family": "pregnancy",
+      "split": "train",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.538215735232981,
+      "max_jaccard": 0.9438202247191011,
+      "min_jaccard": 0.3983050847457627,
+      "flagged_gt_0_8": false
+    },
+    "preg_03": {
+      "rule_id": "preg_03",
+      "family": "pregnancy",
+      "split": "train",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.5160550232797182,
+      "max_jaccard": 0.9534883720930233,
+      "min_jaccard": 0.359375,
+      "flagged_gt_0_8": false
+    },
+    "renal_02": {
+      "rule_id": "renal_02",
+      "family": "renal",
+      "split": "near_ood",
+      "num_items": 90,
+      "num_unique_skeletons": 30,
+      "mean_jaccard": 0.540449199520788,
+      "max_jaccard": 0.9555555555555556,
+      "min_jaccard": 0.3793103448275862,
+      "flagged_gt_0_8": false
+    },
+    "preg_02": {
+      "rule_id": "preg_02",
+      "family": "pregnancy",
+      "split": "near_ood",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.5216490500470413,
+      "max_jaccard": 0.9545454545454546,
+      "min_jaccard": 0.3629032258064516,
+      "flagged_gt_0_8": false
+    },
+    "allergy_01": {
+      "rule_id": "allergy_01",
+      "family": "allergy",
+      "split": "far_ood",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.5199773320433453,
+      "max_jaccard": 0.9662921348314607,
+      "min_jaccard": 0.3548387096774194,
+      "flagged_gt_0_8": false
+    },
+    "allergy_02": {
+      "rule_id": "allergy_02",
+      "family": "allergy",
+      "split": "far_ood",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.5130950923773284,
+      "max_jaccard": 0.9655172413793104,
+      "min_jaccard": 0.3524590163934426,
+      "flagged_gt_0_8": false
+    },
+    "allergy_03": {
+      "rule_id": "allergy_03",
+      "family": "allergy",
+      "split": "far_ood",
+      "num_items": 90,
+      "num_unique_skeletons": 90,
+      "mean_jaccard": 0.5271508873147852,
+      "max_jaccard": 0.9550561797752809,
+      "min_jaccard": 0.36585365853658536,
+      "flagged_gt_0_8": false
+    }
+  },
+  "example_scenarios": {
+    "train": [
+      {
+        "template_id": "tpl_renal_01_001",
+        "rule_id": "renal_01",
+        "indication": "Type 2 diabetes mellitus",
+        "default_action": "Prescribe metformin 1000 mg orally twice daily for 30 days.",
+        "alternative_action": "Prescribe glipizide 5 mg orally twice daily for 30 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.\nRenal function: eGFR 16 mL/min/1.73m2, serum creatinine 3.2 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Type 2 diabetes mellitus. Patient presents with suboptimal glycemic control on diet and exercise alone, with fasting glucose 174 mg/dL and HbA1c 8.4%.\nRenal function: eGFR 46 mL/min/1.73m2, serum creatinine 1.3 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      },
+      {
+        "template_id": "tpl_preg_01_001",
+        "rule_id": "preg_01",
+        "indication": "Essential hypertension",
+        "default_action": "Prescribe lisinopril 10 mg orally once daily for 30 days.",
+        "alternative_action": "Prescribe labetalol 100 mg orally twice daily for 30 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Essential hypertension. Clinic blood pressure measurements show persistent elevation averaging 148/94 mmHg on three separate seated determinations.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Essential hypertension. Clinic blood pressure measurements show persistent elevation averaging 148/94 mmHg on three separate seated determinations.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: urine beta-hCG positive (6 weeks gestation).\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Essential hypertension. Clinic blood pressure measurements show persistent elevation averaging 148/94 mmHg on three separate seated determinations.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: urine beta-hCG negative.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      }
+    ],
+    "near_ood": [
+      {
+        "template_id": "tpl_renal_02_001",
+        "rule_id": "renal_02",
+        "indication": "Acute deep vein thrombosis / pulmonary embolism anticoagulation",
+        "default_action": "Prescribe enoxaparin 1 mg/kg subcutaneously every 12 hours for 14 days.",
+        "alternative_action": "Prescribe enoxaparin 1 mg/kg subcutaneously once every 24 hours for 14 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Acute deep vein thrombosis / pulmonary embolism anticoagulation. Diagnostic lower extremity venous duplex ultrasound demonstrates acute occlusive deep vein thrombosis involving the left popliteal vein.\nRenal function: creatinine clearance 90 mL/min, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Acute deep vein thrombosis / pulmonary embolism anticoagulation. Diagnostic lower extremity venous duplex ultrasound demonstrates acute occlusive deep vein thrombosis involving the left popliteal vein.\nRenal function: creatinine clearance 16 mL/min, serum creatinine 2.8 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Acute deep vein thrombosis / pulmonary embolism anticoagulation. Diagnostic lower extremity venous duplex ultrasound demonstrates acute occlusive deep vein thrombosis involving the left popliteal vein.\nRenal function: creatinine clearance 42 mL/min, serum creatinine 1.4 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      },
+      {
+        "template_id": "tpl_preg_02_001",
+        "rule_id": "preg_02",
+        "indication": "Active rheumatoid arthritis",
+        "default_action": "Prescribe oral methotrexate 15 mg once weekly for 30 days.",
+        "alternative_action": "Prescribe hydroxychloroquine 200 mg orally twice daily for 30 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Active rheumatoid arthritis. Patient presents with active inflammatory symmetric polyarthritis involving bilateral MCP and PIP joints with morning stiffness lasting 90 minutes.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Active rheumatoid arthritis. Patient presents with active inflammatory symmetric polyarthritis involving bilateral MCP and PIP joints with morning stiffness lasting 90 minutes.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: urine beta-hCG positive (6 weeks gestation).\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Active rheumatoid arthritis. Patient presents with active inflammatory symmetric polyarthritis involving bilateral MCP and PIP joints with morning stiffness lasting 90 minutes.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: urine beta-hCG negative.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      }
+    ],
+    "far_ood": [
+      {
+        "template_id": "tpl_allergy_01_001",
+        "rule_id": "allergy_01",
+        "indication": "Group A streptococcal pharyngitis",
+        "default_action": "Prescribe amoxicillin 500 mg orally twice daily for 10 days.",
+        "alternative_action": "Prescribe azithromycin 500 mg orally once daily for 5 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: penicillin (anaphylaxis).\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Group A streptococcal pharyngitis. Patient presents with acute sore throat, odynophagia, fever of 38.5 C, tonsillar exudates, and positive rapid streptococcal antigen test.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: penicillin allergy (anaphylaxis) in mother.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      },
+      {
+        "template_id": "tpl_allergy_03_001",
+        "rule_id": "allergy_03",
+        "indication": "Primary dysmenorrhea",
+        "default_action": "Prescribe ibuprofen 600 mg orally every 8 hours as needed for 5 days.",
+        "alternative_action": "Prescribe acetaminophen 650 mg orally every 6 hours as needed for 5 days.",
+        "base_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Primary dysmenorrhea. Patient presents with recurrent crampy lower abdominal and pelvic pain beginning on the first day of menses, associated with nausea.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "edited_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Primary dysmenorrhea. Patient presents with recurrent crampy lower abdominal and pelvic pain beginning on the first day of menses, associated with nausea.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: aspirin (bronchospasm and nasal polyps).\nFamily history: noncontributory.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?",
+        "near_miss_prompt": "Clinical Vignette:\nA 25-year-old female presents in the primary care clinic for management of Primary dysmenorrhea. Patient presents with recurrent crampy lower abdominal and pelvic pain beginning on the first day of menses, associated with nausea.\nRenal function: eGFR 88 mL/min/1.73m2, serum creatinine 0.85 mg/dL.\nReproductive status: non-pregnant.\nDrug allergies: none.\nFamily history: aspirin sensitivity (bronchospasm and nasal polyps) in father.\nSerum potassium 4.2 mEq/L, sodium 140 mEq/L, AST 22 U/L, ALT 24 U/L.\n\nQuestion: What is the most appropriate pharmacological prescription order for this patient?"
+      }
+    ]
+  }
+}

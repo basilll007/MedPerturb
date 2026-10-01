@@ -1,0 +1,278 @@
+{
+  "audit_passed": true,
+  "num_conflicts": 0,
+  "conflicts": [],
+  "num_drugs_audited": 27,
+  "rows": [
+    {
+      "rule_id": "renal_01",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Type 2 diabetes mellitus",
+      "drug": "metformin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe metformin 1000 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "renal_01",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Type 2 diabetes mellitus",
+      "drug": "insulin",
+      "polarity": "correct",
+      "action_summary": "Prescribe glipizide 5 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "renal_03",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Acute uncomplicated lower urinary tract infection",
+      "drug": "nitrofurantoin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe nitrofurantoin 100 mg orally twice daily for 5 days."
+    },
+    {
+      "rule_id": "renal_03",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Acute uncomplicated lower urinary tract infection",
+      "drug": "fosfomycin",
+      "polarity": "correct",
+      "action_summary": "Prescribe fosfomycin 3 g orally once as a single dose for 1 day."
+    },
+    {
+      "rule_id": "renal_04",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Postherpetic neuralgia / neuropathic pain",
+      "drug": "gabapentin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe gabapentin 600 mg orally three times daily for 30 days."
+    },
+    {
+      "rule_id": "renal_04",
+      "family": "renal",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Postherpetic neuralgia / neuropathic pain",
+      "drug": "gabapentin_dose_reduced",
+      "polarity": "correct",
+      "action_summary": "Prescribe gabapentin 300 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "preg_01",
+      "family": "pregnancy",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Essential hypertension",
+      "drug": "lisinopril",
+      "polarity": "avoid",
+      "action_summary": "Prescribe lisinopril 10 mg orally once daily for 30 days."
+    },
+    {
+      "rule_id": "preg_01",
+      "family": "pregnancy",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Essential hypertension",
+      "drug": "labetalol",
+      "polarity": "correct",
+      "action_summary": "Prescribe labetalol 100 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "preg_01",
+      "family": "pregnancy",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Essential hypertension",
+      "drug": "nifedipine",
+      "polarity": "correct",
+      "action_summary": "Prescribe labetalol 100 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "preg_03",
+      "family": "pregnancy",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Early localized Lyme disease",
+      "drug": "doxycycline",
+      "polarity": "avoid",
+      "action_summary": "Prescribe doxycycline hyclate 100 mg orally twice daily for 14 days."
+    },
+    {
+      "rule_id": "preg_03",
+      "family": "pregnancy",
+      "split": "train",
+      "split_group": "train",
+      "indication": "Early localized Lyme disease",
+      "drug": "cefuroxime_axetil",
+      "polarity": "correct",
+      "action_summary": "Prescribe cefuroxime axetil 500 mg orally twice daily for 14 days."
+    },
+    {
+      "rule_id": "renal_02",
+      "family": "renal",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Acute deep vein thrombosis / pulmonary embolism anticoagulation",
+      "drug": "enoxaparin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe enoxaparin 1 mg/kg subcutaneously every 12 hours for 14 days."
+    },
+    {
+      "rule_id": "renal_02",
+      "family": "renal",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Acute deep vein thrombosis / pulmonary embolism anticoagulation",
+      "drug": "enoxaparin_dose_reduced",
+      "polarity": "correct",
+      "action_summary": "Prescribe enoxaparin 1 mg/kg subcutaneously once every 24 hours for 14 days."
+    },
+    {
+      "rule_id": "renal_02",
+      "family": "renal",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Acute deep vein thrombosis / pulmonary embolism anticoagulation",
+      "drug": "unfractionated_heparin",
+      "polarity": "correct",
+      "action_summary": "Prescribe enoxaparin 1 mg/kg subcutaneously once every 24 hours for 14 days."
+    },
+    {
+      "rule_id": "preg_02",
+      "family": "pregnancy",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Active rheumatoid arthritis",
+      "drug": "methotrexate",
+      "polarity": "avoid",
+      "action_summary": "Prescribe oral methotrexate 15 mg once weekly for 30 days."
+    },
+    {
+      "rule_id": "preg_02",
+      "family": "pregnancy",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Active rheumatoid arthritis",
+      "drug": "hydroxychloroquine",
+      "polarity": "correct",
+      "action_summary": "Prescribe hydroxychloroquine 200 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "preg_02",
+      "family": "pregnancy",
+      "split": "near_ood",
+      "split_group": "held_out",
+      "indication": "Active rheumatoid arthritis",
+      "drug": "sulfasalazine",
+      "polarity": "correct",
+      "action_summary": "Prescribe hydroxychloroquine 200 mg orally twice daily for 30 days."
+    },
+    {
+      "rule_id": "allergy_01",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Group A streptococcal pharyngitis",
+      "drug": "amoxicillin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe amoxicillin 500 mg orally twice daily for 10 days."
+    },
+    {
+      "rule_id": "allergy_01",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Group A streptococcal pharyngitis",
+      "drug": "penicillin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe amoxicillin 500 mg orally twice daily for 10 days."
+    },
+    {
+      "rule_id": "allergy_01",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Group A streptococcal pharyngitis",
+      "drug": "azithromycin",
+      "polarity": "correct",
+      "action_summary": "Prescribe azithromycin 500 mg orally once daily for 5 days."
+    },
+    {
+      "rule_id": "allergy_02",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Acute uncomplicated cystitis",
+      "drug": "trimethoprim_sulfamethoxazole",
+      "polarity": "avoid",
+      "action_summary": "Prescribe TMP-SMX 160/800 mg orally twice daily for 3 days."
+    },
+    {
+      "rule_id": "allergy_02",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Acute uncomplicated cystitis",
+      "drug": "sulfonamide",
+      "polarity": "avoid",
+      "action_summary": "Prescribe TMP-SMX 160/800 mg orally twice daily for 3 days."
+    },
+    {
+      "rule_id": "allergy_02",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Acute uncomplicated cystitis",
+      "drug": "ciprofloxacin",
+      "polarity": "correct",
+      "action_summary": "Prescribe ciprofloxacin 250 mg orally twice daily for 3 days."
+    },
+    {
+      "rule_id": "allergy_03",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Primary dysmenorrhea",
+      "drug": "ibuprofen",
+      "polarity": "avoid",
+      "action_summary": "Prescribe ibuprofen 600 mg orally every 8 hours as needed for 5 days."
+    },
+    {
+      "rule_id": "allergy_03",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Primary dysmenorrhea",
+      "drug": "nsaids",
+      "polarity": "avoid",
+      "action_summary": "Prescribe ibuprofen 600 mg orally every 8 hours as needed for 5 days."
+    },
+    {
+      "rule_id": "allergy_03",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Primary dysmenorrhea",
+      "drug": "aspirin",
+      "polarity": "avoid",
+      "action_summary": "Prescribe ibuprofen 600 mg orally every 8 hours as needed for 5 days."
+    },
+    {
+      "rule_id": "allergy_03",
+      "family": "allergy",
+      "split": "far_ood",
+      "split_group": "held_out",
+      "indication": "Primary dysmenorrhea",
+      "drug": "acetaminophen",
+      "polarity": "correct",
+      "action_summary": "Prescribe acetaminophen 650 mg orally every 6 hours as needed for 5 days."
+    }
+  ]
+}
