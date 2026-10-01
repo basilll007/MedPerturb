@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ReMedQA Forensics · Phase 3 Post-Training</title>
+  <meta name="description" content="NAACL 2027 — Phase 3: Symbolic-consistency reward post-training, leakage-safe grouped split, and Qwen3-4B architecture.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <a class="brand" href="index.html">ReMedQA <span>Forensics</span></a>
+      <nav class="anchors">
+        <a href="index.html">Overview</a>
+        <a href="datasets.html">Datasets</a>
+        <a href="perturbations.html">Perturbations</a>
+        <a href="analysis.html">Analysis</a>
+        <a href="pilot.html">Pilot &amp; Provenance</a>
+        <a href="phase1a.html">Phase 1A</a>
+        <a href="phase1b.html">Phase 1B</a>
+        <a href="phase1c.html">Phase 1C</a>
+        <a href="phase2a.html">Phase 2A</a>
+        <a href="phase3.html" class="active">Phase 3</a>
+      </nav>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">☾</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Phase 3</span>
+  </div>
+
+  <div class="hero">
+    <div class="eyebrow">Phase 3 · Milestone 1 · Architecture, Audit &amp; Leakage-Safe Splitting</div>
+    <h1>Symbolic-consistency reward post-training &amp; zero-leakage evaluation</h1>
+    <p class="lede">
+      Testing the hypothesis that <b>symbolic-consistency reward during post-training reduces required adaptation failures
+      while preserving semantic consistency under meaning-preserving transformations</b>. Milestone 1 establishes the verified
+      architecture, stem collision neutralization, and leakage-safe train/val/test splits across all 3,154 questions.
+      <b>No model training has been started.</b>
+    </p>
+    <div class="status-row">
+      <span class="pill dot">Milestone 1 · audit &amp; splitting — complete</span>
+      <span class="pill dot">0 leaked IDs · 0 leaked question stems</span>
+      <span class="pill dot">200 pilot &amp; 50 Phase 2A questions isolated in test</span>
+      <span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">No training started · awaiting approval</span>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><div class="v num">3,154</div><div class="l">total questions across ReMedQA (18,924 paired rows)</div></div>
+      <div class="stat"><div class="v num">3,084</div><div class="l">equivalence clusters neutralizing 70 multi-question stem collisions</div></div>
+      <div class="stat"><div class="v num">2,207 / 316 / 631</div><div class="l">train / val / test questions (70.0% / 10.0% / 20.0%)</div></div>
+      <div class="stat"><div class="v num">0</div><div class="l">leakage errors across ID, text, pilot, or condition completeness</div></div>
+      <div class="stat"><div class="v">100%</div><div class="l">Phase 2A &amp; pilot cohort retained in held-out test split</div></div>
+    </div>
+  </div>
+
+  <section id="hypothesis">
+    <div class="section-head">
+      <div class="kicker">§1 · Research Foundation</div>
+      <h2>Hypothesis &amp; symbolic specification</h2>
+      <p>Building directly on the Phase 0–2A registry and findings rather than starting over.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Core Hypothesis</h3>
+        <p style="margin-top:8px; font-size:1.02rem; color:var(--ink); line-height:1.6;">
+          Standard correctness rewards optimize single-task performance but leave models vulnerable to format brittleness
+          and adaptation blindness. Providing a <b>symbolic-consistency reward</b> derived from the MedPerturb perturbation
+          registry during post-training (LoRA/QLoRA and eventually GRPO) will significantly reduce
+          <code class="mono">required_adaptation_failure</code> without degrading meaning-preserving invariance.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Perturbation Taxonomy in Training</h3>
+        <p style="margin-top:8px; font-size:0.94rem; color:var(--ink-2); line-height:1.6;">
+          - <b>Invariance conditions</b> (<code class="mono">roman_numeral</code>, <code class="mono">fixed_pos</code>, <code class="mono">no_symbols</code>): semantic answer text must match <code class="mono">mcq</code> baseline.<br>
+          - <b>Adaptation conditions</b> (<code class="mono">none_of_the_provided</code>, <code class="mono">incorrect</code>): model must adapt when correct content is replaced or task is inverted.<br>
+          - <b>Excluded condition</b> (<code class="mono">open</code>): strictly withheld from reward training because its deterministic evaluator remains unresolved (Phase 2A finding).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="splits">
+    <div class="section-head">
+      <div class="kicker">§2 · Leakage-Safe Grouped Dataset Splits</div>
+      <h2>Disjoint by ID and normalized stem</h2>
+      <p>A naive question-ID split would have leaked 140 questions across MMLU subcategories due to shared question stems. Graph connected-component clustering eliminates this leak completely.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Split</th>
+            <th class="num">Questions</th>
+            <th class="num">Share</th>
+            <th class="num">Pairing Rows</th>
+            <th class="num">medqa</th>
+            <th class="num">medmcqa</th>
+            <th class="num">mmlu</th>
+            <th class="num">Pilot (200)</th>
+            <th class="num">Phase 2A (50)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code class="mono" style="font-weight:600; color:var(--accent);">train</code></td>
+            <td class="num">2,207</td>
+            <td class="num">70.0%</td>
+            <td class="num">13,242</td>
+            <td class="num">881</td>
+            <td class="num">700</td>
+            <td class="num">626</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td><code class="mono" style="font-weight:600; color:var(--ink-2);">val</code></td>
+            <td class="num">316</td>
+            <td class="num">10.0%</td>
+            <td class="num">1,896</td>
+            <td class="num">126</td>
+            <td class="num">100</td>
+            <td class="num">90</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td><code class="mono" style="font-weight:600; color:var(--accent-2);">test</code></td>
+            <td class="num">631</td>
+            <td class="num">20.0%</td>
+            <td class="num">3,786</td>
+            <td class="num">252</td>
+            <td class="num">200</td>
+            <td class="num">179</td>
+            <td class="num">200</td>
+            <td class="num">50</td>
+          </tr>
+          <tr style="font-weight:600; border-top:2px solid var(--border);">
+            <td>Total</td>
+            <td class="num">3,154</td>
+            <td class="num">100.0%</td>
+            <td class="num">18,924</td>
+            <td class="num">1,259</td>
+            <td class="num">1,000</td>
+            <td class="num">895</td>
+            <td class="num">200</td>
+            <td class="num">50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="qc">
+    <div class="section-head">
+      <div class="kicker">§3 · Quality Control &amp; Invariants</div>
+      <h2>Automated test suite passing (9/9)</h2>
+      <p>Tested under <code class="mono">tests/test_phase3_split.py</code> using pytest and unittest.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Test Assertion</th>
+            <th>Specification</th>
+            <th>Observed Result</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">test_zero_id_leakage</td>
+            <td>Q(train) ∩ Q(val) = ∅, Q(train) ∩ Q(test) = ∅, Q(val) ∩ Q(test) = ∅</td>
+            <td>0 overlapping question IDs</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">test_zero_normalized_text_leakage</td>
+            <td>Stem(train) ∩ Stem(val) = ∅, Stem(train) ∩ Stem(test) = ∅</td>
+            <td>0 overlapping normalized stems</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">test_pilot_and_phase2a_held_out</td>
+            <td>All 200 pilot &amp; 50 Phase 2A IDs in test; exactly 0 in train/val</td>
+            <td>200 in test, 0 in train, 0 in val</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">test_pairs_row_completeness</td>
+            <td>Every question retains all 6 perturbation rows + 1 mcq baseline</td>
+            <td>18,924 total rows, 0 dropped representations</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">test_stratification_balance</td>
+            <td>Source allocations within 1.0% of target 70 / 10 / 20 split</td>
+            <td>Max discrepancy 0.1% across medqa, medmcqa, mmlu</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">test_split_determinism</td>
+            <td>Identical DataFrame output on re-generation with seed=42</td>
+            <td>Exact byte-identical match</td>
+            <td><span class="pill dot">PASS</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="section-head">
+      <div class="kicker">§4 · Phase 3 Roadmap</div>
+      <h2>Milestones &amp; execution gates</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Milestone</th><th>Objective</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>Milestone 1</b></td>
+            <td>Repository audit, Phase 3 architecture, stem clustering, and leakage-safe train/val/test split</td>
+            <td><span class="pill dot">Complete</span></td>
+          </tr>
+          <tr>
+            <td><b>Milestone 2</b></td>
+            <td>Qwen3-4B 4-bit local adapter implementation and zero-shot baseline evaluation on test split</td>
+            <td><span class="pill dot" style="background:var(--surface-2); color:var(--ink-2); border-color:var(--border);">Proposed (Next)</span></td>
+          </tr>
+          <tr>
+            <td><b>Milestone 3</b></td>
+            <td>LoRA/QLoRA post-training setup with standard correctness-reward baseline</td>
+            <td>Pending Milestone 2</td>
+          </tr>
+          <tr>
+            <td><b>Milestone 4</b></td>
+            <td>Symbolic-consistency reward implementation and GRPO post-training</td>
+            <td>Pending Milestone 3</td>
+          </tr>
+          <tr>
+            <td><b>Milestone 5</b></td>
+            <td>Held-out evaluation, statistical testing (McNemar, cluster bootstrap), and paper figures</td>
+            <td>Pending Milestone 4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>NAACL 2027 Medical LLM Reliability · Phase 3 Milestone 1</div>
+    <div style="margin-top:4px;">Artifacts under <code>data/processed/phase3/</code> and <code>results/phase3/splits/</code></div>
+  </div>
+
+</div>
+
+<script src="assets/theme.js"></script>
+</body>
+</html>

@@ -30,6 +30,7 @@ models/
 checkpoints/
 .cache/
 huggingface/
+unsloth_compiled_cache/
 *.safetensors
 *.bin
 *.pt

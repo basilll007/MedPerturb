@@ -1,0 +1,71 @@
+{
+  "seed": 42,
+  "train_ratio_target": 0.7,
+  "val_ratio_target": 0.1,
+  "test_ratio_target": 0.2,
+  "holdout_pilot": true,
+  "total_questions": 3154,
+  "total_clusters": 3084,
+  "total_pairs_rows": 18924,
+  "split_counts": {
+    "train": {
+      "questions": 2207,
+      "pct_questions": 0.6997,
+      "pairs_rows": 13242,
+      "by_source": {
+        "medqa": 881,
+        "medmcqa": 700,
+        "mmlu": 626
+      },
+      "pilot_questions": 0,
+      "phase2a_questions": 0
+    },
+    "val": {
+      "questions": 316,
+      "pct_questions": 0.1002,
+      "pairs_rows": 1896,
+      "by_source": {
+        "medqa": 126,
+        "medmcqa": 100,
+        "mmlu": 90
+      },
+      "pilot_questions": 0,
+      "phase2a_questions": 0
+    },
+    "test": {
+      "questions": 631,
+      "pct_questions": 0.2001,
+      "pairs_rows": 3786,
+      "by_source": {
+        "medqa": 252,
+        "medmcqa": 200,
+        "mmlu": 179
+      },
+      "pilot_questions": 200,
+      "phase2a_questions": 50
+    }
+  },
+  "leakage_checks_passed": true,
+  "n_leakage_errors": 0,
+  "timestamp": "2026-10-01T08:50:58.797193+00:00",
+  "git_commit": "78baa1bec4a7bedf34076806fa83c7435ec75392",
+  "git_dirty": true,
+  "input_files": {
+    "pairs_parquet": "data\\processed\\remedqa_pairs.parquet",
+    "pairs_sha256": "25cc18e915260f6df781dd13ac09b61bea8e19b22f24eb202fb3d806800f9ecb",
+    "pilot_parquet": "data\\processed\\pilot_200.parquet",
+    "pilot_sha256": "72a2445ff1712531b54453ecc93d0f82f8c3e59c5a7d542250b6e7b1d674c03e",
+    "phase2a_csv": "data\\processed\\phase2a_50_manifest.csv",
+    "phase2a_sha256": "bf53b68f82ec1d9bc766b15f2e087815bf4b7d6c3cebfb63a6d75dfcc9149c49"
+  },
+  "output_files": {
+    "manifest_csv": "data\\processed\\phase3\\split_manifest.csv",
+    "manifest_sha256": "80b96855ec3df25edb75be01ab1ca73518bedc253cbb1e90bd31ffb82ad50259",
+    "train_parquet": "data\\processed\\phase3\\train.parquet",
+    "train_sha256": "3f0ad6ed87c6d68ac3410d91615fc8ae84fc39d7b7185964d7feb3cc07419562",
+    "val_parquet": "data\\processed\\phase3\\val.parquet",
+    "val_sha256": "7bc2faa330fe312fff75f23e00f171f72a2a64cfb5cff6ad2c257058e2482941",
+    "test_parquet": "data\\processed\\phase3\\test.parquet",
+    "test_sha256": "f7ea55dc220dcd9297d603c77bf967ac1781cf6acf21a69ed8d403b7af12f5e2"
+  }
+}
