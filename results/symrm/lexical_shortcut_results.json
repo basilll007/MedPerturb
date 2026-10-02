@@ -4,22 +4,25 @@
       "base_accuracy": 1.0,
       "edited_accuracy": 0.0,
       "near_miss_accuracy": 1.0,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.5,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     },
     "near_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 0.0,
       "near_miss_accuracy": 1.0,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.5,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     },
     "far_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 0.0,
       "near_miss_accuracy": 1.0,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.5,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     }
   },
   "response_only": {
@@ -41,22 +44,25 @@
       "base_accuracy": 1.0,
       "edited_accuracy": 0.4,
       "near_miss_accuracy": 0.6,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.7,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     },
     "near_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 0.5,
       "near_miss_accuracy": 0.5,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.75,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     },
     "far_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 1.0,
       "near_miss_accuracy": 0.0,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 1.0,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     }
   },
   "bow_logistic_regression": {
@@ -64,22 +70,25 @@
       "base_accuracy": 1.0,
       "edited_accuracy": 1.0,
       "near_miss_accuracy": 0.20666666666666667,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 1.0,
-      "pooled_accuracy": 0.7355555555555555
+      "pooled_accuracy": 0.8016666666666666
     },
     "near_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 1.0,
       "near_miss_accuracy": 0.35,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 1.0,
-      "pooled_accuracy": 0.7833333333333333
+      "pooled_accuracy": 0.8375
     },
     "far_ood": {
       "base_accuracy": 1.0,
       "edited_accuracy": 0.0,
       "near_miss_accuracy": 1.0,
+      "null_edit_accuracy": 1.0,
       "balanced_cf_pairs_accuracy": 0.5,
-      "pooled_accuracy": 0.6666666666666666
+      "pooled_accuracy": 0.75
     }
   },
   "gating_criteria": {

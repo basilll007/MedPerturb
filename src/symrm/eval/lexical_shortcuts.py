@@ -47,6 +47,7 @@ def eval_always_default(items: List[Dict[str, Any]]) -> Dict[str, float]:
     base_items = [it for it in items if it["item_type"] == "base"]
     edited_items = [it for it in items if it["item_type"] == "edited"]
     nm_items = [it for it in items if it["item_type"] == "near_miss"]
+    null_items = [it for it in items if it["item_type"] == "null_edit"]
     cf_items = [it for it in items if it["item_type"] in ["base", "edited"]]
 
     def acc_for(subset):
@@ -60,6 +61,7 @@ def eval_always_default(items: List[Dict[str, Any]]) -> Dict[str, float]:
         "base_accuracy": acc_for(base_items),
         "edited_accuracy": acc_for(edited_items),
         "near_miss_accuracy": acc_for(nm_items),
+        "null_edit_accuracy": acc_for(null_items),
         "balanced_cf_pairs_accuracy": acc_for(cf_items),
         "pooled_accuracy": acc_for(items),
     }
@@ -144,6 +146,7 @@ def run_lexical_shortcut_eval(data_dir: str = "results/symrm/data") -> Dict[str,
         base_items = [it for it in split_items if it["item_type"] == "base"]
         edited_items = [it for it in split_items if it["item_type"] == "edited"]
         nm_items = [it for it in split_items if it["item_type"] == "near_miss"]
+        null_items = [it for it in split_items if it["item_type"] == "null_edit"]
         cf_items = [it for it in split_items if it["item_type"] in ["base", "edited"]]
 
         def acc_for(subset):
@@ -157,6 +160,7 @@ def run_lexical_shortcut_eval(data_dir: str = "results/symrm/data") -> Dict[str,
             "base_accuracy": acc_for(base_items),
             "edited_accuracy": acc_for(edited_items),
             "near_miss_accuracy": acc_for(nm_items),
+            "null_edit_accuracy": acc_for(null_items),
             "balanced_cf_pairs_accuracy": acc_for(cf_items),
             "pooled_accuracy": acc_for(split_items),
         }
@@ -184,6 +188,7 @@ def run_lexical_shortcut_eval(data_dir: str = "results/symrm/data") -> Dict[str,
         base_items = [it for it in split_items if it["item_type"] == "base"]
         edited_items = [it for it in split_items if it["item_type"] == "edited"]
         nm_items = [it for it in split_items if it["item_type"] == "near_miss"]
+        null_items = [it for it in split_items if it["item_type"] == "null_edit"]
         cf_items = [it for it in split_items if it["item_type"] in ["base", "edited"]]
 
         def acc_for(subset):
@@ -197,6 +202,7 @@ def run_lexical_shortcut_eval(data_dir: str = "results/symrm/data") -> Dict[str,
             "base_accuracy": acc_for(base_items),
             "edited_accuracy": acc_for(edited_items),
             "near_miss_accuracy": acc_for(nm_items),
+            "null_edit_accuracy": acc_for(null_items),
             "balanced_cf_pairs_accuracy": acc_for(cf_items),
             "pooled_accuracy": acc_for(split_items),
         }
@@ -253,23 +259,23 @@ def run_lexical_shortcut_eval(data_dir: str = "results/symrm/data") -> Dict[str,
         "Evaluation of four non-neural baselines across splits and item subsets.",
         "Preregistered Gating Rule: Far-OOD Balanced CF Accuracy < 70.0% is required to proceed.",
         "",
-        "| Baseline | Split | Base Items ($y=0$) | Edited Items ($y=1$) | Near-Miss Items ($y=0$) | **Balanced CF Pairs** | Pooled (3:1 Triplet) | Far-OOD Gating Status |",
-        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
-        f"| **Always-Default** | Train | {ad_train['base_accuracy']*100:.1f}% | {ad_train['edited_accuracy']*100:.1f}% | {ad_train['near_miss_accuracy']*100:.1f}% | **{ad_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_train['pooled_accuracy']*100:.1f}% | Reference |",
-        f"| **Always-Default** | Near-OOD | {ad_near['base_accuracy']*100:.1f}% | {ad_near['edited_accuracy']*100:.1f}% | {ad_near['near_miss_accuracy']*100:.1f}% | **{ad_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_near['pooled_accuracy']*100:.1f}% | Reference |",
-        f"| **Always-Default** | Far-OOD | {ad_far['base_accuracy']*100:.1f}% | {ad_far['edited_accuracy']*100:.1f}% | {ad_far['near_miss_accuracy']*100:.1f}% | **{ad_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_far['pooled_accuracy']*100:.1f}% | Reference |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
-        f"| **Response-Only LogReg** | Train | — | — | — | **{ro_train['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
-        f"| **Response-Only LogReg** | Near-OOD | — | — | — | **{ro_near['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
-        f"| **Response-Only LogReg** | Far-OOD | — | — | — | **{ro_far['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
-        f"| **Keyword Heuristic** | Train | {kw_train['base_accuracy']*100:.1f}% | {kw_train['edited_accuracy']*100:.1f}% | {kw_train['near_miss_accuracy']*100:.1f}% | **{kw_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_train['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
-        f"| **Keyword Heuristic** | Near-OOD | {kw_near['base_accuracy']*100:.1f}% | {kw_near['edited_accuracy']*100:.1f}% | {kw_near['near_miss_accuracy']*100:.1f}% | **{kw_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_near['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
-        f"| **Keyword Heuristic** | Far-OOD | {kw_far['base_accuracy']*100:.1f}% | {kw_far['edited_accuracy']*100:.1f}% | {kw_far['near_miss_accuracy']*100:.1f}% | **{kw_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_far['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
-        f"| **BoW LogReg (Prompt)** | Train | {bow_train['base_accuracy']*100:.1f}% | {bow_train['edited_accuracy']*100:.1f}% | {bow_train['near_miss_accuracy']*100:.1f}% | **{bow_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_train['pooled_accuracy']*100:.1f}% | In-Distribution Fit |",
-        f"| **BoW LogReg (Prompt)** | Near-OOD | {bow_near['base_accuracy']*100:.1f}% | {bow_near['edited_accuracy']*100:.1f}% | {bow_near['near_miss_accuracy']*100:.1f}% | **{bow_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_near['pooled_accuracy']*100:.1f}% | Near Transfer |",
-        f"| **BoW LogReg (Prompt)** | Far-OOD | {bow_far['base_accuracy']*100:.1f}% | {bow_far['edited_accuracy']*100:.1f}% | {bow_far['near_miss_accuracy']*100:.1f}% | **{bow_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_far['pooled_accuracy']*100:.1f}% | **{'PASS (< 70%)' if not stop_triggered else 'STOP (>= 70%)'}** |",
+        "| Baseline | Split | Base Items ($y=0$) | Edited Items ($y=1$) | Null-Edit ($y=0$) | Near-Miss ($y=0$) | **Balanced CF Pairs** | Pooled (2:1 Triplet) | Far-OOD Gating Status |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+        f"| **Always-Default** | Train | {ad_train['base_accuracy']*100:.1f}% | {ad_train['edited_accuracy']*100:.1f}% | {ad_train['null_edit_accuracy']*100:.1f}% | {ad_train['near_miss_accuracy']*100:.1f}% | **{ad_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_train['pooled_accuracy']*100:.1f}% | Reference |",
+        f"| **Always-Default** | Near-OOD | {ad_near['base_accuracy']*100:.1f}% | {ad_near['edited_accuracy']*100:.1f}% | {ad_near['null_edit_accuracy']*100:.1f}% | {ad_near['near_miss_accuracy']*100:.1f}% | **{ad_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_near['pooled_accuracy']*100:.1f}% | Reference |",
+        f"| **Always-Default** | Far-OOD | {ad_far['base_accuracy']*100:.1f}% | {ad_far['edited_accuracy']*100:.1f}% | {ad_far['null_edit_accuracy']*100:.1f}% | {ad_far['near_miss_accuracy']*100:.1f}% | **{ad_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {ad_far['pooled_accuracy']*100:.1f}% | Reference |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        f"| **Response-Only LogReg** | Train | — | — | — | — | **{ro_train['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
+        f"| **Response-Only LogReg** | Near-OOD | — | — | — | — | **{ro_near['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
+        f"| **Response-Only LogReg** | Far-OOD | — | — | — | — | **{ro_far['balanced_cf_pairs_accuracy']*100:.1f}%** | — | Reference (Chance) |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        f"| **Keyword Heuristic** | Train | {kw_train['base_accuracy']*100:.1f}% | {kw_train['edited_accuracy']*100:.1f}% | {kw_train['null_edit_accuracy']*100:.1f}% | {kw_train['near_miss_accuracy']*100:.1f}% | **{kw_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_train['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
+        f"| **Keyword Heuristic** | Near-OOD | {kw_near['base_accuracy']*100:.1f}% | {kw_near['edited_accuracy']*100:.1f}% | {kw_near['null_edit_accuracy']*100:.1f}% | {kw_near['near_miss_accuracy']*100:.1f}% | **{kw_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_near['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
+        f"| **Keyword Heuristic** | Far-OOD | {kw_far['base_accuracy']*100:.1f}% | {kw_far['edited_accuracy']*100:.1f}% | {kw_far['null_edit_accuracy']*100:.1f}% | {kw_far['near_miss_accuracy']*100:.1f}% | **{kw_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {kw_far['pooled_accuracy']*100:.1f}% | Reference (Over-flips) |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        f"| **BoW LogReg (Prompt)** | Train | {bow_train['base_accuracy']*100:.1f}% | {bow_train['edited_accuracy']*100:.1f}% | {bow_train['null_edit_accuracy']*100:.1f}% | {bow_train['near_miss_accuracy']*100:.1f}% | **{bow_train['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_train['pooled_accuracy']*100:.1f}% | In-Distribution Fit |",
+        f"| **BoW LogReg (Prompt)** | Near-OOD | {bow_near['base_accuracy']*100:.1f}% | {bow_near['edited_accuracy']*100:.1f}% | {bow_near['null_edit_accuracy']*100:.1f}% | {bow_near['near_miss_accuracy']*100:.1f}% | **{bow_near['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_near['pooled_accuracy']*100:.1f}% | Near Transfer |",
+        f"| **BoW LogReg (Prompt)** | Far-OOD | {bow_far['base_accuracy']*100:.1f}% | {bow_far['edited_accuracy']*100:.1f}% | {bow_far['null_edit_accuracy']*100:.1f}% | {bow_far['near_miss_accuracy']*100:.1f}% | **{bow_far['balanced_cf_pairs_accuracy']*100:.1f}%** | {bow_far['pooled_accuracy']*100:.1f}% | **{'PASS (< 70%)' if not stop_triggered else 'STOP (>= 70%)'}** |",
         "",
         "## Gating Analysis",
         f"- **Far-OOD BoW Balanced CF Accuracy:** {bow_far_cf_acc*100:.1f}% (Threshold: < 70.0%) -> **{'PASS' if not stop_triggered else 'STOP'}**",

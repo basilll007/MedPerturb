@@ -17,10 +17,12 @@ Can symbolic supervision teach neural reward models to generalize beyond the rul
 ### Core Hypotheses
 1. **Hypothesis 1 (Primary - Out-of-Distribution Generalization):**  
    Neural reward models trained with symbolic supervision (C4: Bradley-Terry loss + Pair Consistency loss + Symbolic Auxiliary Heads) achieve significantly higher **Discriminative Flip Rate (DFR)** on completely held-out clinical rule families (**Far-OOD: Drug Allergy**) than standard outcome-supervised reward models (C1: Outcome Bradley-Terry loss only).
-2. **Hypothesis 2 (Diagnostic - Resistance to Keyword Shortcuts):**  
-   Standard outcome-trained reward models (C1) exhibit elevated **Over-flip Rates** on near-miss clinical items (flipping to alternative actions merely because clinical condition keywords are mentioned, rather than because the rule fires). Pair consistency and auxiliary symbolic supervision (C2, C3, C4) suppress Over-flip Rates toward zero.
-3. **Hypothesis 3 (Secondary - Counterfactual Invariance):**  
-   Symbolic auxiliary heads enforce decisive evidence override internally, producing higher **Counterfactual Flip Rate (CFR)** across both seen (Train), near-transfer (Near-OOD), and novel (Far-OOD) clinical scenarios.
+2. **Diagnostic Metric 1 (Resistance to Keyword Shortcuts):**  
+   Standard outcome-trained reward models (C1) exhibit elevated **Over-flip Rates** on near-miss clinical items. Pair consistency and auxiliary symbolic supervision suppress this.
+3. **Diagnostic Metric 2 (Paraphrase Noise Floor):**  
+   Based on findings in Yang et al. (arXiv:2605.01048), surface-form modifications can induce spurious metric changes. We implement a **Null-Edit** item type (paraphrasing non-decisive sentences/fields) to establish a baseline noise floor. We hypothesize that symbolic supervision reduces spurious flips on null-edits compared to baseline models.
+4. **Secondary Hypothesis (Counterfactual Invariance):**  
+   Symbolic auxiliary heads enforce decisive evidence override internally, producing higher **Counterfactual Flip Rate (CFR)** across both seen (Train), near-transfer (Near-OOD), and novel (Far-OOD) clinical scenarios, when adjusted by the null-edit flip rate.
 
 ---
 
@@ -70,15 +72,18 @@ Base model: `Qwen/Qwen2.5-1.5B`, 4-bit NF4 quantized, `bfloat16` compute dtype, 
 
 ### Metrics Defined
 1. **Headline Metric: Discriminative Flip Rate (DFR):**  
-   The fraction of scenario triplets where the base item, edited item, AND near-miss item are all decisively correct:
+   The fraction of scenario quartets where the base item, edited item, AND near-miss item are all decisively correct:
    $$\text{DFR} = \frac{1}{N} \sum_{s=1}^N \mathbf{1}_{\{M_{\text{base}} > \epsilon \;\land\; M_{\text{edited}} > \epsilon \;\land\; M_{\text{near\_miss}} > \epsilon\}}$$
+   (We will also report DFR minus the null-edit flip rate to account for the noise floor.)
 2. **Diagnostic Metric: Over-flip Rate:**  
    The fraction of scenarios where the model decisively overrides on the edited item but erroneously flips on the near-miss item:
    $$\text{Over-flip Rate} = \frac{1}{N} \sum_{s=1}^N \mathbf{1}_{\{M_{\text{edited}} > \epsilon \;\land\; M_{\text{near\_miss}} < -\epsilon\}}$$
-3. **Secondary Metric: Counterfactual Flip Rate (CFR):**  
+3. **Noise Floor Metric: Null-Edit Flip Rate:**  
+   The fraction of scenarios where the model changes its prediction simply due to paraphrasing of non-decisive fields.
+4. **Secondary Metric: Counterfactual Flip Rate (CFR):**  
    The fraction of scenarios where both base and edited items are decisively correct:
    $$\text{CFR} = \frac{1}{N} \sum_{s=1}^N \mathbf{1}_{\{M_{\text{base}} > \epsilon \;\land\; M_{\text{edited}} > \epsilon\}}$$
-4. **Pairwise Accuracy:**  
+5. **Pairwise Accuracy:**  
    Strict pairwise accuracy with tie band: fraction of items where $M = r(\text{chosen}) - r(\text{rejected}) > \epsilon$.
 
 ---

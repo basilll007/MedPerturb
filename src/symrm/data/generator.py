@@ -55,7 +55,7 @@ class ClinicalItem(BaseModel):
     rule_id: str
     family: str
     split: str
-    item_type: str  # 'base', 'edited', 'near_miss'
+    item_type: str  # 'base', 'edited', 'near_miss', 'null_edit'
     indication: str
     prompt: str
     chosen: str
@@ -452,6 +452,37 @@ class DatasetGenerator:
                 structured_facts=nm_facts.model_dump(),
             ))
 
+            # -----------------------------------------------------------------
+            # 4. NULL-EDIT ITEM (Paraphrasing Non-Decisive Fields)
+            # -----------------------------------------------------------------
+            null_setting = settings[(i + 1) % len(settings)]
+            null_distractor = distractor_labs[(i + 1) % len(distractor_labs)]
+
+            null_prompt = self._compose_prompt(
+                article=article, age=age, sex=sex, setting=null_setting, indication=indication,
+                presentation=presentation, renal_text=renal_text, repro_text=repro_text,
+                allergy_text=allergy_text, family_text=family_text, distractor_text=null_distractor
+            )
+
+            items.append(ClinicalItem(
+                item_id=f"{template_id}_null_edit",
+                template_id=template_id,
+                rule_id=rule_id,
+                family=family,
+                split=split,
+                item_type="null_edit",
+                indication=indication,
+                prompt=null_prompt,
+                chosen=default_act,
+                rejected=rule_act,
+                default_option=default_act,
+                alternative_option=rule_act,
+                chosen_is_default=True,
+                decisive_fact_present=False,
+                decisive_fact_type="none",
+                structured_facts=base_facts.model_dump(),
+            ))
+
         return items
 
     def _compose_prompt(
@@ -604,7 +635,7 @@ class DatasetGenerator:
         metadata = {
             "data_version": "v0-unreviewed",
             "total_items": len(items),
-            "num_templates": len(items) // 3,
+            "num_templates": len(items) // 4,
             "train_items": len(train_items),
             "near_ood_items": len(near_ood_items),
             "far_ood_items": len(far_ood_items),
@@ -626,4 +657,4 @@ def generate_dataset(rules_path: str = "configs/symrm/rules.yaml", output_dir: s
 
 if __name__ == "__main__":
     items = generate_dataset()
-    print(f"Generated {len(items)} items across {len(items)//3} templates.")
+    print(f"Generated {len(items)} items across {len(items)//4} templates.")

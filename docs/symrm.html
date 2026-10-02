@@ -121,8 +121,8 @@
     </p>
     <div class="status-row">
       <span class="pill dot">Gate 0 (Hardware &amp; VRAM Sweep) — PASSED</span>
-      <span class="pill dot">Gate 1 (Neutral Responses &amp; Near-Miss Redesign) — PASSED</span>
-      <span class="pill dot">Gate 2a (Leakage Elimination &amp; Deduplication) — RESUBMITTED</span>
+      <span class="pill dot">Gate 1 (Neutral Responses &amp; Near-Miss Redesign) — Conditionally approved</span>
+      <span class="pill dot">Gate 2a (Leakage Elimination &amp; Deduplication) — Awaiting PI review</span>
       <span class="pill" style="background:var(--warn-soft); color:var(--warn); border-color:var(--warn);">Data Tag: v0-unreviewed</span>
     </div>
 
@@ -149,7 +149,7 @@
         <h3>VRAM Scaling &amp; Operating Point Selection</h3>
         <p style="margin-top:8px; color:var(--ink-2); font-size:0.94rem; line-height:1.6;">
           A Bradley-Terry pairwise preference loss was benchmarked across per-device batch sizes 1, 2, 4, 8 with Qwen2.5-1.5B (NF4 4-bit, LoRA r=16 on all linear projections, sequence length 512, paged AdamW 8-bit).
-          Batch size 2 with gradient accumulation of 16 (effective batch = 32) achieves <b>823.2 tokens/sec at 3.13 GB peak VRAM</b>, staying well below the 7.0 GB thermal and paging safety threshold.
+          Batch size 4 with gradient accumulation of 8 (effective batch = 32) achieves <b>856.7 tokens/sec at 3.78 GB peak VRAM</b>, staying well below the 7.0 GB thermal and paging safety threshold.
           Batch size 8 demonstrated laptop thermal throttling / memory paging, collapsing throughput to 90.6 tokens/sec.
         </p>
         <div class="table-responsive">
@@ -159,8 +159,8 @@
             </thead>
             <tbody>
               <tr><td>1</td><td>32</td><td>2.12 GB</td><td>582.5 tok/s</td><td>4.69 s</td><td class="pass-pill">PASS</td></tr>
-              <tr><td><b>2</b></td><td><b>16</b></td><td><b>3.13 GB</b></td><td><b>823.2 tok/s</b></td><td><b>3.32 s</b></td><td class="pass-pill"><b>SELECTED</b></td></tr>
-              <tr><td>4</td><td>8</td><td>3.78 GB</td><td>856.7 tok/s</td><td>3.19 s</td><td class="pass-pill">PASS</td></tr>
+              <tr><td>2</td><td>16</td><td>3.13 GB</td><td>823.2 tok/s</td><td>3.32 s</td><td class="pass-pill">PASS</td></tr>
+              <tr><td><b>4</b></td><td><b>8</b></td><td><b>3.78 GB</b></td><td><b>856.7 tok/s</b></td><td><b>3.19 s</b></td><td class="pass-pill"><b>SELECTED</b></td></tr>
               <tr><td>8</td><td>4</td><td>5.07 GB</td><td>90.6 tok/s</td><td>30.15 s</td><td style="color:var(--bad);">THROTTLED</td></tr>
             </tbody>
           </table>
@@ -169,7 +169,7 @@
       <div class="figure-box">
         <img src="figures/symrm/fig1_vram_and_throughput_scaling.png" alt="Hardware Scaling and VRAM Sweep">
         <div class="figure-caption">
-          <b>Figure 1:</b> Gate 0 VRAM allocation and throughput scaling on RTX 5060. Batch size 2 achieves optimal throughput with over 4.8 GB of safety margin beneath the 8 GB device limit.
+          <b>Figure 1 (QC Diagnostic):</b> Gate 0 VRAM allocation and throughput scaling on RTX 5060. Batch size 4 achieves optimal throughput with sufficient safety margin beneath the 8 GB device limit.
         </div>
       </div>
     </div>
@@ -232,7 +232,7 @@
       <div class="figure-box">
         <img src="figures/symrm/fig5_token_length_neutrality.png" alt="Response Token Length Neutrality">
         <div class="figure-caption">
-          <b>Figure 3:</b> Token length difference (Default &minus; Alternative) per rule under Qwen tokenizer. Mean absolute difference is 0.90 tokens (&le; 2.0 bound across all 10 rules).
+          <b>Figure 5 (QC Diagnostic):</b> Token length difference (Default &minus; Alternative) per rule under Qwen tokenizer. Mean absolute difference is 0.90 tokens (&le; 2.0 bound across all 10 rules).
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@
             <th>Edited ($y=1$)</th>
             <th>Near-Miss ($y=0$)</th>
             <th>Balanced CF Pairs</th>
-            <th>Pooled Triplet</th>
+            <th>Pooled (2:1 Triplet)</th>
             <th>Gating Outcome</th>
           </tr>
         </thead>
@@ -304,7 +304,7 @@
       <div class="figure-box">
         <img src="figures/symrm/fig4_template_diversity_and_deduplication.png" alt="Template Diversity and Deduplication">
         <div class="figure-caption">
-          <b>Figure 5:</b> Distribution of pairwise Jaccard similarities across all 44,850 distinct scenario pairs in the dataset. Zero pairs cross the 0.90 deduplication ceiling.
+          <b>Figure 4 (QC Diagnostic):</b> Distribution of pairwise Jaccard similarities across all 44,850 distinct scenario pairs in the dataset. Zero pairs cross the 0.90 deduplication ceiling.
         </div>
       </div>
     </div>
@@ -423,9 +423,7 @@ Question: What is the most appropriate pharmacological prescription order for th
       <div class="card">
         <h3>Verified Open-Weight Reward Models (&le; 8 GB VRAM)</h3>
         <p style="margin-top:8px; color:var(--ink-2); font-size:0.92rem; line-height:1.6;">
-          1. <b>`OpenAssistant/reward-model-deberta-v3-large-v2`</b> (435M): DeBERTa-v3 sequence classification head. BF16 / ~1.1 GB VRAM. Revision: <code class="mono">c355404efa64195c255b6a3ef89d6e87a2a07cbe</code>.<br><br>
-          2. <b>`weqweasdas/RM-Gemma-2B`</b> (2.6B): Gemma-2B causal backbone with regression reward head. 4-bit NF4 / ~2.2 GB VRAM. Revision: <code class="mono">77461496adbcbb53a5fe6b77dfdc18ad40536c4b</code>.<br><br>
-          3. <b>`Skywork/Skywork-Reward-Llama-3.1-8B-v0.2`</b> (8.0B): Llama-3.1-8B sequence classification RM. 4-bit NF4 / ~5.4 GB VRAM. Revision: <code class="mono">d4117fbfd8819d9bca1b5853549646b9a2b53e77</code>.<br><br>
+          Models are not yet selected and will be configured following PI review.<br><br>
           4. <b>Instruct Readout:</b> <code class="mono">Qwen/Qwen2.5-1.5B-Instruct</code> scored by sequence log-likelihood: &Delta; log P(prescription | prompt).
         </p>
       </div>

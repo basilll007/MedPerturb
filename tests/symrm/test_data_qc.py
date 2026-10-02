@@ -113,6 +113,7 @@ def test_near_miss_verifier_matches_base_100_percent():
         assert "base" in triplet, f"Missing base in {tpl_id}"
         assert "near_miss" in triplet, f"Missing near_miss in {tpl_id}"
         assert "edited" in triplet, f"Missing edited in {tpl_id}"
+        assert "null_edit" in triplet, f"Missing null_edit in {tpl_id}"
 
         base_item = triplet["base"]
         nm_item = triplet["near_miss"]
@@ -237,8 +238,9 @@ def test_field_level_prompt_diff_in_scenarios():
         p_base = [l.strip() for l in triplet["base"].strip().split("\n") if l.strip()]
         p_ed = [l.strip() for l in triplet["edited"].strip().split("\n") if l.strip()]
         p_nm = [l.strip() for l in triplet["near_miss"].strip().split("\n") if l.strip()]
+        p_null = [l.strip() for l in triplet["null_edit"].strip().split("\n") if l.strip()]
 
-        assert len(p_base) == len(p_ed) == len(p_nm), f"Line count mismatch in {tpl_id}"
+        assert len(p_base) == len(p_ed) == len(p_nm) == len(p_null), f"Line count mismatch in {tpl_id}"
 
         # Lines:
         # 0: Clinical Vignette:
@@ -249,10 +251,18 @@ def test_field_level_prompt_diff_in_scenarios():
         # 5: Family history: ...
         # 6: {distractor}
         # 7: Question: ...
-        assert p_base[0] == p_ed[0] == p_nm[0]
+        assert p_base[0] == p_ed[0] == p_nm[0] == p_null[0]
         assert p_base[1] == p_ed[1] == p_nm[1], f"Header line differs in {tpl_id}"
+        assert p_base[1] != p_null[1], f"Header line identical base vs null_edit in {tpl_id}"
         assert p_base[6] == p_ed[6] == p_nm[6], f"Distractor differs in {tpl_id}"
-        assert p_base[7] == p_ed[7] == p_nm[7], f"Question differs in {tpl_id}"
+        assert p_base[6] != p_null[6], f"Distractor identical base vs null_edit in {tpl_id}"
+        assert p_base[7] == p_ed[7] == p_nm[7] == p_null[7], f"Question differs in {tpl_id}"
+
+        # Check invariant parts for null_edit:
+        assert p_base[2] == p_null[2], f"Renal differs base vs null_edit in {tpl_id}"
+        assert p_base[3] == p_null[3], f"Repro differs base vs null_edit in {tpl_id}"
+        assert p_base[4] == p_null[4], f"Allergy differs base vs null_edit in {tpl_id}"
+        assert p_base[5] == p_null[5], f"Family history differs base vs null_edit in {tpl_id}"
 
         if family == "renal":
             assert p_base[2] != p_ed[2], f"Renal function identical base vs edited in {tpl_id}"

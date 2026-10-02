@@ -555,10 +555,10 @@
         <h3>Secondary Outcomes: Invariance Preservation &amp; Consistency</h3>
         <p style="margin-top:8px; font-size:0.94rem; color:var(--ink-2); line-height:1.6;">
           <b>Comparison</b>: Invariance stability across <code class="mono">roman_numeral</code>, <code class="mono">fixed_pos</code>, and <code class="mono">no_symbols</code>.<br>
-          - <b>Invariance Accuracy</b>: 51.77% &rarr; 52.01% (+0.24%, McNemar p = 0.6476)<br>
-          - <b>Joint Invariance Consistency (ReCon)</b>: <b>50.59% &rarr; 51.78% (+1.19% gain)</b><br>
-          - <b>Joint Invariance Correctness (ReAcc)</b>: <b>34.75% &rarr; 35.46% (+0.71% gain)</b><br>
-          - <b>Fixed Position Robustness</b>: 52.01% &rarr; <b>52.72%</b> (+0.71% gain)<br>
+          - <b>Invariance Accuracy</b>: 51.77% &rarr; 52.01% (+0.24%, McNemar p = 0.6476, non-significant)<br>
+          - <b>Joint Invariance Consistency (ReCon)</b>: 50.59% &rarr; 51.78% (+1.19%)<br>
+          - <b>Joint Invariance Correctness (ReAcc)</b>: 34.75% &rarr; 35.46% (+0.71%)<br>
+          - <b>Fixed Position Robustness</b>: 52.01% &rarr; 52.72% (+0.71%)<br>
           - <b>Representation Instability</b>: Dropped from 215 (Base) to 207 (Correctness) to <b>204 (Neuro-Symbolic)</b>.
         </p>
       </div>
@@ -706,7 +706,7 @@
       <h3>Key Scientific Takeaways</h3>
       <p style="margin-top:8px; font-size:0.94rem; color:var(--ink); line-height:1.6;">
         1. <b>Adaptation Rigidity in Compact LLMs</b>: Required adaptation failure rates remain remarkably high (~73%) across all 4B parameter variants. Model predictions under NOTA and negative task sets are heavily anchored to pre-training token priors that a lightweight 60-step LoRA adapter cannot overwrite.<br>
-        2. <b>Preservation and Consistency Gains</b>: While adaptation failure was not significantly reduced, Neuro-Symbolic training did not degrade performance and delivered tangible gains in invariance consistency: joint prediction consistency (ReCon) increased from 50.59% to 51.78%, joint accuracy (ReAcc) increased from 34.75% to 35.46%, and representation instability dropped from 215 to 204.<br>
+        2. <b>Preservation and Consistency Gains</b>: While adaptation failure was not significantly reduced, Neuro-Symbolic training did not degrade performance and delivered slight, statistically non-significant gains in invariance consistency: joint prediction consistency (ReCon) increased from 50.59% to 51.78%, joint accuracy (ReAcc) increased from 34.75% to 35.46%, and representation instability dropped from 215 to 204.<br>
         3. <b>Methodological Honesty</b>: In compliance with NAACL standards, this null result on the primary adaptation outcome is reported with exact test statistics rather than optimized post-hoc narratives.
       </p>
     </div>
